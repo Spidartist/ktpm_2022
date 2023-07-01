@@ -3,6 +3,7 @@ module comz.quartermanagement {
     requires javafx.fxml;
     requires java.sql;
     requires java.prefs;
+	requires javafx.base;
 
 
     opens com.ktpm to javafx.fxml;

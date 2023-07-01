@@ -1,5 +1,7 @@
 package com.ktpm.constants;
 
+import static com.ktpm.constants.FXMLConstants.DETAIL_CO_SO_VAT_CHAT_VIEW_FXML;
+
 public class FXMLConstants {
     public FXMLConstants() {}
 
@@ -16,5 +18,6 @@ public class FXMLConstants {
     public static String DETAIL_LICH_HOAT_DONG_VIEW_FXML = "/com/ktpm/views/lichhoatdong-detail-view.fxml";
     public static String ADD_THANH_VIEN_FXML = "/com/ktpm/views/addthanhvien-view.fxml";
     public static String ICON = "/com/ktpm/icons/logo1.png";
+    public static String DETAIL_CO_SO_VAT_CHAT_ADD_FXML="/com/ktpm/views/cosovatchat-add-view.fxml";
 
 }
