@@ -44,7 +44,7 @@ public class HomeController {
                     userPreferences.put("username", result.getString(2));
                     ViewUtils viewUtils = new ViewUtils();
                     viewUtils.changeScene(event, ADMIN_VIEW_FXML);
-                }   else {
+                } else {
                     createDialog(
                             Alert.AlertType.ERROR,
                             "Cảnh báo!",
