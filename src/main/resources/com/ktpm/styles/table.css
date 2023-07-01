@@ -1,6 +1,6 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
-    -fx-background-color:  #3f4d67;
+    -fx-background-color:  #7942fe;
 }
 .table-view .column-header .label{
     -fx-text-fill: white;
@@ -16,11 +16,16 @@
 }
 
 .table-row-cell:hover {
-    -fx-background-color: #9dd6f4 !important;
+    -fx-background-color: #efe9ff !important;
+    
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #9dd6f4 !important;
+    -fx-background-color: #efe9ff !important;
+}
+
+.table-row-cell:selected .cell{
+    -fx-border-color: transparent !important;
 }
 /*.table-row-cell:selected .text {*/
 /*    -fx-fill: black;*/
@@ -32,6 +37,7 @@
 .table-view .increment-button ,.table-view .decrement-button {
     -fx-background-color:transparent;
     -fx-background-radius: 2em;
+    
 }
 
 /* The main scrollbar **track** CSS class  */
@@ -48,6 +54,7 @@
     -fx-background-color:#39465e;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
+    -fx-wi
 
 }
 

@@ -9,8 +9,21 @@
 .button{
     -fx-background-color: #fff;
     -fx-text-fill: #333;
-    /* -fx-border-radius: 4px; */
-    /* -fx-border-width: 2px; */
+    
+}
+.btn{
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #7942fe;
+
+    -fx-text-fill: #7942fe;
+}
+.danger{
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #fc0404;
+    
+    -fx-text-fill: #fc0404;
 
 }
 
