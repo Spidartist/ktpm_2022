@@ -10,7 +10,8 @@ import com.ktpm.model.CoSoVatChat;
 
 public class CoSoVatChatServices {
     public static ResultSet getAllFacility(Connection conn) throws SQLException {
-        String SELECT_QUERY = "SELECT * FROM cosovatchat";
+        String SELECT_QUERY = "SELECT MaDoDung, TenDoDung, `loaicosovatchat`.`TenLoaiDoDung`, TinhTrang  FROM `cosovatchat` JOIN `loaicosovatchat` "
+        					+ "WHERE `cosovatchat`.`MaLoaiDoDung` = `loaicosovatchat`.`MaLoaiDoDung`";
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
         return preparedStatement.executeQuery();
     }

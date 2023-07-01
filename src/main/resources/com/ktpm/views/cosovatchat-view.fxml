@@ -17,8 +17,8 @@
                 <TableColumn fx:id="indexColumn" prefWidth="35.0" text="#" />
                 <TableColumn fx:id="maDoDungColumn" prefWidth="119.0" text="Mã đồ dùng" />
                 <TableColumn fx:id="tenDoDungColumn" prefWidth="153.0" text="Tên đồ dùng" />
-                <TableColumn fx:id="soLuongColumn" prefWidth="134.0" text="Số lượng" />
-                <TableColumn fx:id="soLuongKhaDungColumn" prefWidth="192.0" text="Số lượng khả dụng" />
+                <TableColumn fx:id="tenLoaiDoDungColumn" prefWidth="134.0" text="Loại đồ dùng" />
+                <TableColumn fx:id="tinhTrangColumn" prefWidth="192.0" text="Tình trạng" />
             </columns>
         </TableView>
         <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cơ sở vật chất" textAlignment="CENTER" wrappingWidth="192.9140625">

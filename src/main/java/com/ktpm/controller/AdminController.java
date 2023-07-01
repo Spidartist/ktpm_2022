@@ -31,72 +31,73 @@ import com.ktpm.services.SoHoKhauServices;
 import com.ktpm.utils.ViewUtils;
 
 public class AdminController implements Initializable {
-    @FXML
-    private AnchorPane basePane;
-    @FXML
-    private Button signUpUserButton;
-    @FXML
-    private Label nhankhauLabel, hokhauLabel, usernameLabel;
-    @FXML
-    private Text lichHoatDongLabel, thoiGianLabel;
-    @FXML
-    private BarChart facilityChart;
-    //Save user role
-    private static final Preferences userPreferences = Preferences.userRoot();
-    public static final String userRole = userPreferences.get("role", "");
-    public static final String userName = userPreferences.get("username", "");
-    private final ViewUtils viewUtils = new ViewUtils();
-    private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+	@FXML
+	private AnchorPane basePane;
+	@FXML
+	private Button signUpUserButton;
+	@FXML
+	private Label nhankhauLabel, hokhauLabel, usernameLabel;
+	@FXML
+	private Text lichHoatDongLabel, thoiGianLabel;
+	@FXML
+	private BarChart facilityChart;
+	// Save user role
+	private static final Preferences userPreferences = Preferences.userRoot();
+	public static final String userRole = userPreferences.get("role", "");
+	public static final String userName = userPreferences.get("username", "");
+	private final ViewUtils viewUtils = new ViewUtils();
+	private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
-    public AdminController() throws SQLException {
-    }
+	public AdminController() throws SQLException {
+	}
 
-    public void switchToDashboard(ActionEvent event) throws IOException {
-        viewUtils.changeScene(event, ADMIN_VIEW_FXML);
-    }
+	public void switchToDashboard(ActionEvent event) throws IOException {
+		viewUtils.changeScene(event, ADMIN_VIEW_FXML);
+	}
 
-    public void switchToSignUp() throws IOException {
-        viewUtils.changeAnchorPane(basePane, SIGN_UP_USER_VIEW_FXML);
-    }
+	public void switchToSignUp() throws IOException {
+		viewUtils.changeAnchorPane(basePane, SIGN_UP_USER_VIEW_FXML);
+	}
 
-    public void switchToNhanKhau() throws IOException {
-        viewUtils.changeAnchorPane(basePane, NHAN_KHAU_VIEW_FXML);
+	public void switchToNhanKhau() throws IOException {
+		viewUtils.changeAnchorPane(basePane, NHAN_KHAU_VIEW_FXML);
 
-    }
+	}
 
-    public void switchToCoSoVatChat() throws IOException {
-        viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
-    }
-    public void switchToSoHoKhau() throws IOException {
-        viewUtils.changeAnchorPane(basePane, SO_HO_KHAU_VIEW_FXML);
-    }
-    
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        signUpUserButton.setVisible(userRole.equals("totruong"));
-        nhankhauLabel.setText("" + NhanKhauServices.getTotalNhanKhau());
-        hokhauLabel.setText("" + SoHoKhauServices.getTotalSoHoKhau());
-        usernameLabel.setText(toUpperFirstLetter(userName));
+	public void switchToCoSoVatChat() throws IOException {
+		viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
+	}
 
-        ResultSet result = null;
-        try {
-            result = LichHoatDongServices.getLichHoatDongGanNhat(conn);
-            if (result.next()) {
-                lichHoatDongLabel.setText(result.getString(1));
-                thoiGianLabel.setText(result.getString(2));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+	public void switchToSoHoKhau() throws IOException {
+		viewUtils.changeAnchorPane(basePane, SO_HO_KHAU_VIEW_FXML);
+	}
+
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		signUpUserButton.setVisible(userRole.equals("totruong"));
+		nhankhauLabel.setText("" + NhanKhauServices.getTotalNhanKhau());
+		hokhauLabel.setText("" + SoHoKhauServices.getTotalSoHoKhau());
+		usernameLabel.setText(toUpperFirstLetter(userName));
+
+		ResultSet result = null;
+		try {
+			result = LichHoatDongServices.getLichHoatDongGanNhat(conn);
+			if (result.next()) {
+				lichHoatDongLabel.setText(result.getString(1));
+				thoiGianLabel.setText(result.getString(2));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 
 //        XYChart.Series dataSeries = new XYChart.Series();
 //        for (Map.Entry<String, Integer> entry : CoSoVatChatServices.getLeastFiveFacility().entrySet()) {
 //            dataSeries.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
 //        }
 //        facilityChart.getData().add(dataSeries);
-    }
+	}
 
-    public void switchToLichHoatDong() throws IOException {
-        viewUtils.changeAnchorPane(basePane, LICH_HOAT_DONG_VIEW_FXML);
-    }
+	public void switchToLichHoatDong() throws IOException {
+		viewUtils.changeAnchorPane(basePane, LICH_HOAT_DONG_VIEW_FXML);
+	}
 }

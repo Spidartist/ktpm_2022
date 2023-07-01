@@ -45,10 +45,10 @@ public class CoSoVatChatController implements Initializable {
     private TableColumn indexColumn;
 
     @FXML
-    private TableColumn<CoSoVatChat, String> tenDoDungColumn;
+    private TableColumn<CoSoVatChat, String> tenDoDungColumn, tenLoaiDoDungColumn, tinhTrangColumn;
 
     @FXML
-    private TableColumn<CoSoVatChat, Integer> maDoDungColumn, soLuongColumn, soLuongKhaDungColumn;
+    private TableColumn<CoSoVatChat, Integer> maDoDungColumn;
 
     @FXML
     private Pagination pagination;
@@ -65,8 +65,8 @@ public class CoSoVatChatController implements Initializable {
             conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             ResultSet result = CoSoVatChatServices.getAllFacility(conn);
             while (result.next()) {
-                coSoVatChatList.add(new CoSoVatChat(result.getInt("maDoDung"), result.getString("tenDoDung"),
-                        result.getInt("soLuong"), result.getInt("soLuongKhaDung")));
+                coSoVatChatList.add(new CoSoVatChat(result.getInt("MaDoDung"), result.getString("TenDoDung"),
+                        result.getString("TinhTrang"), result.getString("TenLoaiDoDung")));
 
             }
         } catch (SQLException e) {
@@ -181,8 +181,9 @@ public class CoSoVatChatController implements Initializable {
         indexColumn.setSortable(false);
         maDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("maDoDung"));
         tenDoDungColumn.setCellValueFactory((new PropertyValueFactory<CoSoVatChat, String>("tenDoDung")));
-        soLuongColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuong"));
-        soLuongKhaDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuongKhaDung"));
+        tenLoaiDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tenLoaiDoDung"));
+        tinhTrangColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tinhTrang"));
+        
         int lastIndex = 0;
         int displace = coSoVatChatList.size() % ROWS_PER_PAGE;
         if (displace > 0) {
@@ -245,8 +246,8 @@ public class CoSoVatChatController implements Initializable {
                 indexColumn.setSortable(false);
                 maDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("maDoDung"));
                 tenDoDungColumn.setCellValueFactory((new PropertyValueFactory<CoSoVatChat, String>("tenDoDung")));
-                soLuongColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuong"));
-                soLuongKhaDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuongKhaDung"));
+                tenLoaiDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tenLoaiDoDung"));
+                tinhTrangColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tinhTrang"));
                 int lastIndex = 0;
                 int displace = filteredData.size() % ROWS_PER_PAGE;
                 if (displace > 0) {

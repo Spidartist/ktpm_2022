@@ -174,7 +174,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" text="Hà Thái" textFill="#1bbde4">
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" textFill="#1bbde4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -191,12 +191,12 @@
                   <Font size="20.0" />
                </font>
             </Text>
-            <Text fx:id="lichHoatDongLabel" fill="#1bbde4" layoutX="516.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Đập đá cùng thầy Bách" textAlignment="CENTER" wrappingWidth="143.3280029296875">
+            <Text fx:id="lichHoatDongLabel" fill="#1bbde4" layoutX="516.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="143.3280029296875">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
             </Text>
-            <Text fx:id="thoiGianLabel" fill="#8ec9e1" layoutX="512.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="14:00 14/02/2023" textAlignment="CENTER" wrappingWidth="151.3280029296875">
+            <Text fx:id="thoiGianLabel" fill="#8ec9e1" layoutX="512.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="151.3280029296875">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
