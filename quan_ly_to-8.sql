@@ -114,7 +114,7 @@ CREATE TABLE `lichhoatdong` (
 
 CREATE TABLE `hoatdong_cosovatchat` (
   `MaHoatDong` int(11) NOT NULL,
-  `MaDoDung` int(11) NOT NULL,
+  `MaDoDung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `nhankhau`

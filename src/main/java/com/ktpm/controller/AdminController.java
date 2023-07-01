@@ -89,11 +89,11 @@ public class AdminController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        XYChart.Series dataSeries = new XYChart.Series();
-        for (Map.Entry<String, Integer> entry : CoSoVatChatServices.getLeastFiveFacility().entrySet()) {
-            dataSeries.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
-        }
-        facilityChart.getData().add(dataSeries);
+//        XYChart.Series dataSeries = new XYChart.Series();
+//        for (Map.Entry<String, Integer> entry : CoSoVatChatServices.getLeastFiveFacility().entrySet()) {
+//            dataSeries.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+//        }
+//        facilityChart.getData().add(dataSeries);
     }
 
     public void switchToLichHoatDong() throws IOException {
