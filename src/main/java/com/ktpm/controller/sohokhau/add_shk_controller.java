@@ -37,6 +37,7 @@ import com.ktpm.model.SoHoKhau;
 import com.ktpm.model.ThanhVien;
 import com.ktpm.services.SoHoKhauServices;
 import com.ktpm.utils.ViewUtils;
+import static com.ktpm.constants.FXMLConstants.ADD_THANH_VIEN_FXML;
 
 public class add_shk_controller {
     @FXML
@@ -319,7 +320,7 @@ public class add_shk_controller {
     public void addthanhvien(ActionEvent event) throws IOException, SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/quartermanagement/views/addthanhvien-view.fxml"));
+        loader.setLocation(getClass().getResource(ADD_THANH_VIEN_FXML));
         Parent studentViewParent = loader.load();
         Scene scene = new Scene(studentViewParent);
         AddThanhVienController controller = loader.getController();

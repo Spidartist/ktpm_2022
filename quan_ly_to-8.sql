@@ -32,7 +32,7 @@ CREATE TABLE `nhankhau` (
 CREATE TABLE `sohokhau` (
   `ID` int(11) NOT NULL,
   `MaHoKhau` text NOT NULL,
-  `DiaChi` text NOT NULL DEFAULT 'phố 7 phường La Khê',
+  `DiaChi` text NOT NULL DEFAULT 'D9 401',
   `MaChuHo` int(12) NOT NULL,
   `NgayLap` date DEFAULT NULL,
   `NgayChuyenDi` date DEFAULT NULL,
@@ -90,10 +90,17 @@ CREATE TABLE `user` (
 
 CREATE TABLE `cosovatchat` (
   `MaDoDung` int(11) NOT NULL,
+  `MaLoaiDoDung` int(11) NOT NULL,
   `TenDoDung` varchar(30) NOT NULL,
-  `SoLuong` int(11) NOT NULL,
-  `SoLuongKhaDung` int(11) NOT NULL
+  `TinhTrang` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE `loaicosovatchat` (
+  `MaLoaiDoDung` int(11) NOT NULL,
+  `TenLoaiDoDung` varchar(30) NOT NULL,
+  `SoLuong` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 CREATE TABLE `lichhoatdong` (
   `MaHoatDong` int(11) NOT NULL,
@@ -107,8 +114,7 @@ CREATE TABLE `lichhoatdong` (
 
 CREATE TABLE `hoatdong_cosovatchat` (
   `MaHoatDong` int(11) NOT NULL,
-  `MaDoDung` int(11) NOT NULL,
-  `SoLuong` int(11) NOT NULL
+  `MaDoDung` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `nhankhau`
@@ -147,6 +153,9 @@ ALTER TABLE `user`
 ALTER TABLE `cosovatchat`
   ADD PRIMARY KEY (`MaDoDung`);
 
+ALTER TABLE `loaicosovatchat`
+  ADD PRIMARY KEY (`MaLoaiDoDung`);
+
 ALTER TABLE `lichhoatdong`
   ADD PRIMARY KEY (`MaHoatDong`),
   ADD KEY `MaNguoiTao` (`MaNguoiTao`);
@@ -157,16 +166,19 @@ ALTER TABLE `hoatdong_cosovatchat`
   ADD KEY `MaDoDung` (`MaDoDung`);
 
 ALTER TABLE `cccd`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+ALTER TABLE `loaicosovatchat`
+  MODIFY `MaLoaiDoDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `nhankhau`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `sohokhau`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1017;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 ALTER TABLE `user`
-  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `userId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `cccd`
   ADD CONSTRAINT `cccd_ibfk_1` FOREIGN KEY (`idNhankhau`) REFERENCES `nhankhau` (`ID`);
@@ -177,6 +189,9 @@ ALTER TABLE `cccd`
 ALTER TABLE `hoatdong_cosovatchat`
   ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_1` FOREIGN KEY (`MaHoatDong`) REFERENCES `lichhoatdong` (`MaHoatDong`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_2` FOREIGN KEY (`MaDoDung`) REFERENCES `cosovatchat` (`MaDoDung`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `cosovatchat`
+  ADD CONSTRAINT `cosovatchat_ibfk_1` FOREIGN KEY (`MaLoaiDoDung`) REFERENCES `loaicosovatchat` (`MaLoaiDoDung`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `khaitu`
@@ -218,113 +233,82 @@ ALTER TABLE `thanhviencuaho`
 COMMIT;
 
 INSERT INTO `nhankhau` (`ID`, `HoTen`, `BiDanh`, `NgaySinh`, `NoiSinh`, `GioiTinh`, `NguyenQuan`, `DanToc`, `NoiThuongTru`, `TonGiao`, `QuocTich`, `DiaChiHienNay`, `NgheNghiep`) VALUES
-(1, 'bach', 'hh', '2023-01-05', 'hh', 'hhh', 'hhh', 'hh', 'hh', 'hh', 'Việt Nahhhhm', 'hh', 'sinh viên'),
-(17, 'ddd', 'dd', '2023-01-03', 'dd', 'Nam', 'd', 'd', 'd', 'd', 'd', 'd', 'd'),
-(18, 'bbb', 'bb', '2023-02-11', 'bb', 'Nam', 'b', 'bb', 'b', 'b', 'b', 'b', 'b'),
-(19, 'vvv', 'vv', '2023-01-21', 'vv', 'Nam', 'vv', 'vv', 'vv', 'vv', 'vv', 'vvv', 'vv'),
-(20, 'vv', 'vv', '2023-02-01', 'v', 'Nam', 'v', 'v', 'v', 'v', 'v', 'v', 'v'),
-(21, 'nnn', 'nn', '2023-01-25', 'nn', 'Nam', 'nn', 'nn', 'nnnn', 'nn', 'nn', 'nnn', 'n'),
-(22, 'ggg', 'gg', '2023-01-25', 'ggg', 'Nam', 'gg', 'gg', 'gg', 'gg', 'gg', 'g', 'gg'),
-(23, 'ddd', 'ddd', '2023-02-01', 'dd', 'Nam', 'd', 'ddd', 'd', 'd', 'dd', 'd', 'dd'),
-(24, 'tttt', 'tt', '2023-01-25', 'tttt', 'Nam', 'ttt', 'tttt', 'ttt', 'tttt', 'tttt', 'tttt', 'ttt'),
-(25, 'bach bach bach', 'bbb', '2023-01-25', 'bb', 'Nam', 'bbb', 'bb', 'bb', 'bb', 'bb', 'bbb', 'bb'),
-(26, 'cay vl luôn', 'vvv', '2023-02-02', 'vv', 'Nam', 'v', 'vv', 'v', 'v', 'v', 'v', 'v'),
-(27, 'ttt', 'tt', '2023-01-28', 'tt', 'Nam', 'ttt', 'tt', 'tt', 'tt', 'tt', 'ttt', 'ttt'),
-(28, 'tao cố lắm rồi', 'ff', '2023-01-17', 'ff', 'Nam', 'f', 'f', 'f', 'f', 'f', 'f', 'f'),
-(29, 'cố lần 2', 'f', '2023-01-11', 'f', 'Nam', 'nn', 'f', 'nn', 'f', 'f', 'nnn', 'f'),
-(30, 'vlllllllllllllllll', '1111', '2023-01-19', '111', 'Nam', 'nnn', '111', 'nnn', 'nnn', 'nn', 'nnnn', 'nnn'),
-(31, 'freefire', 'ff', '2023-01-18', 'fff', 'Nam', 'f', 'ff', 'ff', 'ff', 'ff', 'fff', 'fff'),
-(32, 'bbbbbach', 'h', '2023-01-18', 'h', 'Nam', 'h', 'h', 'h', 'h', 'h', 'h', 'h'),
-(33, 'vvvvbbbbbbb', 'b', '2023-01-17', 'b', 'Nam', 'b', 'b', 'b', 'bb', 'b', 'b', 'bb'),
-(34, 'rrrr', 'rr', '2023-01-26', 'rr', 'Nam', 'rr', 'rr', 'rr', 'rrr', 'rr', 'rr', 'rrr'),
-(35, 'bbb', 'bb', '2023-01-24', 'bb', 'Nam', 'b', 'bb', 'bbbb', 'bbb', 'bbb', 'bbb', 'bb'),
-(36, 'nguyễn xuân bách', 'v', '2023-01-17', 'vv', 'Nam', 'v', 'v', 'vv', 'v', 'v', 'v', 'vvv'),
-(37, 'bách đaya', 't', '2023-01-18', 'tt', 'Nam', 'tt', 't', 't', 'Không', 'Việt Nam', 't', 't'),
-(38, 'chạy thử lần n', 't', '2023-01-18', 't', 'Nam', 't', 't', 'tt', 'Không', 'Việt Nam', 't', 't'),
-(39, 'ddddd', 't', '2023-01-10', 't', 'Nam', 'tt', 't', 't', 't', 't', 't', 't'),
-(40, 'đang chạy thử', 'tttt', '2023-01-18', 'tt', 'Nam', 'ttt', 'tttt', 'tttttt', 'tttt', 'tttt', 'tttt', 'ttttt'),
-(41, 'nfnnfnffnfnn', 't', '2023-02-01', 'ttt', 'Nam', 'tttt', 't', 'tt', 'Không', 'Việt Nam', 'ttt', 't'),
-(42, 'nfnnfnffnfnn', 't', '2023-02-01', 'ttt', 'Nam', 'tttt', 't', 'tt', 'Không', 'Việt Nam', 'ttt', 't'),
-(43, 'lại là thầy đây', 'vI', '2023-02-01', '  V', 'Nam', 'c', ' c', 'c', 'c', 'c', 'c', 'c'),
-(44, 'ggggggggg', 'gg', '2023-01-23', 'g', 'Nam', 'g', 'gg', 'g', 'g', 'g', 'g', 'g'),
-(45, 'ggggggggg', 'gg', '2023-01-23', 'g', 'Nam', 'g', 'gg', 'g', 'g', 'g', 'g', 'g'),
-(46, 'bachhhhrrggvggg', 'ggg', '2023-01-25', 'gg', 'Nam', 't', 'gg', 't', 'gg', 'gg', 't', 'ggg'),
-(47, 'bachhhhrrggvggg', 'ggg', '2023-01-25', 'gg', 'Nam', 't', 'gg', 't', 'gg', 'gg', 't', 'ggg'),
-(48, 'gggggggg', 'ggg', '2023-01-23', 'ggg', 'Nam', 'gg', 'gg', 'gg', 'gg', 'gg', 'ggg', 'ggg'),
-(49, 'nguyễn xuân bách', 'bách', '2023-01-23', 'vp', 'Nam', 'vp', 'kinh', 'hn', 'ko', 'vn', 'hn', 'sv'),
-(50, 'nguyễn xuân bách', 'bách', '2023-01-23', 'vp', 'Nam', 'vp', 'kinh', 'hn', 'ko', 'vn', 'hn', 'sv'),
-(51, 'nguyễn XUân Bahc', 'v', '2023-01-10', 'v', 'Nam', 'v', 'v', 'v', 'v', 'v', 'v', 'v'),
-(52, 'nguyễn XUân Bahc', 'v', '2023-01-10', 'v', 'Nam', 'v', 'v', 'v', 'v', 'v', 'v', 'v'),
-(53, 'ttttttttt', 't', '2023-01-17', 't', 'Nam', 't', 't', 't', 't', 't', 't', 't'),
-(54, 'ttttttttt', 't', '2023-01-17', 't', 'Nam', 't', 't', 't', 't', 't', 't', 't'),
-(55, 'vvvv', 'v', '2023-01-18', 'v', 'Nam', 'v', 'v', 'v', 'v', 'v', 'v', 'v'),
-(56, 'vvvv', 'v', '2023-01-18', 'v', 'Nam', 'v', 'v', 'v', 'v', 'v', 'v', 'v'),
-(57, 'Nguyễn Xuân Bách', 'hh', '2023-02-01', 'hhh', 'Nam', 'hh', 'hh', 'hh', 'hh', 'hh', 'hh', 'hhhhh'),
-(58, 'Nguyễn Xuân Bách', 'hh', '2023-02-01', 'hhh', 'Nam', 'hh', 'hh', 'hh', 'hh', 'hh', 'hh', 'hhhhh'),
-(60, 'bách đây chứ đâu', 'b', '2023-01-10', 'b', 'Nam', 'b', 'b', 'b', 'b', 'b', 'b', 'b'),
-(61, 'adsfads', 'adfa', '2023-01-10', 'ads', 'Nam', 'ads', 'ád', 'ad', 'ads', 'ads', 'sad', 'dsa'),
-(62, 'Hà Hiểu Thành', '12', '2023-01-04', 'adsf', 'Nam', 'adsf', 'adf', 'ádf', 'adsf', 'adf', 'ads', 'adsf'),
-(63, 'Hà Anh Tuấn', 'Tuấn', '2023-01-05', 'adsf', 'Nam', 'adsf', 'adsfa', 'ádfa', 'adsfa', 'dsfasdf', 'ádf', 'dfsd'),
-(64, 'Hà Thành', '123', '2023-01-05', 'adsf', 'Nam', 'fadsf', 'adfsa', 'à', 'dfads', 'fasd', 'adsf', 'dsfa'),
-(65, 'AHAHAHA', 'aa', '2023-01-11', 'adsf', 'Nam', 'sdfa', 'adsfa', 'dsfad', 'dsfa', 'sdfa', 'sfadsfadfa', 'dsfa'),
-(66, 'adsfa', 'đầ', '2023-01-04', 'adf', 'Nam', 'adsf', 'ádf', 'adsf', 'ads', 'ádf', 'ádf', 'ádf'),
-(67, 'adf', 'sad', '2023-01-11', 'ad', 'Nam', 'a', 'ads', 'sda', 'ád', 'ád', 'dsa', 'ads'),
-(70, 'Hà Hiểu Thành', '12', '2023-01-05', 'adsadsfadsfad', 'Nam', 'fadsfadf', 'sfadsfasdfads', 'adsfasdfa', 'dsfadsfas', 'dfadsfadsfads', 'sdfadsfadsfadsf', 'fadsfa'),
-(71, 'Hà Hiểu Thành 1a', 'd', '2023-02-02', 'adsfadsf', 'Nam', 'dsfadsf', 'dfadfadfadsf', 'adsfads', 'fadsfa', 'dsfadsfa', 'fadsfadf', 'adsfads');
+(1,'Hoàng Danh Quân', 'Spidartist', '2002-10-03', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(2,'Hoàng Như Nghĩa', 'khangbn', '2002-11-22', 'Bắc Ninh', 'Nam', 'Bắc Ninh', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(3,'Hoàng Văn Bắc', 'bac', '2002-10-23', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Giáo viên'),
+(4,'Phùng Trung Kiên', 'kien', '2002-12-13', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Kĩ sư'),
+(5,'Nguyễn Hùng Tiến', 'tienngu', '2002-01-23', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Thất nghiệp'),
+(6,'Trần Tiến Ngọc', 'ngoc', '2002-11-11', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Game thủ'),
+(7,'Phạm Minh Quang', 'quang', '2002-12-11', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(8,'Lê Anh Tuấn', 'tuan', '2002-01-23', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(9,'Vũ Anh Quân', 'quan', '2002-03-03', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Marketing'),
+(10,'Trần Quốc Anh Quân', 'quazz', '2002-05-13', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Làm ruộng'),
+(11,'Trần Minh Tuấn', 'tuana', '2002-10-05', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Đa cấp'),
+(12,'Phạm Quang Nhật', 'nhatngu', '2002-10-07', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Game thủ'),
+(13,'Phạm Đức Thắng', 'thangngu', '2002-10-09', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Cầu thủ'),
+(14,'Nguyễn Tuấn Thành', 'thanhdan', '2002-13-02', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Bán hàng'),
+(15,'Hoàng Anh Quân', 'dquaz', '2002-13-01', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Bất động sản'),
+(16,'Văn Đăng Huy', 'huy', '2002-11-12', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Học sinh'),
+(17,'Trần Nhật Hóa', 'thaydayhoa', '1999-11-23', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(18,'Nguyễn Quang Trường', 'truong', '2002-11-13', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Game thủ'),
+(19,'Trần Ái Quốc', 'quoc', '2002-12-12', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Vận động viên'),
+(20,'Nguyễn An Nam', 'nam', '2002-10-10', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Học sinh'),
+(21,'Hoàng Hải Nam', 'namz', '2002-10-09', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Sinh viên'),
+(22,'Umezawa Ayumi', 'ayumi', '1977-01-01', 'Nhật Bản', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Nhật Bản', 'Hà Nội', 'Giáo viên'),
+(23,'Lương Phương Liên', 'liensensei', '1977-10-03', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Giáo sư'),
+(24,'Phạm Bích Phương', 'phuong30', '1930-10-03', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Giáo viên'),
+(25,'Ngô Lan Anh', 'lananh', '2000-10-02', 'Hà Nội', 'Nam', 'Hà Nội', 'Kinh', 'Hà Nội', 'Không', 'Việt Nam', 'Hà Nội', 'Cảnh sát');
 
 
 INSERT INTO `sohokhau` (`ID`, `MaHoKhau`, `DiaChi`, `MaChuHo`, `NgayLap`, `NgayChuyenDi`, `LyDoChuyen`) VALUES
-(5, '123321', 'Dinh Hoa', 66, '2013-01-02', '0000-00-00', ''),
-(999, '123123123', 'phố 7 phường La Khê', 25, '2019-02-09', '0000-00-00', ''),
-(1000, '1234', 'so 8 la khe', 70, '2020-09-09', '0000-00-00', ''),
-(1001, '777', 'dia chi day', 1, '2012-02-28', '0000-00-00', ''),
-(1002, '987', 'thanh', 1, '2014-02-02', '0000-00-00', ''),
-(1004, '98', 'thanh', 1, '2011-01-01', NULL, NULL),
-(1005, '999', 'thanhh', 1, '2013-12-12', NULL, NULL),
-(1006, '3434', 'dhtn', 1, '2023-01-17', NULL, NULL),
-(1007, '789', 'Thái Nguyên', 30, '2023-01-17', NULL, NULL),
-(1008, 'aa', 'a', 30, '2023-01-17', NULL, NULL),
-(1009, 'hhh', 'hhh', 51, '2023-01-17', NULL, NULL),
-(1011, '188063175', 'ĐHTN', 53, '2023-01-17', NULL, NULL),
-(1012, '364464530', 'KAKAKKA', 23, '2023-01-17', NULL, NULL),
-(1013, '261287022', 'hihihihihihi', 57, '2023-01-17', NULL, NULL),
-(1015, '306037256', 'CHỢ CHU', 63, '2023-01-17', NULL, NULL),
-(1016, '513316587', 'JJJJJ', 64, '2023-01-17', NULL, NULL);
+(1, '001232324', 'Cầu Giấy - Hà Nội', 4, '2013-01-02', NULL, NULL),
+(2, '001232325', 'Hai Bà Tưng - Hà Nội', 2, '2013-01-02', NULL, NULL);
 
 
-INSERT INTO `cosovatchat` (`MaDoDung`, `TenDoDung`, `SoLuong`, `SoLuongKhaDung`) VALUES
-(134658, 'ADF', 86, 6345),
-(213354, 'SDAF', 35, 123),
-(232986, 'MÁY ẢNH', 3, 1),
-(265756, 'Nến', 50, 50),
-(315468, 'ASDFLJK', 123, 123),
-(336721, 'Bàn chải sạch', 5, 5),
-(476093, 'LOA', 4, 4),
-(476530, 'MÁY CHIẾU', 2, 0),
-(521616, 'BÀN', 12, 8),
-(610329, 'Laptop', 100, 100),
-(637670, 'LAPTOP', 4, 2),
-(687545, 'GHẾ', 100, 100),
-(888397, 'PHÔNG BẠT', 6, 4),
-(934848, 'ĐÈN', 16, 16);
+INSERT INTO `loaicosovatchat` (`MaLoaiDoDung`, `TenLoaiDoDung`, `SoLuong`) VALUES
+(1, 'Quạt điện', 6),
+(2, 'Máy chiếu', 2),
+(3, 'Máy tính', 2),
+(4, 'Bàn nhựa', 1),
+(5, 'Ghế nhựa', 2);
+
+INSERT INTO `cosovatchat` (`MaDoDung`, `MaLoaiDoDung`, `TenDoDung`, `TinhTrang`) VALUES
+(1, 1,'Quạt điện Vinfast', "Còn dùng được"),
+(2, 1,'Quạt điện Thống nhất', "Còn dùng được"),
+(3, 1,'Quạt điện Vinfast', "Còn dùng được"),
+(4, 1,'Quạt điện Vinfast', "Còn dùng được"),
+(5, 1,'Quạt điện Vinfast', "Còn dùng được"),
+(6, 1,'Quạt điện Vinfast', "Còn dùng được"),
+(7, 2,'Máy chiếu Vinfast', "Còn dùng được"),
+(8, 2,'Máy chiếu Konica', "Hỏng"),
+(9, 3,'Máy tính Intel', "Còn dùng được"),
+(10, 3,'Máy tính MSI', "Hỏng"),
+(11, 4,'Bàn nhựa Thống Nhất', "Còn dùng được"),
+(12, 5,'Ghế nhựa Thống Nhất', "Còn dùng được"),
+(13, 5,'Ghế nhựa Thống Nhất', "Còn dùng được");
+
 
 
 INSERT INTO `cccd` (`ID`, `idNhankhau`, `CCCD`, `NgayCap`, `NoiCap`) VALUES
-(6, 1, '123456789258', '2020-01-01', 'Hà Nội'),
-(15, 23, '26202244', '0000-00-00', ''),
-(19, 32, '25678916', '2020-01-01', 'Hà Nội'),
-(26, 53, '26202001235', '2020-01-01', 'Hà Nội'),
-(28, 57, '12345678915', '2020-01-01', 'Hà Nội'),
-(35, 65, '19274772366', '2020-01-01', 'Hà Nội'),
-(36, 66, '019207774621', '2020-01-01', 'Hà Nội'),
-(37, 67, '019202007421', '2020-01-01', 'Hà Nội'),
-(40, 70, '019202002411', '2020-01-01', 'Hà Nội'),
-(41, 71, '019202008372', '2020-01-01', 'Hà Nội');
+(1, 1, '001202005585', '2020-01-01', 'Hà Nội'),
+(2, 2, '001202005586', '0000-00-00', 'Hà nội'),
+(3, 3, '001202005587', '2020-01-01', 'Hà Nội'),
+(4, 4, '001202005588', '2020-01-01', 'Hà Nội'),
+(5, 5, '001202005589', '2020-01-01', 'Hà Nội'),
+(6, 6, '001202005510', '2020-01-01', 'Hà Nội'),
+(7, 7, '001202005511', '2020-01-01', 'Hà Nội'),
+(8, 8, '001202005512', '2020-01-01', 'Hà Nội'),
+(9, 9, '001202005522', '2020-01-01', 'Hà Nội'),
+(10, 10, '001202005533', '2020-01-01', 'Hà Nội');
 
 INSERT INTO `thanhviencuaho` (`idNhanKhau`, `idHoKhau`, `quanHeVoiChuHo`) VALUES
-(32, 1001, 'Bo'),
-(61, 1009, 'bo'),
-(65, 1009, 'aa'),
-(71, 1000, '1a');
+(5, 1, 'Con trai'),
+(6, 1, 'Con gái');
+
+INSERT INTO `user` (`userId`, `username`, `password`, `role`) VALUES
+(1, 'admin', '123', 'totruong'),
+(2, 'admin2', '123', 'canbo'),
+(3, 'cocc', '123', 'canbo');
+
 COMMIT;
 
