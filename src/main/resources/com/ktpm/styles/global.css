@@ -1,0 +1,29 @@
+.logo{
+    -fx-background-color: #fff;
+}
+
+.login{
+    -fx-background-color: #352e2e;
+
+}
+.button{
+    -fx-background-color: #fff;
+    -fx-text-fill: #333;
+    /* -fx-border-radius: 4px; */
+    /* -fx-border-width: 2px; */
+
+}
+
+.button:hover{
+    -fx-text-fill: #7942fe;
+    -fx-background-color: #efe9ff;
+}
+
+.sidebar{
+    -fx-background-color: #fff;
+}
+
+/* #menuButton:hover{
+    -fx-background-color:#efe9ff ;
+
+} */
