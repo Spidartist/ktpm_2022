@@ -304,5 +304,11 @@ INSERT INTO `cccd` (`ID`, `idNhankhau`, `CCCD`, `NgayCap`, `NoiCap`) VALUES
 INSERT INTO `thanhviencuaho` (`idNhanKhau`, `idHoKhau`, `quanHeVoiChuHo`) VALUES
 (5, 1, 'Con trai'),
 (6, 1, 'Con gái');
+
+INSERT INTO `user` (`userId`, `username`, `password`, `role`) VALUES
+(1, 'admin', '123', 'totruong'),
+(2, 'admin2', '123', 'canbo'),
+(3, 'cocc', '123', 'canbo');
+
 COMMIT;
 
