@@ -30,7 +30,16 @@ public class SoHoKhauServices {
         rs.next();
         return rs.getInt("ID");
     }
-
+    
+    public static String getChuHoViaIDHoKhau(int IDhoKhau) throws SQLException {
+    	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        String query = "SELECT * FROM sohokhau JOIN nhankhau ON sohokhau.machuho = nhankhau.id WHERE sohokhau.ID = ?";
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, IDhoKhau);
+        ResultSet rs = preparedStatement.executeQuery();
+        rs.next();
+        return rs.getString("Hoten");
+    }
     
 
     public static ObservableList<String> getThanhVienGiaDinh(String maHoKhau) throws SQLException {
