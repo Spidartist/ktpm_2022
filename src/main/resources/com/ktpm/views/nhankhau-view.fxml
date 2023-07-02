@@ -68,6 +68,14 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
+            <Button mnemonicParsing="false" onAction="#onKhaiTu" onMouseClicked="#dangKiTamTru" prefWidth="120.0" styleClass="btn" text="Khai tử" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
             <Button mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="120.0" styleClass="btn" text="Xoá" textFill="WHITE">
                <font>
                   <Font name="Segoe UI" size="14.0" />

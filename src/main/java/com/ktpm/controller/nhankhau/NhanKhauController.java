@@ -21,10 +21,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import static com.ktpm.constants.DBConstants.*;
-import static com.ktpm.constants.FXMLConstants.DETAIL_NHAN_KHAU_VIEW_FXML;
-import static com.ktpm.constants.FXMLConstants.HOME_VIEW_FXML;
-import static com.ktpm.constants.FXMLConstants.ICON;
-import static com.ktpm.constants.FXMLConstants.NHAN_KHAU_VIEW_FXML;
+import static com.ktpm.constants.FXMLConstants.*;
+
 import static com.ktpm.utils.Utils.convertDate;
 import static com.ktpm.utils.Utils.createDialog;
 
@@ -130,7 +128,31 @@ public class NhanKhauController implements Initializable {
 			
 		}
 	}
-
+	  @FXML
+	    void onKhaiTu(ActionEvent event) {
+		  NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
+			if (selected == null) {
+				createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn người để khai tử!", "");
+			}else {
+				try {
+					Stage stage = new Stage();
+					FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(KHAI_TU_FXML));
+					Scene scene;
+					scene = new Scene(fxmlLoader.load());
+					// TODO Auto-generated catch block
+					stage.setTitle("Khai tử");
+					TamTruController controller = fxmlLoader.getController();
+					controller.setIdNhanKhau(selected.getID());
+					
+					stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
+					stage.setScene(scene);
+					stage.show();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+			}
+	    }
 	@FXML
 	void dangKiTamVang(MouseEvent event) {
 		NhanKhau selected = tableView.getSelectionModel().getSelectedItem();

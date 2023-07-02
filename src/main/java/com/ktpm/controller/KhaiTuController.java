@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class KhaiTuController {
+	private int idNhanKhau;
 
     @FXML
     private TextField lyDoTuVongField;
