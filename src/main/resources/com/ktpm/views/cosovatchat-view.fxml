@@ -9,39 +9,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.cosovatchat.CoSoVatChatController">
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.cosovatchat.CoSoVatChatController">
     <children>
-        <Pagination fx:id="pagination" layoutX="37.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="448.0" prefWidth="634.0" />
-        <TableView fx:id="tableView" layoutX="38.0" layoutY="138.0" prefHeight="387.0" prefWidth="634.0" stylesheets="@../styles/table.css" tableMenuButtonVisible="true">
+        <Pagination fx:id="pagination" layoutX="37.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="444.0" prefWidth="722.0" />
+        <TableView fx:id="tableView" layoutX="38.0" layoutY="138.0" prefHeight="394.0" prefWidth="722.0" stylesheets="@../styles/table.css" tableMenuButtonVisible="true">
             <columns>
                 <TableColumn fx:id="indexColumn" prefWidth="35.0" text="#" />
                 <TableColumn fx:id="maDoDungColumn" prefWidth="119.0" text="Mã đồ dùng" />
                 <TableColumn fx:id="tenDoDungColumn" prefWidth="153.0" text="Tên đồ dùng" />
-                <TableColumn fx:id="tenLoaiDoDungColumn" prefWidth="134.0" text="Loại đồ dùng" />
-                <TableColumn fx:id="tinhTrangColumn" prefWidth="192.0" text="Tình trạng" />
+                <TableColumn fx:id="tenLoaiDoDungColumn" prefWidth="193.0" text="Loại đồ dùng" />
+                <TableColumn fx:id="tinhTrangColumn" prefWidth="221.0" text="Tình trạng" />
             </columns>
         </TableView>
-        <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cơ sở vật chất" textAlignment="CENTER" wrappingWidth="192.9140625">
+        <Text layoutX="51.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cơ sở vật chất" wrappingWidth="192.9140625">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI" size="21.0" />
             </font>
         </Text>
-        <Button fx:id="addBtn" layoutX="508.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+        <Button fx:id="addBtn" layoutX="597.0" layoutY="77.0" mnemonicParsing="false" onAction="#add" styleClass="btn" text="Thêm mới" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="searchTextField" layoutX="66.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên đồ dùng" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+        <TextField fx:id="searchTextField" layoutX="45.0" layoutY="77.0" onMouseClicked="#search" prefHeight="30.0" prefWidth="269.0" promptText="Lọc theo tên đồ dùng" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
             <font>
                 <Font name="Segoe UI Italic" size="14.0" />
             </font>
         </TextField>
-        <Button layoutX="613.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
+        <Button layoutX="693.0" layoutY="77.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" styleClass="btn" text="Xoá" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
-      <Button fx:id="reloadBtn" layoutX="314.0" layoutY="79.0" mnemonicParsing="false" onAction="#reload" style="-fx-background-color: #3f4d67;" text="Tải lại" textFill="WHITE">
+      <Button fx:id="reloadBtn" layoutX="527.0" layoutY="77.0" mnemonicParsing="false" onAction="#reload" styleClass="btn" text="Tải lại" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
