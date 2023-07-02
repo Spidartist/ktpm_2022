@@ -21,6 +21,7 @@ public class FXMLConstants {
     public static String TAM_TRU_FXML = "/com/ktpm/views/tamTru.fxml";
     public static String TAM_VANG_FXML = "/com/ktpm/views/tamVang.fxml";
     public static String THONG_KE_FXML = "/com/ktpm/views/thongKe.fxml";
-    public static String DETAIL_CO_SO_VAT_CHAT_ADD_FXML="/com/ktpm/views/cosovatchat-add-view.fxml";
+    public static String DETAIL_CO_SO_VAT_CHAT_ADD_FXML = "/com/ktpm/views/cosovatchat-add-view.fxml";
+    public static String TACH_KHAU_VIEW_FXML = "/com/ktpm/views/tachHoKhau.fxml";
 
 }

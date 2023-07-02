@@ -10,6 +10,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.collections.ObservableList;
+
 public class ThongKeServices {
 
     public static ResultSet statisticNhanKhau(String query) throws SQLException {
@@ -18,6 +20,10 @@ public class ThongKeServices {
         return preparedStatement.executeQuery();
     }
 	
+    public static ObservableList<String> getThanhVienGiaDinh(String maHoKhau) {
+    	return null;
+    }
+    
 	public ThongKeServices() {
 		// TODO Auto-generated constructor stub
 	}
