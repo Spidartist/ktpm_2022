@@ -39,8 +39,8 @@ public class TamTruController {
     
     @FXML
     void onSubmit(MouseEvent event) throws SQLException {
-    	String denNgay=Utils.convertDate(denNgayDatePicker.getValue().toString());
-    	String tuNgay=Utils.convertDate(tuNgayDatePicker.getValue().toString());
+    	String denNgay=denNgayDatePicker.getValue().toString();
+    	String tuNgay=tuNgayDatePicker.getValue().toString();
     	String lido=liDoTextField.getText();
     	String noiTamTru=noiTamTruTextField.getText();
     	
@@ -50,7 +50,7 @@ public class TamTruController {
                       "Thông báo",
                       "", "Vui lòng nhập đủ thông tin!");
     	}else {
-    		int result = NhanKhauServices.dangKiTamTru(idNhankhau, noiTamTru, tuNgay, denNgay, lido);
+    		int result = NhanKhauServices.dangKiTamTru(idNhankhau, tuNgay, denNgay, lido, noiTamTru);
         	
         	if (result == 1) {
         		createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Thêm thành công!", "");

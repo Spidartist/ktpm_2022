@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.cosovatchat.CoSoVatChatController">
     <children>
-        <Pagination fx:id="pagination" layoutX="37.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="444.0" prefWidth="722.0" />
+        <Pagination fx:id="pagination" layoutX="38.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="444.0" prefWidth="722.0" />
         <TableView fx:id="tableView" layoutX="38.0" layoutY="138.0" prefHeight="394.0" prefWidth="722.0" stylesheets="@../styles/table.css" tableMenuButtonVisible="true">
             <columns>
                 <TableColumn fx:id="indexColumn" prefWidth="35.0" text="#" />

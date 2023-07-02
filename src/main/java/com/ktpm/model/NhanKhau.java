@@ -1,31 +1,30 @@
 package com.ktpm.model;
 
-public class NhanKhau {
-    private String HoTen, BiDanh, NgaySinh, CCCD, NoiSinh,
-            GioiTinh, NguyenQuan, DanToc, NoiThuongTru, TonGiao, QuocTich, DiaChiHienNay, NgheNghiep;
+public class NhanKhau extends BaseNhanKhau {
+    private String BiDanh, CCCD, NoiSinh,
+            NguyenQuan, DanToc, TonGiao, QuocTich, DiaChiHienNay, NgheNghiep;
 
     private  int ID;
+    
     // constructor
     public NhanKhau(){
+    	super();
     }
 
     public NhanKhau(Integer id,String hoTen, String biDanh, String ngaySinh, String CCCD,
                     String noiSinh, String gioiTinh, String nguyenQuan, String danToc, String noiThuongTru,
                     String tonGiao, String quocTich, String diaChiHienNay, String ngheNghiep) {
-        ID = id;
-        HoTen = hoTen;
-        BiDanh = biDanh;
-        NgaySinh = ngaySinh;
+    	super(hoTen, gioiTinh, ngaySinh, noiThuongTru);
+        this.ID = id;
+        this.BiDanh = biDanh;
         this.CCCD = CCCD;
-        NoiSinh = noiSinh;
-        GioiTinh = gioiTinh;
-        NguyenQuan = nguyenQuan;
-        DanToc = danToc;
-        NoiThuongTru = noiThuongTru;
-        TonGiao = tonGiao;
-        QuocTich = quocTich;
-        DiaChiHienNay = diaChiHienNay;
-        NgheNghiep = ngheNghiep;
+        this.NoiSinh = noiSinh;
+        this.NguyenQuan = nguyenQuan;
+        this.DanToc = danToc;
+        this.TonGiao = tonGiao;
+        this.QuocTich = quocTich;
+        this.DiaChiHienNay = diaChiHienNay;
+        this.NgheNghiep = ngheNghiep;
     }
 
     // Getter and setter

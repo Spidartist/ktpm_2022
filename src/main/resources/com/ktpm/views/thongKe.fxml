@@ -16,12 +16,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.ThongKeController">
    <children>
-      <TableView fx:id="tableView" layoutX="18.0" layoutY="96.0" prefHeight="436.0" prefWidth="751.0">
+      <TableView fx:id="tableView" layoutX="25.0" layoutY="117.0" prefHeight="374.0" prefWidth="751.0">
         <columns>
-          <TableColumn fx:id="hoTenColumn" prefWidth="151.0" text="Họ tên" />
+            <TableColumn fx:id="indexColumn" prefWidth="40.5" text="#" />
+          <TableColumn fx:id="hoTenColumn" prefWidth="185.5" text="Họ tên" />
           <TableColumn fx:id="ngaySinhColumn" prefWidth="100.0" text="Ngày sinh" />
-            <TableColumn fx:id="gioiTinhColumn" prefWidth="170.0" text="Giới tính" />
-            <TableColumn fx:id="noiThuongTruColumn" prefWidth="329.0" text="Nơi thường trú" />
+            <TableColumn fx:id="gioiTinhColumn" minWidth="0.0" prefWidth="200.5" text="Giới tính" />
+            <TableColumn fx:id="noiThuongTruColumn" maxWidth="1000.0" prefWidth="221.5" text="Nơi thường trú" />
         </columns>
          <stylesheets>
             <URL value="@../styles/global.css" />
@@ -50,13 +51,13 @@
                            </font>
                         </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Từ" wrappingWidth="25.341796875" />
-                        <TextField fx:id="tuTuoiField" prefHeight="25.0" prefWidth="28.0" />
+                        <TextField fx:id="tuTuoiField" prefHeight="25.0" prefWidth="36.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="đến" wrappingWidth="30.48046875">
                            <HBox.margin>
                               <Insets left="4.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField fx:id="denTuoiField" prefHeight="25.0" prefWidth="24.0" />
+                        <TextField fx:id="denTuoiField" prefHeight="25.0" prefWidth="37.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="tuổi">
                            <HBox.margin>
                               <Insets left="4.0" />
@@ -126,6 +127,6 @@
          </children>
       </HBox>
       <Button layoutX="690.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#onStatistic" styleClass="btn_primary" text="Thống kê" />
-      <Pagination fx:id="pagination" layoutX="18.0" layoutY="97.0" prefHeight="490.0" prefWidth="751.0" />
+      <Pagination fx:id="pagination" layoutX="25.0" layoutY="115.0" prefHeight="424.0" prefWidth="751.0" />
    </children>
 </AnchorPane>

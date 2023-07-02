@@ -8,6 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import static com.ktpm.utils.Utils.createDialog;
+
+import java.sql.SQLException;
+
+import com.ktpm.services.NhanKhauServices;
  
 public class TamVangController {
 	private int  idNhankhau;
@@ -28,7 +32,7 @@ public class TamVangController {
     private DatePicker tuNgayDatePicker;
     
     @FXML
-    void onSubmit(MouseEvent event) {
+    void onSubmit(MouseEvent event) throws SQLException {
     	String denNgay=denNgayDatePicker.getValue().toString();
     	String tuNgay=tuNgayDatePicker.getValue().toString();
     	String lido=liDoTextField.getText();
@@ -40,7 +44,13 @@ public class TamVangController {
                       "Thông báo",
                       "", "Vui lòng nhập đủ thông tin!");
     	}else {
-    		
+    		int result = NhanKhauServices.dangKiTamVang(idNhankhau, tuNgay, denNgay, lido, noiTamTru);
+        	
+        	if (result == 1) {
+        		createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Thêm thành công!", "");
+        	}else {
+        		createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi!", "");
+        	}
     	}
     }
     public void setIdNhanKhau(int id) {
