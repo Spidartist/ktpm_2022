@@ -3,11 +3,13 @@ package com.ktpm.services;
 import static com.ktpm.constants.DBConstants.*;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.ktpm.model.CoSoVatChat;
-
+import com.ktpm.model.*;
 public class CoSoVatChatServices {
     public static ResultSet getAllFacility(Connection conn) throws SQLException {
         String SELECT_QUERY = "SELECT MaDoDung, TenDoDung, LoaiDoDung, TinhTrang  FROM `cosovatchat`";
@@ -41,15 +43,15 @@ public class CoSoVatChatServices {
         return preparedStatement.executeUpdate();
     }
 
-    public static Map<String, Integer> getLeastFiveFacility() {
-        Map<String, Integer> result = new HashMap<>();
-        String GET_QUERY = "SELECT TenDoDung, SoLuongKhaDung FROM `cosovatchat` ORDER BY SoLuongKhaDung ASC LIMIT 5";
+    public static List<LoaiCoSoVatChat> getStatisticCSVC() {
+    	List<LoaiCoSoVatChat>result = new ArrayList<LoaiCoSoVatChat>();
+        String GET_QUERY = "SELECT LoaiDoDung, TinhTrang, COUNT(*) AS SoLuong FROM cosovatchat GROUP BY LoaiDoDung, TinhTrang;";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(GET_QUERY);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                result.put(resultSet.getString(1), resultSet.getInt(2));
+                result.add(new LoaiCoSoVatChat(resultSet.getString(1), resultSet.getString(2), resultSet.getInt(3)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -57,3 +59,4 @@ public class CoSoVatChatServices {
         return result;
     }
 }
+
