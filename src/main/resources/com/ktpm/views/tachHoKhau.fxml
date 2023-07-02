@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="90.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chủ hộ hiện tại" />
+      <Text layoutX="197.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nguyễn Văn A" />
+      <Text layoutX="409.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã hộ khẩu hiện tại" />
+      <Text layoutX="92.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ mới" />
+      <TextField layoutX="198.0" layoutY="212.0" prefHeight="25.0" prefWidth="499.0" promptText="Nhập địa chỉ mới" />
+      <Text layoutX="90.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn người sang hộ khẩu mới" />
+      <TableView layoutX="58.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
+        <columns>
+          <TableColumn prefWidth="75.0" text="Họ tên" />
+          <TableColumn prefWidth="75.0" text="Ngày sinh" />
+            <TableColumn prefWidth="117.0" text="Quan hệ với chủ hộ" />
+        </columns>
+      </TableView>
+      <Text layoutX="91.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chủ hộ mới" />
+      <ComboBox layoutX="198.0" layoutY="176.0" prefWidth="150.0" />
+      <Text layoutX="410.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mã hộ khẩu mới" />
+      <Button layoutX="376.0" layoutY="365.0" mnemonicParsing="false" text="&gt;&gt;" />
+      <Button layoutX="376.0" layoutY="423.0" mnemonicParsing="false" text="&lt;&lt;" />
+      <Text layoutX="520.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HK00001" wrappingWidth="195.625" />
+      <TextField layoutX="523.0" layoutY="176.0" prefHeight="25.0" prefWidth="171.0" />
+      <TableView layoutX="452.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Họ tên" />
+            <TableColumn prefWidth="75.0" text="Ngày sinh" />
+            <TableColumn prefWidth="117.0" text="Quan hệ với chủ hộ" />
+         </columns>
+      </TableView>
+      <Text layoutX="467.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Những người ở hộ khẩu mới" />
+      <Text layoutX="317.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tách hộ khẩu">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="91.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ hiện tại" />
+      <Text layoutX="197.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quan Âm, Bắc Hồng, Đông Anh" wrappingWidth="405.009765625" />
+   </children>
+</AnchorPane>
