@@ -13,20 +13,22 @@
 }
 
 .button:focused{
-    -fx-text-fill: #7942fe ;
-    -fx-background-color: #efe9ff ;
+    -fx-text-fill: #0284c7 ;
+    -fx-background-color: #bae6fd ;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
 }
 .btn{
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
-    -fx-border-color: #7942fe;
+    -fx-border-color: #0284c7;
 
-    -fx-text-fill: #7942fe;
+    -fx-text-fill: #0284c7;
 }
 .btn_primary{
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
-    -fx-background-color: #7942fe;
+    -fx-background-color: #0284c7;
 
     -fx-text-fill: #fff;
 }
@@ -41,15 +43,15 @@
 }
 
 .button:hover{
-    -fx-text-fill: #7942fe;
-    -fx-background-color: #efe9ff;
+    -fx-text-fill: #0284c7;
+    -fx-background-color: #e0f2fe;
 }
 
 .sidebar{
     -fx-background-color: #fff;
 }
 .btn_primary:hover{
-    -fx-background-color: #683fc7;
+    -fx-background-color: #0284c7;
     
     -fx-text-fill: #fff;
 }

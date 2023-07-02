@@ -11,10 +11,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" prefHeight="581.0" prefWidth="831.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.nhankhau.NhanKhauController">
+<AnchorPane fx:id="basePane" maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.nhankhau.NhanKhauController">
    <children>
-      <Pagination fx:id="pagination" layoutX="37.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="448.0" prefWidth="634.0" />
-      <TableView fx:id="tableView" layoutX="38.0" layoutY="138.0" prefHeight="350.0" prefWidth="634.0" stylesheets="@../styles/table.css">
+      <Text layoutX="37.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân khẩu" textAlignment="CENTER" wrappingWidth="98.9140625">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <Pagination fx:id="pagination" layoutX="38.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="433.0" prefWidth="577.0" />
+      <TableView fx:id="tableView" layoutX="38.0" layoutY="128.0" prefHeight="412.0" prefWidth="577.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
             <TableColumn fx:id="hoVaTenColumn" prefWidth="119.19998168945312" text="Họ và tên" />
@@ -32,12 +37,12 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <Text layoutX="41.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nhân khẩu" textAlignment="CENTER" wrappingWidth="98.9140625">
+      <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
-            <Font name="Segoe UI" size="18.0" />
+            <Font name="Segoe UI Italic" size="14.0" />
          </font>
-      </Text>
-      <VBox layoutX="685.0" layoutY="138.0" prefHeight="197.0" prefWidth="121.0">
+      </TextField>
+      <VBox layoutX="634.0" layoutY="128.0" prefHeight="197.0" prefWidth="121.0">
          <children>
             <Button mnemonicParsing="false" onAction="#add" prefWidth="120.0" styleClass="btn" text="Thêm mới" textFill="WHITE">
                <font>
@@ -73,10 +78,5 @@
             </Button>
          </children>
       </VBox>
-      <TextField fx:id="searchTextField" layoutX="66.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
-         <font>
-            <Font name="Segoe UI Italic" size="14.0" />
-         </font>
-      </TextField>
    </children>
 </AnchorPane>

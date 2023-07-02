@@ -17,10 +17,10 @@
    <children>
       <TableView fx:id="tableView" layoutX="18.0" layoutY="96.0" prefHeight="481.0" prefWidth="751.0">
         <columns>
-          <TableColumn fx:id="hoTenColumn" prefWidth="147.0" text="Họ tên" />
-          <TableColumn fx:id="ngaySinhColumn" prefWidth="104.0" text="Ngày sinh" />
-            <TableColumn fx:id="gioiTinhColumn" prefWidth="116.0" text="Giới tính" />
-            <TableColumn fx:id="noiThuongTruColumn" prefWidth="191.0" text="Nơi thường trú" />
+          <TableColumn fx:id="hoTenColumn" prefWidth="151.0" text="Họ tên" />
+          <TableColumn fx:id="ngaySinhColumn" prefWidth="100.0" text="Ngày sinh" />
+            <TableColumn fx:id="gioiTinhColumn" prefWidth="170.0" text="Giới tính" />
+            <TableColumn fx:id="noiThuongTruColumn" prefWidth="329.0" text="Nơi thường trú" />
         </columns>
          <stylesheets>
             <URL value="@../styles/global.css" />
