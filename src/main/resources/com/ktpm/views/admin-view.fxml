@@ -158,18 +158,18 @@
                            <children>
                               <Pane>
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="113.0" layoutX="-1.0" layoutY="-1.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="182.0" x="10.0" />
-                                    <Label layoutX="99.0" layoutY="65.0" text="Nhân khẩu">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="98.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="143.0" x="10.0" />
+                                    <Label layoutX="72.0" layoutY="58.0" prefHeight="24.0" prefWidth="70.0" text="Nhân khẩu" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/group.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="nhankhauLabel" alignment="BASELINE_CENTER" layoutX="92.0" layoutY="21.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+                                    <Label fx:id="nhankhauLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                                        <font>
                                           <Font size="27.0" />
                                        </font>
@@ -178,18 +178,18 @@
                               </Pane>
                               <Pane>
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="111.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="182.0" x="10.0" />
-                                    <Label layoutX="99.0" layoutY="65.0" text="Nhân khẩu">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="98.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="143.0" x="10.0" />
+                                    <Label layoutX="82.0" layoutY="58.0" prefHeight="24.0" prefWidth="60.0" text="Hộ khẩu" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/home2.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="hokhauLabel" alignment="BASELINE_CENTER" layoutX="92.0" layoutY="21.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+                                    <Label fx:id="hokhauLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                                        <font>
                                           <Font size="27.0" />
                                        </font>
@@ -198,18 +198,18 @@
                               </Pane>
                               <Pane>
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="111.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="182.0" x="10.0" />
-                                    <Label layoutX="109.0" layoutY="67.0" prefHeight="20.0" prefWidth="70.0" text="Tạm trú">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="98.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="143.0" x="10.0" />
+                                    <Label layoutX="72.0" layoutY="58.0" prefHeight="24.0" prefWidth="70.0" text="Tạm vắng" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/absent.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="tamTruLabel" alignment="BASELINE_CENTER" layoutX="92.0" layoutY="21.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+                                    <Label fx:id="tamVangLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                                        <font>
                                           <Font size="27.0" />
                                        </font>
@@ -218,18 +218,38 @@
                               </Pane>
                               <Pane>
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="111.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="182.0" x="10.0" />
-                                    <Label layoutX="103.0" layoutY="66.0" text="Tạm vắng">
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="98.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="143.0" x="10.0" />
+                                    <Label layoutX="82.0" layoutY="56.0" prefHeight="24.0" prefWidth="60.0" text="Tạm trú" textAlignment="CENTER">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ImageView fitHeight="79.0" fitWidth="70.0" layoutX="14.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/stay-at-home.png" />
                                        </image>
                                     </ImageView>
-                                    <Label fx:id="tamVangLabel" alignment="BASELINE_CENTER" layoutX="92.0" layoutY="21.0" prefHeight="39.0" prefWidth="82.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+                                    <Label fx:id="tamTruLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+                              <Pane>
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="98.0" stroke="#b9bdbf" strokeType="OUTSIDE" width="143.0" x="10.0" />
+                                    <Label layoutX="82.0" layoutY="56.0" prefHeight="24.0" prefWidth="70.0" text="Tử vong" textAlignment="CENTER">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="53.0" fitWidth="60.0" layoutX="14.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/tombstone.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="tuVongLabel" alignment="BASELINE_CENTER" layoutX="77.0" layoutY="17.0" prefHeight="33.0" prefWidth="60.0" text="1000" textAlignment="CENTER" textFill="#1bbde4">
                                        <font>
                                           <Font size="27.0" />
                                        </font>
