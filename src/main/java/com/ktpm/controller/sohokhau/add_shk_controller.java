@@ -188,7 +188,7 @@ public class add_shk_controller {
     public void addnew(ActionEvent event) throws IOException {
         ViewUtils viewUtils = new ViewUtils();
         NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn hộ khẩu");
+        if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn hộ khẩu");
         else {
             String diaChi = diaChiTextField.getText();
             String maHoKhau = generateRandomNumber(9);
@@ -198,7 +198,7 @@ public class add_shk_controller {
 
                 createDialog(
                         Alert.AlertType.WARNING,
-                        "Đồng chí giữ bình tĩnh",
+                        "Thông báo",
                         "", "Vui lòng nhập đủ thông tin!")
                 ;
             } else {
@@ -217,11 +217,11 @@ public class add_shk_controller {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
                                 "Thành công",
-                                "", "Đồng chí vất vả rồi!"
+                                "", "Thêm hộ khẩu thành công!"
                         );
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Hãy đưa ra lựa chọn");
-                        alert.setHeaderText("Đồng chí có muốn thêm thành viên vào trong sổ hộ khẩu luôn không?");
+                        alert.setHeaderText("Bạn có muốn thêm thành viên vào trong sổ hộ khẩu luôn không?");
                         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
                         Optional<ButtonType> ketqua = alert.showAndWait();
@@ -230,7 +230,7 @@ public class add_shk_controller {
                             soHoKhau = new SoHoKhau(selected.getHoTen(), diaChi, maHoKhau, 1);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             FXMLLoader loader = new FXMLLoader();
-                            loader.setLocation(getClass().getResource("/com/quartermanagement/views/addthanhvien-view.fxml"));
+                            loader.setLocation(getClass().getResource(ADD_THANH_VIEN_FXML));
                             Parent studentViewParent = loader.load();
                             Scene scene = new Scene(studentViewParent);
                             AddThanhVienController controller = loader.getController();
@@ -246,7 +246,7 @@ public class add_shk_controller {
                         createDialog(
                                 Alert.AlertType.ERROR,
                                 "Thất bại",
-                                "", "Oops, mời đồng chí nhập lại thông tin!"
+                                "", "Có lỗi xảy ra, vui lòng thử lại!"
                         );
                     }
 
@@ -286,7 +286,7 @@ public class add_shk_controller {
                 createDialog(
                         Alert.AlertType.CONFIRMATION,
                         "Thành công",
-                        "", "Đồng chí vất vả rồi!"
+                        "", "Cập nhật thành công!"
                 );
                 try {
                     viewUtils.switchToSoHoKhau_Admin_view(event);
@@ -300,7 +300,7 @@ public class add_shk_controller {
     public void doiChuHo(ActionEvent event) throws SQLException, IOException {
         ViewUtils viewUtils = new ViewUtils();
         NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn hộ khẩu");
+        if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn hộ khẩu");
         else {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             int result = SoHoKhauServices.updateChuHo(conn, idHoKhau, selected);
@@ -309,7 +309,7 @@ public class add_shk_controller {
                 createDialog(
                         Alert.AlertType.CONFIRMATION,
                         "Thành công",
-                        "", "Đồng chí vất vả rồi!"
+                        "", "Đổi chủ hộ thành công!"
                 );
                 viewUtils.switchToSoHoKhau_Admin_view(event);
             }

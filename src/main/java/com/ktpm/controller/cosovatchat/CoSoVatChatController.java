@@ -152,8 +152,8 @@ public class CoSoVatChatController implements Initializable {
                         conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
                         int result = CoSoVatChatServices.deleteFacility(conn, selected);
                         if (result == 1)
-                            createDialog(Alert.AlertType.INFORMATION, "Xoá thành công!", "", "Quá đơn giản phải không đồng chí?");
-                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Oops, mời đồng chí thử lại!");
+                            createDialog(Alert.AlertType.INFORMATION, "Xoá thành công!", "", "Bạn đã xóa thành công!");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Có lỗi, vui lòng thử lại!");
                         ViewUtils viewUtils = new ViewUtils();
                         viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
                     } catch (SQLException e) {
@@ -175,7 +175,7 @@ public class CoSoVatChatController implements Initializable {
         CoSoVatChatDeTailController controller = loader.getController();
         CoSoVatChat selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null)
-            createDialog(Alert.AlertType.WARNING, "vl", "", "Vui lòng chọn 1 mục để tiếp tục");
+            createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn 1 mục để tiếp tục");
         else {
             controller.setCoSoVatChat(selected);
 //            controller.hide_add_btn();

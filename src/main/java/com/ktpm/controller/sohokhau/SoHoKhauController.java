@@ -115,7 +115,7 @@ public class SoHoKhauController implements Initializable {
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Xác nhận xóa hộ khẩu");
-            alert.setContentText("Đồng chí muốn xóa hộ khẩu này?");
+            alert.setContentText("Bạn muốn xóa hộ khẩu này?");
             ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(okButton, noButton);
@@ -146,7 +146,7 @@ public class SoHoKhauController implements Initializable {
         Scene scene = new Scene(studentViewParent);
         add_shk_controller controller = loader.getController();
         SoHoKhau selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn hộ khẩu");
+        if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn hộ khẩu");
         else {
             controller.setSoHoKhau(selected);
             controller.hide_add_btn();

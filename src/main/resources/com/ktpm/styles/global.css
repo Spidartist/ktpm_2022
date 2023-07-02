@@ -31,14 +31,6 @@
     
 }
 
-.danger{
-    -fx-border-radius: 4px;
-    -fx-border-width: 1px;
-    -fx-border-color: #fc0404;
-    
-    -fx-text-fill: #fc0404;
-    
-}
 
 .button:hover{
     -fx-text-fill: #0284c7;
@@ -52,7 +44,6 @@
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
     -fx-background-color: #0284c7;
-    -fx-font-size: 12px;
 
     -fx-text-fill: #fff;
 }
@@ -84,3 +75,23 @@
     
     -fx-text-fill: #fff;
 } */
+
+
+.danger{
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #fc0404;
+    
+    -fx-text-fill: #fc0404;
+    
+}
+
+
+.danger :hover{
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-border-color: #fc0404;
+    -fx-background-color:#dab8b8 ;
+    -fx-text-fill: #fc0404;
+    
+}

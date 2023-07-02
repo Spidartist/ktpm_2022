@@ -37,23 +37,27 @@
 .table-view .increment-button ,.table-view .decrement-button {
     -fx-background-color:transparent;
     -fx-background-radius: 2em;
+    -fx-padding:1;
     
 }
 
 /* The main scrollbar **track** CSS class  */
 .table-view .scroll-bar:horizontal .track{
     -fx-background-color: transparent;
-    -fx-border-color:#39465e;
-
+    -fx-border-color:#0ea5e9;
+    -fx-padding:1;
     -fx-background-radius: 2em;
     -fx-border-radius:2em;
 }
 
 /* The main scrollbar **thumb** CSS class which we drag every time (movable) */
 .table-view .scroll-bar:horizontal .thumb{
-    -fx-background-color:#39465e;
+    -fx-background-color:#0ea5e9;
     -fx-background-insets: 2, 0, 0;
     -fx-background-radius: 2em;
+    -fx-pref-width: 2px;
+
+
 
 }
 
@@ -63,6 +67,9 @@
     -fx-background-radius: 0;
     -fx-background-insets: 0;
     -fx-padding: 0;
+    -fx-pref-width: 2px;
+
+
 }
 
 .table-view *.scroll-bar:vertical *.increment-arrow,
@@ -72,4 +79,6 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-shape: null;
+    -fx-pref-width: 2px;
+
 }
