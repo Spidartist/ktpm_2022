@@ -1,7 +1,6 @@
 package com.ktpm.controller.nhankhau;
 
 import javafx.collections.transformation.FilteredList;
-import javafx.scene.control.Pagination;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,6 +34,8 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import com.ktpm.HomeApplication;
+import com.ktpm.controller.TamTruController;
+import com.ktpm.model.CoSoVatChat;
 import com.ktpm.model.NhanKhau;
 import com.ktpm.services.NhanKhauServices;
 import com.ktpm.utils.ViewUtils;
@@ -105,19 +106,27 @@ public class NhanKhauController implements Initializable {
 
 	@FXML
 	void dangKiTamTru(MouseEvent event) {
-		try {
-			Stage stage = new Stage();
-			FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(TAM_TRU_FXML));
-			Scene scene;
-			scene = new Scene(fxmlLoader.load());
-			// TODO Auto-generated catch block
-			stage.setTitle("Đăng kí tạm trú");
-
-			stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
+		NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
+		if (selected == null) {
+			createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn người để đăng kí!", "");
+		}else {
+			try {
+				Stage stage = new Stage();
+				FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(TAM_TRU_FXML));
+				Scene scene;
+				scene = new Scene(fxmlLoader.load());
+				// TODO Auto-generated catch block
+				stage.setTitle("Đăng kí tạm trú");
+				TamTruController controller = fxmlLoader.getController();
+				controller.setIdNhanKhau(selected.getID());
+				
+				stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
+				stage.setScene(scene);
+				stage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 	}
 

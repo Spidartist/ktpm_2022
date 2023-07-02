@@ -1,6 +1,15 @@
 package com.ktpm.controller;
 
+import static com.ktpm.constants.FXMLConstants.ICON;
+import static com.ktpm.constants.FXMLConstants.NHAN_KHAU_VIEW_FXML;
+import static com.ktpm.constants.FXMLConstants.TAM_TRU_FXML;
+import static com.ktpm.constants.FXMLConstants.TAM_VANG_FXML;
 import static com.ktpm.utils.Utils.createDialog;
+
+import java.sql.SQLException;
+
+import com.ktpm.services.NhanKhauServices;
+import com.ktpm.utils.Utils;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,7 +28,7 @@ public class TamTruController {
     private TextField liDoTextField;
 
     @FXML
-    private TextField noiThuongTruTextField;
+    private TextField noiTamTruTextField;
 
     @FXML
     private Button submit;
@@ -27,26 +36,34 @@ public class TamTruController {
     @FXML
     private DatePicker tuNgayDatePicker;
     
+    
     @FXML
-    void onSubmit(MouseEvent event) {
-    	String denNgay=denNgayDatePicker.getValue().toString();
-    	String tuNgay=tuNgayDatePicker.getValue().toString();
+    void onSubmit(MouseEvent event) throws SQLException {
+    	String denNgay=Utils.convertDate(denNgayDatePicker.getValue().toString());
+    	String tuNgay=Utils.convertDate(tuNgayDatePicker.getValue().toString());
     	String lido=liDoTextField.getText();
-    	String noiThuongTru=noiThuongTruTextField.getText();
+    	String noiTamTru=noiTamTruTextField.getText();
     	
-    	
-    	
-    	
-    	if(denNgay.equals("") || tuNgay.equals("")|| lido.equals("")|| noiThuongTru.equals("")) {
+    	if(denNgay.equals("") || tuNgay.equals("")|| lido.equals("")|| noiTamTru.equals("")) {
     		  createDialog(
                       Alert.AlertType.WARNING,
                       "Thông báo",
                       "", "Vui lòng nhập đủ thông tin!");
     	}else {
-    		
+    		int result = NhanKhauServices.dangKiTamTru(idNhankhau, noiTamTru, tuNgay, denNgay, lido);
+        	
+        	if (result == 1) {
+        		createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Thêm thành công!", "");
+        	}else {
+        		createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi!", "");
+        	}
     	}
     }
     public void setIdNhanKhau(int id) {
     	this.idNhankhau=id;
     }
+    
+    public static void main(String[] args) {
+		
+	}
 }
