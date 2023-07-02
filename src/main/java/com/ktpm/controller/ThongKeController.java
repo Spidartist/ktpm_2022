@@ -90,22 +90,22 @@ public class ThongKeController implements Initializable {
                     + tuTuoi
                     + " AND ROUND(DATEDIFF(CURDATE(),NgaySinh)/365 , 0) <= "
                     + denTuoi;
-        if (!gender.equalsIgnoreCase("Toan Bo")) {
+        if (!gender.equalsIgnoreCase("Toàn bộ")) {
             query += " AND nhankhau.GioiTinh = '" + gender + "'";
         }
-        if (Status.equalsIgnoreCase("Toan bo")) {
+        if (Status.equalsIgnoreCase("Toàn bộ")) {
             query += " AND (tamtru.denNgay >= CURDATE() OR tamtru.denNgay IS NULL)"
                     + " AND (tamvang.denNgay <= CURDATE() OR tamvang.denNgay IS NULL)";
         } else if (Status.equalsIgnoreCase("Thuong tru")) {
             query += " AND tamtru.denNgay IS NULL";
             
-        } else if (Status.equalsIgnoreCase("Tam tru")) {
+        } else if (Status.equalsIgnoreCase("Đăng kí tạm trú")) {
             query += " AND (YEAR(tamtru.tuNgay) BETWEEN "
                     + tuNam
                     + " AND "
                     + denNam
                     + ")";
-        } else if (Status.equalsIgnoreCase("Tam vang")) {
+        } else if (Status.equalsIgnoreCase("Đăng kí tạm vắng")) {
             query += " AND (YEAR(tamvang.tuNgay) BETWEEN "
                     + tuNam
                     + " AND "
@@ -214,9 +214,13 @@ public class ThongKeController implements Initializable {
 		ObservableList<String> listGioiTinhOptions = FXCollections.observableArrayList("Nam", "Nữ","Toàn bộ");
 		gioiTinhList.setItems(listGioiTinhOptions);
 		gioiTinhList.setValue("Toàn bộ");
-		ObservableList<String> tinhTrangOptions = FXCollections.observableArrayList("Toàn bộ", "Đăng kí tạm trú","Đăng kí tạm văng","Khai tử");
+		ObservableList<String> tinhTrangOptions = FXCollections.observableArrayList("Toàn bộ", "Đăng kí tạm trú","Đăng kí tạm vắng","Khai tử");
 		tinhTrangList.setItems(tinhTrangOptions);
 		tinhTrangList.setValue("Toàn bộ");
+		tuNamField.setText("0");
+		denNamField.setText("3000");
+		denTuoiField.setText("100");
+		tuTuoiField.setText("0");
 		
 		
 		

@@ -150,4 +150,5 @@ public class AdminController implements Initializable {
 	public void switchToStatistic() throws IOException {
 		viewUtils.changeAnchorPane(basePane, THONG_KE_FXML);
 	}
+	
 }

@@ -16,7 +16,7 @@ public class HomeApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(HOME_VIEW_FXML));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("easy manage");
+        stage.setTitle("Easy Manage");
     	
         stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
         stage.setScene(scene);

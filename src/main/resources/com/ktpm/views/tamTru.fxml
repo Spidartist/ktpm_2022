@@ -17,16 +17,19 @@
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Text>
-      <VBox layoutX="75.0" layoutY="69.0">
+      <VBox layoutX="53.0" layoutY="66.0" prefHeight="201.0" prefWidth="316.0">
          <children>
             <HBox>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ tạm trú" wrappingWidth="96.064453125">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ tạm trú" wrappingWidth="126.064453125">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="noiTamTruTextField" />
+                  <TextField fx:id="noiTamTruTextField" prefWidth="181.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -34,12 +37,12 @@
             </HBox>
             <HBox>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày bắt đầu" wrappingWidth="96.064453125">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày bắt đầu" wrappingWidth="128.064453125">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="tuNgayDatePicker" />
+                  <DatePicker fx:id="tuNgayDatePicker" prefWidth="181.0" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -47,12 +50,12 @@
             </HBox>
             <HBox>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày kết thúc" wrappingWidth="96.064453125">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ngày kết thúc" wrappingWidth="127.064453125">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <DatePicker fx:id="denNgayDatePicker" />
+                  <DatePicker fx:id="denNgayDatePicker" prefWidth="181.0" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />
@@ -60,12 +63,12 @@
             </HBox>
             <HBox>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lý do" wrappingWidth="96.064453125">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lý do" wrappingWidth="126.064453125">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="liDoTextField" />
+                  <TextField fx:id="liDoTextField" prefWidth="181.0" />
                </children>
                <VBox.margin>
                   <Insets top="20.0" />

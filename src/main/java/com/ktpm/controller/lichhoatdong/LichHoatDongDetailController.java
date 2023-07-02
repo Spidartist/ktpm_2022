@@ -119,7 +119,7 @@ public class LichHoatDongDetailController implements Initializable {
                 || startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
             createDialog(
                     Alert.AlertType.WARNING,
-                    "Đồng chí giữ bình tĩnh",
+                    "Thông báo",
                     "", "Vui lòng nhập đủ thông tin!"
             );
         } else {
@@ -130,9 +130,9 @@ public class LichHoatDongDetailController implements Initializable {
 
 
             if (!isValidTime(startTime) || !isValidTime(endTime)) {
-                createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Hãy chọn đúng định dạng hh:mm:ss", "");
+                createDialog(Alert.AlertType.WARNING, "Thông báo", "Hãy chọn đúng định dạng hh:mm:ss", "");
             } else if (!greaterTime(startDateTime, startTime, endDateTime, endTime)) {
-                createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!", "");
+                createDialog(Alert.AlertType.WARNING, "Thông báo", "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!", "");
             } else {
                 try {
                     Connection conn;
@@ -143,72 +143,21 @@ public class LichHoatDongDetailController implements Initializable {
 
                     System.out.println(pre_status + "|||" + status);
 
-                    if (pre_status.equals("Chưa duyệt") && status.equals("Chấp nhận")) {
-                        boolean check = true;
-                        ResultSet rs = LichHoatDongServices.getCheck(conn, lichHoatDong);
-                        while (rs.next()) {
-                            if (rs.getInt(1) > rs.getInt(2)) check = false;
-                        }
-
-                        if (check) {
-                            result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao);
-                            LichHoatDongServices.updateTruSoLuongKhaDung(conn, lichHoatDong);
-                            if (result == 1) {
-                                createDialog(
-                                        Alert.AlertType.CONFIRMATION,
-                                        "Thành công",
-                                        "", "Đồng chí vất vả rồi!"
-                                );
-                                viewUtils.switchToLichHoatDong_Admin_view(event);
-                            }
-                        }
-                        else {
-                            createDialog(
-                                    Alert.AlertType.ERROR,
-                                    "Thất bại",
-                                    "", "Có vẻ như hoạt động này yêu cầu nhiều hơn số lượng khả dụng hiện có"
-                            );
-                        }
-                    }
-
-                    else if (pre_status.equals("Chấp nhận") && status.equals("Chưa duyệt")) {
-                        result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao);
-                        LichHoatDongServices.updateCongSoLuongKhaDung(conn, lichHoatDong);
+                     result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao);
                         if (result == 1) {
                             createDialog(
                                     Alert.AlertType.CONFIRMATION,
                                     "Thành công",
-                                    "", "Đồng chí vất vả rồi!"
+                                    "", "Cập nhật lịch hoạt động thành công!"
                             );
                             viewUtils.switchToLichHoatDong_Admin_view(event);
                         } else {
                             createDialog(
                                     Alert.AlertType.ERROR,
                                     "Thất bại",
-                                    "", "Thất bại là mẹ thành công! Mong đồng chí thử lại"
+                                    "", "Có lỗi xảy ra, vui lòng thử lại!"
                             );
                         }
-
-                    }
-                    else {
-                        result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao);
-                        if (result == 1) {
-                            createDialog(
-                                    Alert.AlertType.CONFIRMATION,
-                                    "Thành công",
-                                    "", "Đồng chí vất vả rồi!"
-                            );
-                            viewUtils.switchToLichHoatDong_Admin_view(event);
-                        } else {
-                            createDialog(
-                                    Alert.AlertType.ERROR,
-                                    "Thất bại",
-                                    "", "Thất bại là mẹ thành công! Mong đồng chí thử lại"
-                            );
-                        }
-
-
-                    }
                     conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -230,13 +179,13 @@ public class LichHoatDongDetailController implements Initializable {
         String thoiGianTao = dtf.format(currentTime);
 
         NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn nhân khẩu");
+        if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn nhân khẩu");
         if (tenHoatDong.trim().equals("") || startTime.trim().equals("") || endTime.trim().equals("")
                 || startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
 
             createDialog(
                     Alert.AlertType.WARNING,
-                    "Đồng chí giữ bình tĩnh",
+                    "Thông báo",
                     "", "Vui lòng nhập đủ thông tin!"
             );
         } else {
@@ -246,9 +195,9 @@ public class LichHoatDongDetailController implements Initializable {
             String endtime = endDateTime + " " + endTime;
 
             if (!isValidTime(startTime) || !isValidTime(endTime)) {
-                createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Hãy chọn đúng định dạng hh:mm:ss", "");
+                createDialog(Alert.AlertType.WARNING, "Thông báo", "Hãy chọn đúng định dạng hh:mm:ss", "");
             } else if (!greaterTime(startDateTime, startTime, endDateTime, endTime)) {
-                createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!", "");
+                createDialog(Alert.AlertType.WARNING, "Thông báo", "Thời gian kết thúc phải lớn hơn thời gian bắt đầu!", "");
             } else {
 
                 try {
@@ -268,35 +217,13 @@ public class LichHoatDongDetailController implements Initializable {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
                                 "Thành công",
-                                "", "Đồng chí vất vả rồi!"
+                                "", "Thêm lịch hoạt động thành công!"
                         );
-                        // we will do somthing here
-                        lichHoatDong = new LichHoatDong(Integer.valueOf(maHoatDong), tenHoatDong, convertDateWhenAddLichHD(starttime), convertDateWhenAddLichHD(endtime), status, thoiGianTao, selected.getID());
-                        System.out.println(maHoatDong);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                        alert.setTitle("Hãy đưa ra lựa chọn");
-                        alert.setHeaderText("Đồng chí có muốn chọn đồ dùng muốn mượn luôn không?");
-                        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-                        Optional<ButtonType> ketqua = alert.showAndWait();
-                        if (ketqua.get() == ButtonType.YES) {
-                            // Code for Option 1
-                            addCSVC(event);
-                        } else {
-                            viewUtils.switchToSoHoKhau_Admin_view(event);
-                        }
-                    } else {
-                        createDialog(
-                                Alert.AlertType.ERROR,
-                                "Thất bại",
-                                "", "Thất bại là mẹ thành công! Mong đồng chí thử lại"
-                        );
+                       
                     }
                     conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
                 }
 
                 viewUtils.switchToLichHoatDong_Admin_view(event);
@@ -333,6 +260,7 @@ public class LichHoatDongDetailController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	addCSVCBtn.setVisible(false);
         statusChoiceBox.getItems().add("Chưa duyệt");
         statusChoiceBox.getItems().add("Chấp nhận");
         statusChoiceBox.setValue("Chưa duyệt");

@@ -80,7 +80,7 @@ public class NhanKhauDetailViewController implements Initializable {
         ViewUtils viewUtils = new ViewUtils();
         if (ngaySinhDatePicker.getValue() == null) createDialog(
                 Alert.AlertType.WARNING,
-                "Đồng chí giữ bình tĩnh",
+                "Thông báo",
                 "", "Vui lòng nhập đủ thông tin!");
         {
             String hoVaTen = hoVaTenTextField.getText();
@@ -103,13 +103,13 @@ public class NhanKhauDetailViewController implements Initializable {
 
                 createDialog(
                         Alert.AlertType.WARNING,
-                        "Đồng chí giữ bình tĩnh",
+                        "Thông báo",
                         "", "Vui lòng nhập đủ thông tin!")
                 ;
             } else {
                 //regex
                 if (isCccd(cccd)) {
-                    createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Hãy nhập đúng định dạng CCCD", "");
+                    createDialog(Alert.AlertType.WARNING, "Thông báo", "Hãy nhập đúng định dạng CCCD", "");
                 } else {
 
                     try {
@@ -121,7 +121,7 @@ public class NhanKhauDetailViewController implements Initializable {
                             createDialog(
                                     Alert.AlertType.CONFIRMATION,
                                     "Thành công",
-                                    "", "Đồng chí vất vả rồi!"
+                                    "", "Cập nhật nhân khẩu thành công!"
                             );
                             //          swtich to admin-nhankhau-view
                             viewUtils.switchToNhanKhau_Admin_view(event);
@@ -129,7 +129,7 @@ public class NhanKhauDetailViewController implements Initializable {
                             createDialog(
                                     Alert.AlertType.ERROR,
                                     "Thất bại",
-                                    "", "Oops, mời đồng chí nhập lại thông tin!"
+                                    "", "Có lỗi xảy ra, vui lòng thử lại!"
                             );
                         }
                         conn.close();
@@ -147,7 +147,7 @@ public class NhanKhauDetailViewController implements Initializable {
         ViewUtils viewUtils = new ViewUtils();
         if (ngaySinhDatePicker.getValue() == null) createDialog(
                 Alert.AlertType.WARNING,
-                "Đồng chí giữ bình tĩnh",
+                "Thông báo",
                 "", "Vui lòng nhập đủ thông tin!");
         else {
             String hoVaTen = hoVaTenTextField.getText();
@@ -169,13 +169,13 @@ public class NhanKhauDetailViewController implements Initializable {
 
                 createDialog(
                         Alert.AlertType.WARNING,
-                        "Đồng chí giữ bình tĩnh",
+                        "Thông báo",
                         "", "Vui lòng nhập đủ thông tin!")
                 ;
             } else {
                 //regex
                 if (isCccd(cccd)) {
-                    createDialog(Alert.AlertType.WARNING, "Từ từ thôi đồng chí!", "Hãy nhập đúng định dạng CCCD", "");
+                    createDialog(Alert.AlertType.WARNING, "Thông báo", "Hãy nhập đúng định dạng CCCD", "");
                 } else {
                     try {
                         //Add to nhankhau
@@ -190,13 +190,13 @@ public class NhanKhauDetailViewController implements Initializable {
                             createDialog(
                                     Alert.AlertType.CONFIRMATION,
                                     "Thành công",
-                                    "", "Đồng chí vất vả rồi!"
+                                    "", "Thêm nhân khẩu thành công!"
                             );
                         } else {
                             createDialog(
                                     Alert.AlertType.ERROR,
                                     "Thất bại",
-                                    "", "Oops, mời đồng chí nhập lại thông tin!"
+                                    "", "Có lỗi xảy ra, vui lòng thử lại!"
                             );
                         }
                         conn.close();

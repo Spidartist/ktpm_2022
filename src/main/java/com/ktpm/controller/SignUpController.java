@@ -30,16 +30,15 @@ public class SignUpController implements Initializable {
         if (inputUsername.trim().equals("") || inputPassword.trim().equals("")) {
             createDialog(
                     Alert.AlertType.WARNING,
-                    "Khoan nào cán bộ",
-                    "", "Vui lòng nhập đủ username và password!"
+                    "Tạo tài khoản mới",""
+                   , "Vui lòng nhập đủ username và password!"
             );
 
         }   else {
             if (!isOfficer.isSelected() && !isAdmin.isSelected()) {
                 createDialog(
-                        Alert.AlertType.WARNING,
-                        "Khoan nào cán bộ",
-                        "", "Vui lòng chọn role cho username!"
+                        Alert.AlertType.WARNING,"",
+                        "Tạo tài khoản mới", "Vui lòng chọn role cho username!"
                 );
             }   else {
                 if (isOfficer.isSelected()) role = "canbo";

@@ -115,14 +115,14 @@ public class CoSoVatChatDeTailController implements Initializable {
                     createDialog(
                             Alert.AlertType.CONFIRMATION,
                             "Thành công",
-                            "", "Đồng chí vất vả rồi!"
+                            "", "Cập nhật cơ sở vật chất thành công!"
                     );
                     viewUtils.switchToCoSoVatChat_Admin_view(event);
                 } else {
                     createDialog(
                             Alert.AlertType.ERROR,
                             "Thất bại",
-                            "", "Thất bại là mẹ thành công! Mong đồng chí thử lại"
+                            "", "Có lỗi xảy ra, vui lòng thử lại!"
                     );
                 }
                 conn.close();
@@ -172,13 +172,13 @@ public class CoSoVatChatDeTailController implements Initializable {
             createDialog(
                     Alert.AlertType.CONFIRMATION,
                     "Thành công",
-                    "", "Đồng chí vất vả rồi!"
+                    "", "Thêm cơ sở vật chất thành công!"
             );
         } else {
             createDialog(
                     Alert.AlertType.ERROR,
                     "Thất bại",
-                    "", "ddcmm"
+                    "", "Có lỗi xảy ra, vui lòng thử lại!"
             );
         }
         conn.close();

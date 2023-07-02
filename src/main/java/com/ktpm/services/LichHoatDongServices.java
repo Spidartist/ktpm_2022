@@ -26,25 +26,25 @@ public class LichHoatDongServices {
         return ps.executeQuery();
     }
 
-    public static ResultSet getCoSoVatChatFromLichHoatDong(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
-        String query = "SELECT csvc.TenDoDung, hdcsvc.SoLuong " +
-                "FROM cosovatchat csvc, hoatdong_cosovatchat hdcsvc " +
-                "WHERE csvc.MaDoDung = hdcsvc.MaDoDung AND hdcsvc.MaHoatDong = ?";
-        PreparedStatement ps = conn.prepareStatement(query);
-        ps.setInt(1,lichHoatDong.getMaHoatDong());
-        System.out.println(ps);
-        return ps.executeQuery();
-    }
+    // public static ResultSet getCoSoVatChatFromLichHoatDong(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
+    //     String query = "SELECT csvc.TenDoDung, hdcsvc.SoLuong " +
+    //             "FROM cosovatchat csvc, hoatdong_cosovatchat hdcsvc " +
+    //             "WHERE csvc.MaDoDung = hdcsvc.MaDoDung AND hdcsvc.MaHoatDong = ?";
+    //     PreparedStatement ps = conn.prepareStatement(query);
+    //     ps.setInt(1,lichHoatDong.getMaHoatDong());
+    //     System.out.println(ps);
+    //     return ps.executeQuery();
+    // }
 
 
-    public static ResultSet getCheck(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
-        String CHECK_QUERY = "SELECT hdcsvc.SoLuong, csvc.SoLuongKhaDung " +
-                "FROM hoatdong_cosovatchat hdcsvc, cosovatchat csvc " +
-                "WHERE hdcsvc.MaDoDung = csvc.MaDoDung AND hdcsvc.MaHoatDong = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(CHECK_QUERY);
-        preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
-        return preparedStatement.executeQuery();
-    }
+    // public static ResultSet getCheck(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
+    //     String CHECK_QUERY = "SELECT hdcsvc.SoLuong, csvc.SoLuongKhaDung " +
+    //             "FROM hoatdong_cosovatchat hdcsvc, cosovatchat csvc " +
+    //             "WHERE hdcsvc.MaDoDung = csvc.MaDoDung AND hdcsvc.MaHoatDong = ?";
+    //     PreparedStatement preparedStatement = conn.prepareStatement(CHECK_QUERY);
+    //     preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
+    //     return preparedStatement.executeQuery();
+    // }
 
 
     public static int updateLichHoatDong(Connection conn, String maHoatDong, String tenHoatDong, String starttime, String endtime, String status, String maNguoiTao) throws SQLException {
@@ -60,21 +60,21 @@ public class LichHoatDongServices {
         return preparedStatement.executeUpdate();
     }
 
-    public static void updateTruSoLuongKhaDung(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
-        String UPDATE_SOLUONG_QUERY = "UPDATE cosovatchat c JOIN hoatdong_cosovatchat s ON c.MaDoDung = s.MaDoDung SET c.SoLuongKhaDung = c.SoLuongKhaDung - s.SoLuong " +
-                "WHERE s.MaHoatDong = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_SOLUONG_QUERY);
-        preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
-        preparedStatement.executeUpdate();
-    }
+    // public static void updateTruSoLuongKhaDung(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
+    //     String UPDATE_SOLUONG_QUERY = "UPDATE cosovatchat c JOIN hoatdong_cosovatchat s ON c.MaDoDung = s.MaDoDung SET c.SoLuongKhaDung = c.SoLuongKhaDung - s.SoLuong " +
+    //             "WHERE s.MaHoatDong = ?";
+    //     PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_SOLUONG_QUERY);
+    //     preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
+    //     preparedStatement.executeUpdate();
+    // }
 
-    public static void updateCongSoLuongKhaDung(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
-        String UPDATE_SOLUONG_QUERY = "UPDATE cosovatchat c JOIN hoatdong_cosovatchat s ON c.MaDoDung = s.MaDoDung SET c.SoLuongKhaDung = c.SoLuongKhaDung + s.SoLuong " +
-                "WHERE s.MaHoatDong = ?";
-        PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_SOLUONG_QUERY);
-        preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
-        preparedStatement.executeUpdate();
-    }
+    // public static void updateCongSoLuongKhaDung(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
+    //     String UPDATE_SOLUONG_QUERY = "UPDATE cosovatchat c JOIN hoatdong_cosovatchat s ON c.MaDoDung = s.MaDoDung SET c.SoLuongKhaDung = c.SoLuongKhaDung + s.SoLuong " +
+    //             "WHERE s.MaHoatDong = ?";
+    //     PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_SOLUONG_QUERY);
+    //     preparedStatement.setInt(1, lichHoatDong.getMaHoatDong());
+    //     preparedStatement.executeUpdate();
+    // }
 
 
 

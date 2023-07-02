@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.ThongKeController">
    <children>
-      <TableView fx:id="tableView" layoutX="25.0" layoutY="117.0" prefHeight="374.0" prefWidth="751.0">
+      <TableView fx:id="tableView" layoutX="25.0" layoutY="122.0" prefHeight="394.0" prefWidth="751.0">
         <columns>
             <TableColumn fx:id="indexColumn" prefWidth="40.5" text="#" />
           <TableColumn fx:id="hoTenColumn" prefWidth="185.5" text="Họ tên" />
@@ -127,6 +127,6 @@
          </children>
       </HBox>
       <Button layoutX="690.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#onStatistic" styleClass="btn_primary" text="Thống kê" />
-      <Pagination fx:id="pagination" layoutX="25.0" layoutY="115.0" prefHeight="424.0" prefWidth="751.0" />
+      <Pagination fx:id="pagination" layoutX="25.0" layoutY="121.0" prefHeight="465.0" prefWidth="751.0" />
    </children>
 </AnchorPane>

@@ -125,12 +125,12 @@ public class LichHoatDongController implements Initializable {
                 if (type == okButton) {
                     try {
                         if (selected.getStatus().equals("Chấp nhận")) {
-                            LichHoatDongServices.updateCongSoLuongKhaDung(conn, selected);
+                            // LichHoatDongServices.updateCongSoLuongKhaDung(conn, selected);
                         }
                         int result = LichHoatDongServices.deleteLichHoatDong(conn, selected);
                         if (result == 1)
-                            createDialog(Alert.AlertType.INFORMATION, "Xoá thành công!", "", "Quá đơn giản phải không đồng chí?");
-                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Oops, mời đồng chí thử lại!");
+                            createDialog(Alert.AlertType.INFORMATION, "Thông báo", "", "Tạo tài khoản thành công!");
+                        else createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Có lỗi, vui lòng thử lại!");
                         ViewUtils viewUtils = new ViewUtils();
                         viewUtils.changeAnchorPane(basePane, LICH_HOAT_DONG_VIEW_FXML);
                     } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class LichHoatDongController implements Initializable {
         Scene scene = new Scene(studentViewParent);
         LichHoatDongDetailController controller = loader.getController();
         LichHoatDong selected = tableView.getSelectionModel().getSelectedItem();
-        if (selected == null) createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn 1 mục để tiếp tục");
+        if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn 1 mục để tiếp tục");
         else {
             controller.setLichHoatDong(selected);
             controller.hide_add_btn();
