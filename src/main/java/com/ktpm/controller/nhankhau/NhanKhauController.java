@@ -32,6 +32,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import com.ktpm.HomeApplication;
+import com.ktpm.controller.KhaiTuController;
 import com.ktpm.controller.TamTruController;
 import com.ktpm.controller.TamVangController;
 import com.ktpm.model.CoSoVatChat;
@@ -129,7 +130,7 @@ public class NhanKhauController implements Initializable {
 		}
 	}
 	  @FXML
-	    void onKhaiTu(ActionEvent event) {
+	    void onKhaiTu(MouseEvent event) throws SQLException {
 		  NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
 			if (selected == null) {
 				createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn người để khai tử!", "");
@@ -141,8 +142,10 @@ public class NhanKhauController implements Initializable {
 					scene = new Scene(fxmlLoader.load());
 					// TODO Auto-generated catch block
 					stage.setTitle("Khai tử");
-					TamTruController controller = fxmlLoader.getController();
+					KhaiTuController controller = fxmlLoader.getController();
 					controller.setIdNhanKhau(selected.getID());
+					controller.setTenNguoiChet(selected.getHoTen());
+					controller.init();
 					
 					stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
 					stage.setScene(scene);
