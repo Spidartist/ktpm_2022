@@ -34,6 +34,9 @@ public class TamTruController {
     	String lido=liDoTextField.getText();
     	String noiThuongTru=noiThuongTruTextField.getText();
     	
+    	
+    	
+    	
     	if(denNgay.equals("") || tuNgay.equals("")|| lido.equals("")|| noiThuongTru.equals("")) {
     		  createDialog(
                       Alert.AlertType.WARNING,
