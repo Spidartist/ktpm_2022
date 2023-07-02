@@ -43,6 +43,24 @@ public class ThongKeServices {
 		return 0;
 	    }
 	
+	public static int SoLuongNhanKhauTuVong()  {
+		 Connection conn;
+		try {
+			conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+			String query="SELECT COUNT(DISTINCT idNguoiChet) AS SoLuongTuVong FROM khaitu;";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			ResultSet result=preparedStatement.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	    }
+	
 	public static int SoLuongNhanKhauTamTru()  {
 		 Connection conn;
 		try {

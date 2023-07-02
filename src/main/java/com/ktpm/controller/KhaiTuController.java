@@ -75,7 +75,7 @@ public class KhaiTuController {
     }
 
     @FXML
-    void onSubmit(MouseEvent event) throws SQLException {
+    void onSubmit(MouseEvent event) {
 		String lyDoTuVong = lyDoTuVongField.getText();
 		String ngayKhai = ngayKhaiField.getValue().toString();
 		String ngayTuVong = ngayTuVongField.getValue().toString();
@@ -83,15 +83,22 @@ public class KhaiTuController {
 		String tenNguoiChet = tenNguoiChetField.getText();
 		String tenNguoiKhaiTu = nguoiKhaiTuBox.getValue();
 		
-		int idNguoiKhaiTu = NhanKhauServices.findIDNhanKhauViaTen(tenNguoiKhaiTu);
-		int idChet = NhanKhauServices.findIDNhanKhauViaTen(tenNguoiChet);
-		
-		
-		int rs =NhanKhauServices.addKhaiTu(idChet, idNguoiKhaiTu, lyDoTuVong, ngayTuVong, ngayKhai, quanHe);
-		if (rs ==1) {
-			createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Khai tử thành công!", "");
-		}else {
+
+		try {
+			int idNguoiKhaiTu;
+			idNguoiKhaiTu = NhanKhauServices.findIDNhanKhauViaTen(tenNguoiKhaiTu);
+			int idChet;
+			idChet = NhanKhauServices.findIDNhanKhauViaTen(tenNguoiChet);
+			int rs;
+			rs = NhanKhauServices.addKhaiTu(idChet, idNguoiKhaiTu, lyDoTuVong, ngayTuVong, ngayKhai, quanHe);
+			if (rs ==1) {
+				createDialog(Alert.AlertType.INFORMATION, "Thông báo", "Khai tử thành công!", "");
+			}else {
+				createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi xảy ra!", "");
+			}
+		} catch (SQLException e) {
 			createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi xảy ra!", "");
+			e.printStackTrace();
 		}
 		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 		

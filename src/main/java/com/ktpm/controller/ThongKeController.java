@@ -86,6 +86,7 @@ public class ThongKeController implements Initializable {
                     + " INNER JOIN cccd ON nhankhau.ID = cccd.idNhanKhau"
                     + " LEFT JOIN tamtru ON nhankhau.ID = tamtru.idNhanKhau "
                     + " LEFT JOIN tamvang ON nhankhau.ID = tamvang.idNhanKhau "
+                    + " LEFT JOIN khaitu ON nhankhau.ID = khaitu.idnguoichet "
                     + " WHERE ROUND(DATEDIFF(CURDATE(),NgaySinh)/365 , 0) >= "
                     + tuTuoi
                     + " AND ROUND(DATEDIFF(CURDATE(),NgaySinh)/365 , 0) <= "
@@ -107,6 +108,12 @@ public class ThongKeController implements Initializable {
                     + ")";
         } else if (Status.equalsIgnoreCase("Đăng kí tạm vắng")) {
             query += " AND (YEAR(tamvang.tuNgay) BETWEEN "
+                    + tuNam
+                    + " AND "
+                    + denNam
+                    + ")";
+        } else if (Status.equalsIgnoreCase("Khai tử")) {
+            query += " AND (YEAR(khaitu.ngayChet) BETWEEN "
                     + tuNam
                     + " AND "
                     + denNam
