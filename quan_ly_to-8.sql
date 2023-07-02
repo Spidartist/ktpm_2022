@@ -65,8 +65,7 @@ CREATE TABLE `khaitu` (
 CREATE TABLE `tamtru` (
   `ID` int(11) NOT NULL,
   `idNhankhau` int(11) NOT NULL,
-  `sdtNgDangKi` int(11) NOT NULL,
-  `noiTamTru` text NOT NULL,
+  `diaChiTamTru` text NOT NULL,
   `tuNgay` date NOT NULL,
   `denNgay` date NOT NULL,
   `lido` text NOT NULL
@@ -75,6 +74,7 @@ CREATE TABLE `tamtru` (
 CREATE TABLE `tamvang` (
   `ID` int(11) NOT NULL,
   `idNhankhau` int(11) NOT NULL,
+  `noiTamTru` text NOT NULL,
   `tuNgay` date NOT NULL,
   `denNgay` date NOT NULL,
   `lydo` text NOT NULL

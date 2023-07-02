@@ -38,6 +38,19 @@ public class NhanKhauServices {
         preparedStatement.setInt(1, ID);
         return preparedStatement.executeUpdate();
     }
+    
+    public static int dangKiTamTru(int ID, String tuNgay, String denNgay, String liDo, String noiTamTru) throws SQLException {
+    	String query = "INSERT INTO tamtru(`idNhanKhau`, `noiTamTru`, `tuNgay`, `denNgay`, `lido`) VALUES (?, ?, ?, ?, ?)";
+    	
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, ID);
+        preparedStatement.setString(2, noiTamTru);
+        preparedStatement.setString(3, tuNgay);
+        preparedStatement.setString(4, denNgay);
+        preparedStatement.setString(5, liDo);
+        return preparedStatement.executeUpdate();
+    }
 
     public static int addNhanKhau(Connection conn, String hoVaTen, String biDanh, String ngaySinh, String noiSinh, String gioiTinh, String nguyenQuan,
                                   String danToc, String noiThuongTru, String tonGiao, String quocTich, String diaChiHienNay, String ngheNghiep) throws SQLException {
