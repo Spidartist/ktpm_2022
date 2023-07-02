@@ -14,6 +14,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -28,6 +29,9 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+import com.ktpm.HomeApplication;
+import com.ktpm.controller.TamVangController;
+import com.ktpm.model.NhanKhau;
 import com.ktpm.model.SoHoKhau;
 import com.ktpm.services.SoHoKhauServices;
 import com.ktpm.utils.ViewUtils;
@@ -202,6 +206,32 @@ public class SoHoKhauController implements Initializable {
         return tableView;
 
     }
+    
+    @FXML
+    void tackKhau(MouseEvent event) {
+		SoHoKhau selected = tableView.getSelectionModel().getSelectedItem();
+		if (selected == null) {
+			createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn hộ để tách khẩu!", "");
+		}else {
+			try {
+				Stage stage = new Stage();
+				FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(TACH_KHAU_VIEW_FXML));
+				Scene scene;
+				scene = new Scene(fxmlLoader.load());
+				// TODO Auto-generated catch block
+				stage.setTitle("Đăng kí tạm vắng");
+				TachKhauController controller = fxmlLoader.getController();
+				controller.setSoHoKhauHienTai(selected);
+				controller.setInfo();
+				stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
+				stage.setScene(scene);
+				stage.show();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+    }
+    
 
     @FXML
     private TextField searchTextField;
