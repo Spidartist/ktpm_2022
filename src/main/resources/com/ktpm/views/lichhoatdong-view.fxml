@@ -26,7 +26,7 @@
         </TableView>
         <Text layoutX="25.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lịch hoạt động" wrappingWidth="192.9140625">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI Bold" size="18.0" />
             </font>
         </Text>
         <Button layoutX="603.0" layoutY="77.0" mnemonicParsing="false" onAction="#add" styleClass="btn" text="Thêm mới" textFill="WHITE">

@@ -22,7 +22,7 @@
         </TableView>
         <Text layoutX="45.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý sổ hộ khẩu" textAlignment="CENTER" wrappingWidth="169.9140625">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI Bold" size="18.0" />
             </font>
         </Text>
         <Button layoutX="566.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" styleClass="btn" text="Thêm mới" textFill="WHITE">
@@ -35,13 +35,13 @@
                 <Font name="Segoe UI Italic" size="14.0" />
             </font>
         </TextField>
-        <Button layoutX="671.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" styleClass="danger" text="Xoá" textFill="WHITE">
+        <Button layoutX="671.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" styleClass="btn" text="Xoá" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
-        <Pagination fx:id="pagination" layoutX="38.0" layoutY="125.0" prefHeight="478.0" prefWidth="634.0" />
-      <Button layoutX="377.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#tackKhau" style="-fx-background-color: #3f4d67;" text="Tách khẩu" textFill="WHITE">
+        <Pagination fx:id="pagination" layoutX="38.0" layoutY="125.0" prefHeight="478.0" prefWidth="702.0" />
+      <Button layoutX="469.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#tackKhau" styleClass="btn" text="Tách khẩu" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

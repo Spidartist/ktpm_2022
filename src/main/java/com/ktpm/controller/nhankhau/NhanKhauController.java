@@ -196,7 +196,7 @@ public class NhanKhauController implements Initializable {
 		else {
 			Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 			alert.setTitle("Xác nhận xóa nhân khẩu");
-			alert.setContentText("Đồng chí muốn xóa nhân khẩu này?");
+			alert.setContentText("Bạn muốn xóa nhân khẩu này?");
 			ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
 			ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
 			alert.getButtonTypes().setAll(okButton, noButton);
@@ -233,7 +233,7 @@ public class NhanKhauController implements Initializable {
 		NhanKhauDetailViewController controller = loader.getController();
 		NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
 		if (selected == null)
-			createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn một nhân khẩu");
+			createDialog(Alert.AlertType.WARNING, "Từ từ đã Bạn", "", "Vui lòng chọn một nhân khẩu");
 		else {
 			controller.setNhanKhau(selected);
 			controller.setID(selected.getID());
