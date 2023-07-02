@@ -57,7 +57,9 @@ CREATE TABLE `khaitu` (
   `ID` int(11) NOT NULL,
   `idNguoiKhai` int(11) NOT NULL,
   `idNguoiChet` int(11) NOT NULL,
+  `quanHeVoiNguoiChet` varchar(30) NOT NULL,
   `ngayKhai` date NOT NULL,
+  `ngayChet` date NOT NULL,
   `lyDoChet` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

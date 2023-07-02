@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import static com.ktpm.utils.Utils.createDialog;
 
@@ -52,6 +53,7 @@ public class TamVangController {
         		createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi!", "");
         	}
     	}
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     public void setIdNhanKhau(int id) {
     	this.idNhankhau=id;

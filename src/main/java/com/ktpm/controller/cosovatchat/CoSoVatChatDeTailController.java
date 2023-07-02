@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.scene.input.*;
 
 import static com.ktpm.constants.DBConstants.*;
@@ -85,9 +86,10 @@ public class CoSoVatChatDeTailController implements Initializable {
 
     }
 
-    public void goBack(ActionEvent event) throws IOException {
+    public void goBack(MouseEvent event) throws IOException {
 //        ViewUtils viewUtils = new ViewUtils();
 //        viewUtils.switchToCoSoVatChat_Admin_view(event);
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
     public void onClick(ActionEvent event) throws IOException{

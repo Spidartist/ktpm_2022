@@ -112,7 +112,7 @@ public class CoSoVatChatController implements Initializable {
     }
     
 
-    public void add(ActionEvent event) throws IOException, SQLException {
+    public void add(MouseEvent event) throws IOException, SQLException {
     	Stage stage = new Stage();
     	FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(DETAIL_CO_SO_VAT_CHAT_ADD_FXML));

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class TamTruController {
 	private int  idNhankhau;
@@ -58,6 +59,7 @@ public class TamTruController {
         		createDialog(Alert.AlertType.ERROR, "Thông báo", "Có lỗi!", "");
         	}
     	}
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     public void setIdNhanKhau(int id) {
     	this.idNhankhau=id;
