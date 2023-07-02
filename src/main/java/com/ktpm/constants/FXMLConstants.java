@@ -16,5 +16,8 @@ public class FXMLConstants {
     public static String DETAIL_LICH_HOAT_DONG_VIEW_FXML = "/com/ktpm/views/lichhoatdong-detail-view.fxml";
     public static String ADD_THANH_VIEN_FXML = "/com/ktpm/views/addthanhvien-view.fxml";
     public static String ICON = "/com/ktpm/icons/logo1.png";
+    public static String TAM_TRU_FXML = "/com/ktpm/views/tamTru.fxml";
+    public static String TAM_VANG_FXML = "/com/ktpm/views/tamVang.fxml";
+    public static String THONG_KE_FXML = "/com/ktpm/views/thongKe.fxml";
 
 }

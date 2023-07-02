@@ -11,6 +11,11 @@
     -fx-text-fill: #333;
     
 }
+
+.button:focused{
+    -fx-text-fill: #7942fe ;
+    -fx-background-color: #efe9ff ;
+}
 .btn{
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
@@ -18,13 +23,21 @@
 
     -fx-text-fill: #7942fe;
 }
+.btn_primary{
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px;
+    -fx-background-color: #7942fe;
+
+    -fx-text-fill: #fff;
+}
+
 .danger{
     -fx-border-radius: 4px;
     -fx-border-width: 1px;
     -fx-border-color: #fc0404;
     
     -fx-text-fill: #fc0404;
-
+    
 }
 
 .button:hover{
@@ -35,8 +48,17 @@
 .sidebar{
     -fx-background-color: #fff;
 }
+.btn_primary:hover{
+    -fx-background-color: #683fc7;
+    
+    -fx-text-fill: #fff;
+}
 
 /* #menuButton:hover{
     -fx-background-color:#efe9ff ;
 
+} */
+/* .active{
+    -fx-text-fill: #7942fe ;
+    -fx-background-color: #efe9ff ;
 } */

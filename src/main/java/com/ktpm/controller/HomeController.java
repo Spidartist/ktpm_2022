@@ -18,7 +18,6 @@ import com.ktpm.utils.ViewUtils;
 public class HomeController {
     @FXML
     private TextField inputUsername, inputPassword;
-
     public void handleLogin(ActionEvent event) {
         String SELECT_QUERY = "SELECT * FROM user WHERE username = ? AND password = ?";
         String Username = inputUsername.getText();

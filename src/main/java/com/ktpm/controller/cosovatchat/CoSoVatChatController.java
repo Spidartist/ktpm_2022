@@ -23,6 +23,7 @@ import javafx.util.Callback;
 import static com.ktpm.constants.DBConstants.*;
 import static com.ktpm.constants.FXMLConstants.CO_SO_VAT_CHAT_VIEW_FXML;
 import static com.ktpm.constants.FXMLConstants.DETAIL_CO_SO_VAT_CHAT_VIEW_FXML;
+
 import static com.ktpm.utils.Utils.createDialog;
 
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class CoSoVatChatController implements Initializable {
         Parent studentViewParent = loader.load();
         Scene scene = new Scene(studentViewParent);
         CoSoVatChatDeTailController controller = loader.getController();
-        controller.hide_update_btn();
+//        controller.hide_update_btn();
         controller.hide_Pane();
         stage.setScene(scene);
     }
@@ -151,7 +152,7 @@ public class CoSoVatChatController implements Initializable {
             createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn 1 mục để tiếp tục");
         else {
             controller.setCoSoVatChat(selected);
-            controller.hide_add_btn();
+//            controller.hide_add_btn();
             controller.setTitle("Cập nhật cơ sở vật chất");
             stage.setScene(scene);
         }
