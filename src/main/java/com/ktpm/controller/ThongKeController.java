@@ -124,6 +124,7 @@ public class ThongKeController implements Initializable {
     
     @FXML
     void onStatistic(MouseEvent event) throws SQLException {
+    	thongKeList = FXCollections.observableArrayList();
     	System.out.println("Clicked");
     	int denNam= Integer.parseInt(denNamField.getText());
     	int tuNam= Integer.parseInt(tuNamField.getText());

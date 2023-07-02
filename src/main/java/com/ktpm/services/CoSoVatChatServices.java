@@ -34,12 +34,13 @@ public class CoSoVatChatServices {
         return preparedStatement.executeUpdate();
     }
 
-    public static int updateFacility(Connection conn, int maDoDung, String tenDoDung, String tinhTrang) throws SQLException {
-        String UPDATE_QUERY = "UPDATE cosovatchat SET `TenDoDung`=?, `TinhTrang`=? WHERE `MaDoDung`=?";
+    public static int updateFacility(Connection conn, int maDoDung, String tenDoDung, String tinhTrang, String loaiDoDung) throws SQLException {
+        String UPDATE_QUERY = "UPDATE cosovatchat SET `TenDoDung`=?, `TinhTrang`=?, `LoaiDoDung`=? WHERE `MaDoDung`=?";
         PreparedStatement preparedStatement = conn.prepareStatement((UPDATE_QUERY));
         preparedStatement.setString(1, tenDoDung);
         preparedStatement.setString(2, tinhTrang);
-        preparedStatement.setString(3, Integer.toString(maDoDung));
+        preparedStatement.setString(3, loaiDoDung);
+        preparedStatement.setString(4, Integer.toString(maDoDung));
         return preparedStatement.executeUpdate();
     }
 

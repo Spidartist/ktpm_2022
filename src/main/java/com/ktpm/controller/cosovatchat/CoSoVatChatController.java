@@ -31,6 +31,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import com.ktpm.HomeApplication;
+import com.ktpm.controller.KhaiTuController;
 import com.ktpm.model.CoSoVatChat;
 import com.ktpm.services.CoSoVatChatServices;
 import com.ktpm.utils.ViewUtils;
@@ -167,13 +168,19 @@ public class CoSoVatChatController implements Initializable {
     }
 
     public void detail(MouseEvent event) throws IOException, SQLException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(DETAIL_CO_SO_VAT_CHAT_VIEW_FXML));
-        Parent studentViewParent = loader.load();
-        Scene scene = new Scene(studentViewParent);
-        CoSoVatChatDeTailController controller = loader.getController();
+    	Stage stage = new Stage();
+		FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(DETAIL_CO_SO_VAT_CHAT_VIEW_FXML));
+		Scene scene;
+		scene = new Scene(fxmlLoader.load());
+		// TODO Auto-generated catch block
+		stage.setTitle("Cập nhật cơ sở vật chất");
+		CoSoVatChatDeTailController controller = fxmlLoader.getController();
+		
+		stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
+		stage.setScene(scene);
+		stage.show();
         CoSoVatChat selected = tableView.getSelectionModel().getSelectedItem();
+        
         if (selected == null)
             createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn 1 mục để tiếp tục");
         else {
@@ -181,6 +188,7 @@ public class CoSoVatChatController implements Initializable {
 //            controller.hide_add_btn();
             controller.setTitle("Cập nhật cơ sở vật chất");
             stage.setScene(scene);
+            stage.show();
         }
 
     }
