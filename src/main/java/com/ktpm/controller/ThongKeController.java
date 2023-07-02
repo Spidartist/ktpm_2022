@@ -1,14 +1,30 @@
 package com.ktpm.controller;
 
+import static com.ktpm.constants.DBConstants.DATABASE;
+import static com.ktpm.constants.DBConstants.PASSWORD;
+import static com.ktpm.constants.DBConstants.ROWS_PER_PAGE;
+import static com.ktpm.constants.DBConstants.USERNAME;
+
+import java.io.IOException;
 import java.net.URL;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import com.ktpm.model.BaseNhanKhau;
+import com.ktpm.model.CoSoVatChat;
+import com.ktpm.services.CoSoVatChatServices;
+import com.ktpm.services.ThongKeServices;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -35,45 +51,132 @@ public class ThongKeController implements Initializable {
 
     
     @FXML
-    private TableColumn<?, ?> gioiTinhColumn;
+    private TableColumn<BaseNhanKhau, String> gioiTinhColumn;
 
 
     @FXML
-    private TableColumn<?, ?> hoTenColumn;
+    private TableColumn<BaseNhanKhau, String> hoTenColumn;
 
     @FXML
-    private TableColumn<?, ?> ngaySinhColumn;
+    private TableColumn<BaseNhanKhau, String>ngaySinhColumn;
 
     @FXML
-    private TableColumn<?, ?> noiThuongTruColumn;
-
-    @FXML
-    private TableView<?> tableView;
-
+    private TableColumn<BaseNhanKhau, String> noiThuongTruColumn;
     
     @FXML
-    void onStatistic(MouseEvent event) {
-    	String denNam= denNamField.getText();
-    	String tuNam=tuNamField.getText();
+    private Pagination pagination;
+    
+    @FXML
+    private TableView<BaseNhanKhau> tableView;
+    
+    private ObservableList<BaseNhanKhau> thongKeList = FXCollections.observableArrayList();
+    
+    
+    private String statisticNhanKhauQuery(int tuTuoi, int denTuoi, String gender, String Status, int tuNam, int denNam) {        
+        String query = "SELECT * FROM nhankhau "
+                    + " INNER JOIN cccd ON nhankhau.ID = cccd.idNhanKhau"
+                    + " LEFT JOIN tamtru ON nhankhau.ID = tamtru.idNhanKhau "
+                    + " LEFT JOIN tamvang ON nhankhau.ID = tamvang.idNhanKhau "
+                    + " WHERE ROUND(DATEDIFF(CURDATE(),NgaySinh)/365 , 0) >= "
+                    + tuTuoi
+                    + " AND ROUND(DATEDIFF(CURDATE(),NgaySinh)/365 , 0) <= "
+                    + denTuoi;
+        if (!gender.equalsIgnoreCase("Toan Bo")) {
+            query += " AND nhankhau.GioiTinh = '" + gender + "'";
+        }
+        if (Status.equalsIgnoreCase("Toan bo")) {
+            query += " AND (tamtru.denNgay >= CURDATE() OR tamtru.denNgay IS NULL)"
+                    + " AND (tamvang.denNgay <= CURDATE() OR tamvang.denNgay IS NULL)";
+        } else if (Status.equalsIgnoreCase("Thuong tru")) {
+            query += " AND tamtru.denNgay IS NULL";
+            
+        } else if (Status.equalsIgnoreCase("Tam tru")) {
+            query += " AND (YEAR(tamtru.tuNgay) BETWEEN "
+                    + tuNam
+                    + " AND "
+                    + denNam
+                    + ")";
+        } else if (Status.equalsIgnoreCase("Tam vang")) {
+            query += " AND (YEAR(tamvang.tuNgay) BETWEEN "
+                    + tuNam
+                    + " AND "
+                    + denNam
+                    + ")";
+        }
+        return query;
+    }
+    
+    @FXML
+    void onStatistic(MouseEvent event) throws SQLException {
+    	System.out.println("Clicked");
+    	int denNam= Integer.parseInt(denNamField.getText());
+    	int tuNam= Integer.parseInt(tuNamField.getText());
     	String gioiTinh=gioiTinhList.getValue();
     	String tinhTrang=tinhTrangList.getValue();
+    	int denTuoi= Integer.parseInt(denTuoiField.getText());
+    	int tuTuoi=  Integer.parseInt(tuTuoiField.getText());
     	
-    	System.out.println("thong ke"+ tuNam +" "+denNam+" "+gioiTinh+ " "+tinhTrang);
+    	String query = statisticNhanKhauQuery(tuTuoi, denTuoi, gioiTinh, tinhTrang, tuNam, denNam);
     	
+    	ResultSet result = ThongKeServices.statisticNhanKhau(query);
+    	while (result.next()) {
+    		
+    		thongKeList.add(new BaseNhanKhau(result.getString("HoTen"), result.getString("GioiTinh"),
+                    result.getString("NgaySinh"), result.getString("NoiThuongTru")));
+//    		System.out.println(thongKeList.get(0).getHoTen());
+
+        }
     	
+//        int soDu = thongKeList.size() % ROWS_PER_PAGE;
+//        if (soDu != 0) pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE + 1);
+//        else pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE);
+//        pagination.setMaxPageIndicatorCount(5);
+//        pagination.setPageFactory(this::createTableView);
+
+        tableView.setRowFactory(tv -> {
+            TableRow<BaseNhanKhau> row = new TableRow<>();
+//            row.setOnMouseClicked(ev -> {
+//                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+//                    // Perform actions with rowData
+//                    try {
+//                        try {
+//							detail(event);
+//						} catch (SQLException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                }
+//            });
+            return row;
+        });
     }
+    	
+
+    	
 
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		 ObservableList<String> listGioiTinhOptions = FXCollections.observableArrayList("Nam", "Nữ","Toàn bộ");
+		ObservableList<String> listGioiTinhOptions = FXCollections.observableArrayList("Nam", "Nữ","Toàn bộ");
 		gioiTinhList.setItems(listGioiTinhOptions);
 		gioiTinhList.setValue("Toàn bộ");
-		 ObservableList<String> tinhTrangOptions = FXCollections.observableArrayList("Toàn bộ", "Đăng kí tạm trú","Đăng kí tạm văng","Khai tử");
-		 tinhTrangList.setItems(tinhTrangOptions);
-		 tinhTrangList.setValue("Toàn bộ");
+		ObservableList<String> tinhTrangOptions = FXCollections.observableArrayList("Toàn bộ", "Đăng kí tạm trú","Đăng kí tạm văng","Khai tử");
+		tinhTrangList.setItems(tinhTrangOptions);
+		tinhTrangList.setValue("Toàn bộ");
+		
+		
+		
 		 
 		
+	}
+	
+	public static void main(String[] args) {
+		ThongKeController c = new ThongKeController();
+		String query = c.statisticNhanKhauQuery(0, 100, "Nam", "Toàn bộ", 0, 3000);
+		System.out.println(query);
 	}
 
 }

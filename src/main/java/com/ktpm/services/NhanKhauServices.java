@@ -39,8 +39,21 @@ public class NhanKhauServices {
         return preparedStatement.executeUpdate();
     }
     
-    public static int dangKiTamTru(int ID, String tuNgay, String denNgay, String liDo, String noiTamTru) throws SQLException {
-    	String query = "INSERT INTO tamtru(`idNhanKhau`, `noiTamTru`, `tuNgay`, `denNgay`, `lido`) VALUES (?, ?, ?, ?, ?)";
+    public static int dangKiTamTru(int ID, String tuNgay, String denNgay, String liDo, String diaChiTamTru) throws SQLException {
+    	String query = "INSERT INTO tamtru(`idNhanKhau`, `diaChiTamTru`, `tuNgay`, `denNgay`, `lido`) VALUES (?, ?, ?, ?, ?)";
+    	
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(query);
+        preparedStatement.setInt(1, ID);
+        preparedStatement.setString(2, diaChiTamTru);
+        preparedStatement.setString(3, tuNgay);
+        preparedStatement.setString(4, denNgay);
+        preparedStatement.setString(5, liDo);
+        return preparedStatement.executeUpdate();
+    }
+    
+    public static int dangKiTamVang(int ID, String tuNgay, String denNgay, String liDo, String noiTamTru) throws SQLException {
+    	String query = "INSERT INTO tamvang(`idNhanKhau`, `noiTamTru`, `tuNgay`, `denNgay`, `lydo`) VALUES (?, ?, ?, ?, ?)";
     	
         Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
         PreparedStatement preparedStatement = conn.prepareStatement(query);
