@@ -17,8 +17,8 @@
                 <TableColumn fx:id="indexColumn" prefWidth="35.0" text="#" />
                 <TableColumn fx:id="maDoDungColumn" prefWidth="119.0" text="Mã đồ dùng" />
                 <TableColumn fx:id="tenDoDungColumn" prefWidth="153.0" text="Tên đồ dùng" />
-                <TableColumn fx:id="soLuongColumn" prefWidth="134.0" text="Số lượng" />
-                <TableColumn fx:id="soLuongKhaDungColumn" prefWidth="192.0" text="Số lượng khả dụng" />
+                <TableColumn fx:id="tenLoaiDoDungColumn" prefWidth="134.0" text="Loại đồ dùng" />
+                <TableColumn fx:id="tinhTrangColumn" prefWidth="192.0" text="Tình trạng" />
             </columns>
         </TableView>
         <Text layoutX="37.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cơ sở vật chất" textAlignment="CENTER" wrappingWidth="192.9140625">
@@ -26,7 +26,7 @@
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </Text>
-        <Button layoutX="508.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+        <Button fx:id="addBtn" layoutX="508.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
@@ -41,5 +41,10 @@
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
+      <Button fx:id="reloadBtn" layoutX="314.0" layoutY="79.0" mnemonicParsing="false" onAction="#reload" style="-fx-background-color: #3f4d67;" text="Tải lại" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

@@ -90,15 +90,9 @@ CREATE TABLE `user` (
 
 CREATE TABLE `cosovatchat` (
   `MaDoDung` int(11) NOT NULL,
-  `MaLoaiDoDung` int(11) NOT NULL,
   `TenDoDung` varchar(30) NOT NULL,
-  `TinhTrang` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-CREATE TABLE `loaicosovatchat` (
-  `MaLoaiDoDung` int(11) NOT NULL,
-  `TenLoaiDoDung` varchar(30) NOT NULL,
-  `SoLuong` int(11) NOT NULL
+  `TinhTrang` varchar(30) NOT NULL,
+  `LoaiDoDung` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -153,9 +147,6 @@ ALTER TABLE `user`
 ALTER TABLE `cosovatchat`
   ADD PRIMARY KEY (`MaDoDung`);
 
-ALTER TABLE `loaicosovatchat`
-  ADD PRIMARY KEY (`MaLoaiDoDung`);
-
 ALTER TABLE `lichhoatdong`
   ADD PRIMARY KEY (`MaHoatDong`),
   ADD KEY `MaNguoiTao` (`MaNguoiTao`);
@@ -168,8 +159,8 @@ ALTER TABLE `hoatdong_cosovatchat`
 ALTER TABLE `cccd`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
-ALTER TABLE `loaicosovatchat`
-  MODIFY `MaLoaiDoDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+ALTER TABLE `cosovatchat`
+  MODIFY `MaDoDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `nhankhau`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
@@ -189,9 +180,6 @@ ALTER TABLE `cccd`
 ALTER TABLE `hoatdong_cosovatchat`
   ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_1` FOREIGN KEY (`MaHoatDong`) REFERENCES `lichhoatdong` (`MaHoatDong`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_2` FOREIGN KEY (`MaDoDung`) REFERENCES `cosovatchat` (`MaDoDung`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-ALTER TABLE `cosovatchat`
-  ADD CONSTRAINT `cosovatchat_ibfk_1` FOREIGN KEY (`MaLoaiDoDung`) REFERENCES `loaicosovatchat` (`MaLoaiDoDung`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `khaitu`
@@ -264,28 +252,20 @@ INSERT INTO `sohokhau` (`ID`, `MaHoKhau`, `DiaChi`, `MaChuHo`, `NgayLap`, `NgayC
 (1, '001232324', 'Cầu Giấy - Hà Nội', 4, '2013-01-02', NULL, NULL),
 (2, '001232325', 'Hai Bà Tưng - Hà Nội', 2, '2013-01-02', NULL, NULL);
 
-
-INSERT INTO `loaicosovatchat` (`MaLoaiDoDung`, `TenLoaiDoDung`, `SoLuong`) VALUES
-(1, 'Quạt điện', 6),
-(2, 'Máy chiếu', 2),
-(3, 'Máy tính', 2),
-(4, 'Bàn nhựa', 1),
-(5, 'Ghế nhựa', 2);
-
-INSERT INTO `cosovatchat` (`MaDoDung`, `MaLoaiDoDung`, `TenDoDung`, `TinhTrang`) VALUES
-(1, 1,'Quạt điện Vinfast', "Còn dùng được"),
-(2, 1,'Quạt điện Thống nhất', "Còn dùng được"),
-(3, 1,'Quạt điện Vinfast', "Còn dùng được"),
-(4, 1,'Quạt điện Vinfast', "Còn dùng được"),
-(5, 1,'Quạt điện Vinfast', "Còn dùng được"),
-(6, 1,'Quạt điện Vinfast', "Còn dùng được"),
-(7, 2,'Máy chiếu Vinfast', "Còn dùng được"),
-(8, 2,'Máy chiếu Konica', "Hỏng"),
-(9, 3,'Máy tính Intel', "Còn dùng được"),
-(10, 3,'Máy tính MSI', "Hỏng"),
-(11, 4,'Bàn nhựa Thống Nhất', "Còn dùng được"),
-(12, 5,'Ghế nhựa Thống Nhất', "Còn dùng được"),
-(13, 5,'Ghế nhựa Thống Nhất', "Còn dùng được");
+INSERT INTO `cosovatchat` (`MaDoDung`, `LoaiDoDung`, `TenDoDung`, `TinhTrang`) VALUES
+(1, 'Quạt điện','Quạt điện Vinfast', "Còn dùng được"),
+(2, 'Quạt điện','Quạt điện Thống nhất', "Còn dùng được"),
+(3, 'Quạt điện','Quạt điện Vinfast', "Còn dùng được"),
+(4, 'Quạt điện','Quạt điện Vinfast', "Còn dùng được"),
+(5, 'Quạt điện','Quạt điện Vinfast', "Còn dùng được"),
+(6, 'Quạt điện','Quạt điện Vinfast', "Còn dùng được"),
+(7, 'Máy chiếu','Máy chiếu Vinfast', "Còn dùng được"),
+(8, 'Máy chiếu','Máy chiếu Konica', "Hỏng"),
+(9, 'Máy tính','Máy tính Intel', "Còn dùng được"),
+(10, 'Máy tính','Máy tính MSI', "Hỏng"),
+(11, 'Bàn nhựa','Bàn nhựa Thống Nhất', "Còn dùng được"),
+(12, 'Ghế nhựa','Ghế nhựa Thống Nhất', "Còn dùng được"),
+(13, 'Ghế nhựa','Ghế nhựa Thống Nhất', "Còn dùng được");
 
 
 

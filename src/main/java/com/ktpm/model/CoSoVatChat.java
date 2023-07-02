@@ -1,49 +1,51 @@
 package com.ktpm.model;
 
 public class CoSoVatChat {
-    private int maDoDung, soLuong, soLuongKhaDung;
+    private int maDoDung;
 
-    private String tenDoDung;
+    private String tenDoDung, tinhTrang, tenLoaiDoDung;
 
     public CoSoVatChat() {
     }
 
-    public CoSoVatChat(int maDoDung, String tenDoDung, int soLuong, int soLuongKhaDung) {
+    public CoSoVatChat(int maDoDung, String tenDoDung, String tinhTrang, String tenLoaiDoDung) {
         this.maDoDung = maDoDung;
         this.tenDoDung = tenDoDung;
-        this.soLuong = soLuong;
-        this.soLuongKhaDung = soLuongKhaDung;
+        this.tinhTrang = tinhTrang;
+        this.tenLoaiDoDung = tenLoaiDoDung;
     }
 
-    public int getMaDoDung() {
-        return maDoDung;
-    }
+	public int getMaDoDung() {
+		return maDoDung;
+	}
 
-    public void setMaDoDung(int maDoDung) {
-        this.maDoDung = maDoDung;
-    }
+	public void setMaDoDung(int maDoDung) {
+		this.maDoDung = maDoDung;
+	}
 
-    public int getSoLuong() {
-        return soLuong;
-    }
+	public String getTenLoaiDoDung() {
+		return tenLoaiDoDung;
+	}
 
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
+	public void setMaLoaiDoDung(String tenLoaiDoDung) {
+		this.tenLoaiDoDung = tenLoaiDoDung;
+	}
 
-    public int getSoLuongKhaDung() {
-        return soLuongKhaDung;
-    }
+	public String getTenDoDung() {
+		return tenDoDung;
+	}
 
-    public void setSoLuongKhaDung(int soLuongKhaDung) {
-        this.soLuongKhaDung = soLuongKhaDung;
-    }
+	public void setTenDoDung(String tenDoDung) {
+		this.tenDoDung = tenDoDung;
+	}
 
-    public String getTenDoDung() {
-        return tenDoDung;
-    }
+	public String getTinhTrang() {
+		return tinhTrang;
+	}
 
-    public void setTenDoDung(String tenDoDung) {
-        this.tenDoDung = tenDoDung;
-    }
+	public void setTinhTrang(String tinhTrang) {
+		this.tinhTrang = tinhTrang;
+	}
+
+    
 }

@@ -10,7 +10,7 @@ import com.ktpm.model.CoSoVatChat;
 
 public class CoSoVatChatServices {
     public static ResultSet getAllFacility(Connection conn) throws SQLException {
-        String SELECT_QUERY = "SELECT * FROM cosovatchat";
+        String SELECT_QUERY = "SELECT MaDoDung, TenDoDung, LoaiDoDung, TinhTrang  FROM `cosovatchat`";
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
         return preparedStatement.executeQuery();
     }
@@ -22,24 +22,22 @@ public class CoSoVatChatServices {
         return preparedStatement.executeUpdate();
     }
 
-    public static int addFacility(Connection conn, String maDoDung, String tenDoDung, String soLuong, String soLuongKhaDung) throws SQLException {
-        String INSERT_QUERY = "INSERT INTO cosovatchat VALUES(?,?,?,?)";
+    public static int addFacility(Connection conn, String tenDoDung, String loaiDoDung, String tinhTrang) throws SQLException {
+    	
+    	String INSERT_QUERY = "INSERT INTO cosovatchat(TenDoDung, LoaiDoDung, TinhTrang) VALUES(?, ?, ?)";
         PreparedStatement preparedStatement = conn.prepareStatement((INSERT_QUERY));
-        preparedStatement.setString(1, maDoDung);
-        preparedStatement.setString(2, tenDoDung);
-        preparedStatement.setString(3, soLuong);
-        preparedStatement.setString(4, soLuongKhaDung);
+        preparedStatement.setString(1, tenDoDung);
+        preparedStatement.setString(2, loaiDoDung);
+        preparedStatement.setString(3, tinhTrang);
         return preparedStatement.executeUpdate();
     }
 
-    public static int updateFacility(Connection conn, String maDoDung, String tenDoDung, String soLuong, String soLuongKhaDung) throws SQLException {
-        String UPDATE_QUERY = "UPDATE cosovatchat SET `MaDoDung`=?, `TenDoDung`=?, `SoLuong`=?, `SoLuongKhaDung`=? WHERE `MaDoDung`=?";
+    public static int updateFacility(Connection conn, int maDoDung, String tenDoDung, String tinhTrang) throws SQLException {
+        String UPDATE_QUERY = "UPDATE cosovatchat SET `TenDoDung`=?, `TinhTrang`=? WHERE `MaDoDung`=?";
         PreparedStatement preparedStatement = conn.prepareStatement((UPDATE_QUERY));
-        preparedStatement.setString(1, maDoDung);
-        preparedStatement.setString(2, tenDoDung);
-        preparedStatement.setString(3, soLuong);
-        preparedStatement.setString(4, soLuongKhaDung);
-        preparedStatement.setString(5, maDoDung);
+        preparedStatement.setString(1, tenDoDung);
+        preparedStatement.setString(2, tinhTrang);
+        preparedStatement.setString(3, Integer.toString(maDoDung));
         return preparedStatement.executeUpdate();
     }
 

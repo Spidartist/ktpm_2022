@@ -1,11 +1,14 @@
 package com.ktpm.controller.cosovatchat;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.scene.input.*;
 
 import static com.ktpm.constants.DBConstants.*;
 import static com.ktpm.utils.Utils.createDialog;
@@ -24,16 +27,15 @@ import java.util.ResourceBundle;
 
 public class CoSoVatChatDeTailController implements Initializable {
     @FXML
-    private TextField maDoDungTextField;
+    private ComboBox<String> loaiDoDungLabel;
 
     @FXML
-    private TextField tenDoDungTextField;
+    private TextField tenDoDungLabel;
 
     @FXML
-    private TextField soLuongTextField;
-
-    @FXML
-    private TextField soLuongKhaDungTextField;
+    private ComboBox<String> tinhTrangLabel;
+    
+    private int maDoDungHienTai;
 
     @FXML
     private Button add_btn;
@@ -48,44 +50,67 @@ public class CoSoVatChatDeTailController implements Initializable {
     private Pane maDoDungPane, soLuongKhaDungPane;
 
 
-    public void setCoSoVatChat(CoSoVatChat coSoVatChat) {
-        maDoDungTextField.setText(String.valueOf(coSoVatChat.getMaDoDung()));
-        tenDoDungTextField.setText(coSoVatChat.getTenDoDung());
-        soLuongTextField.setText(String.valueOf(coSoVatChat.getSoLuong()));
-        soLuongKhaDungTextField.setText(String.valueOf(coSoVatChat.getSoLuongKhaDung()));
+    public void setCoSoVatChat(CoSoVatChat coSoVatChat) throws SQLException {
+    	ObservableList<String> lstTenLoaiDoDung = FXCollections.observableArrayList();
+    	ObservableList<String> lstTinhTrang = FXCollections.observableArrayList();
+    	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+    	PreparedStatement check = conn.prepareStatement("SELECT TenDoDung, MaDoDung, TenLoaiDoDung, TinhTrang FROM `cosovatchat` JOIN `loaicosovatchat` "
+    													+ "WHERE `cosovatchat`.`MaLoaiDoDung` = `loaicosovatchat`.`MaLoaiDoDung`");
+    	ResultSet rs = check.executeQuery();
+    	String s;
+    	while (rs.next()) {
+    		s = rs.getString("TenLoaiDoDung");
+    		if (s!=null && !lstTenLoaiDoDung.contains(s)) {
+    			lstTenLoaiDoDung.add(s);
+    		}
+    		   		
+    	}
+    	loaiDoDungLabel.setValue(coSoVatChat.getTenLoaiDoDung());
+    	loaiDoDungLabel.setItems(lstTenLoaiDoDung);
+    	
+    	check = conn.prepareStatement("SELECT DISTINCT TinhTrang FROM `cosovatchat`");
+    	rs = check.executeQuery();
+    	while (rs.next()) {
+    		s = rs.getString("TinhTrang");
+    		if (s!=null) {
+    			lstTinhTrang.add(s);
+    		}	
+    	}
+    	tinhTrangLabel.setValue(coSoVatChat.getTinhTrang());
+    	tinhTrangLabel.setItems(lstTinhTrang);
+    	
+    	tenDoDungLabel.setText(coSoVatChat.getTenDoDung());
+    	maDoDungHienTai = coSoVatChat.getMaDoDung();
+    	
 
     }
 
     public void goBack(ActionEvent event) throws IOException {
-        ViewUtils viewUtils = new ViewUtils();
-        viewUtils.switchToCoSoVatChat_Admin_view(event);
+//        ViewUtils viewUtils = new ViewUtils();
+//        viewUtils.switchToCoSoVatChat_Admin_view(event);
+    }
+    
+    public void onClick(ActionEvent event) throws IOException{
+    	
     }
 
     public void update(ActionEvent event) throws IOException {
         ViewUtils viewUtils = new ViewUtils();
-        String maDoDung = maDoDungTextField.getText();
-        String tenDoDung = tenDoDungTextField.getText();
-        String soLuong = soLuongTextField.getText();
-        String soLuongKhaDung = soLuongKhaDungTextField.getText();
+        String tenDoDung = tenDoDungLabel.getText();
+        String tenLoaiDoDung = loaiDoDungLabel.getSelectionModel().getSelectedItem();
+        String tinhTrang = tinhTrangLabel.getSelectionModel().getSelectedItem();
 
 
-        if (maDoDung.trim().equals("") || tenDoDung.trim().equals("") || soLuong.trim().equals("") || soLuongKhaDung.trim().equals("")) {
-
+        if (tenDoDung.trim().equals("")) {
             createDialog(
                     Alert.AlertType.WARNING,
-                    "Đồng chí giữ bình tĩnh",
+                    "Chưa đủ số trường cần thiết",
                     "", "Vui lòng nhập đủ thông tin!"
-            );
-        } else if (Integer.parseInt(soLuongKhaDung) > Integer.parseInt(soLuong) || Integer.parseInt(soLuongKhaDung) < 0) {
-            createDialog(
-                    Alert.AlertType.WARNING,
-                    "Mời đồng chí nhập lại!",
-                    "", "Mong đồng chí tham khảo thêm các định luật bảo toàn vật chất"
             );
         } else {
             try {
                 Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-                int result = CoSoVatChatServices.updateFacility(conn, maDoDung, tenDoDung, soLuong, soLuongKhaDung);
+                int result = CoSoVatChatServices.updateFacility(conn, maDoDungHienTai, tenDoDung, tinhTrangLabel.getSelectionModel().getSelectedItem());
                 if (result == 1) {
                     createDialog(
                             Alert.AlertType.CONFIRMATION,
@@ -106,52 +131,57 @@ public class CoSoVatChatDeTailController implements Initializable {
             }
         }
     }
+    
+    public void getModal() throws SQLException {
+    	ObservableList<String> lstTenLoaiDoDung = FXCollections.observableArrayList();
+    	ObservableList<String> lstTinhTrang = FXCollections.observableArrayList();
+    	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+    	PreparedStatement check = conn.prepareStatement("SELECT TenDoDung, MaDoDung, LoaiDoDung, TinhTrang FROM `cosovatchat`");
+    	ResultSet rs = check.executeQuery();
+    	String s;
+    	while (rs.next()) {
+    		s = rs.getString("LoaiDoDung");
+    		if (s!=null && !lstTenLoaiDoDung.contains(s)) {
+    			lstTenLoaiDoDung.add(s);
+    		}
+    		   		
+    	}
+    	loaiDoDungLabel.setItems(lstTenLoaiDoDung);
+    	
+    	check = conn.prepareStatement("SELECT DISTINCT TinhTrang FROM `cosovatchat`");
+    	rs = check.executeQuery();
+    	while (rs.next()) {
+    		s = rs.getString("TinhTrang");
+    		if (s!=null) {
+    			lstTinhTrang.add(s);
+    		}	
+    	}
+    	tinhTrangLabel.setItems(lstTinhTrang);
+    }
 
-    public void addnew(ActionEvent event) throws IOException {
+    public void addnew(ActionEvent event) throws IOException, SQLException {
+    	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+    	
         ViewUtils viewUtils = new ViewUtils();
-        String maDoDung;
-        String tenDoDung = tenDoDungTextField.getText();
-        String soLuong = soLuongTextField.getText();
-        String soLuongKhaDung = soLuongTextField.getText();
-        if (tenDoDung.trim().equals("") || soLuong.trim().equals("")) {
-
+        String tenDoDung = tenDoDungLabel.getText();
+        String loaiDoDung = loaiDoDungLabel.getSelectionModel().getSelectedItem();
+        String tinhTrang = tinhTrangLabel.getSelectionModel().getSelectedItem();
+        PreparedStatement preparedStatement;
+        int result = CoSoVatChatServices.addFacility(conn, tenDoDung, loaiDoDung, tinhTrang);
+        if (result == 1) {
             createDialog(
-                    Alert.AlertType.WARNING,
-                    "Đồng chí giữ bình tĩnh",
-                    "", "Vui lòng nhập đủ thông tin!"
+                    Alert.AlertType.CONFIRMATION,
+                    "Thành công",
+                    "", "Đồng chí vất vả rồi!"
             );
         } else {
-            try {
-                Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-                PreparedStatement preparedStatement;
-                ResultSet rs;
-                do {
-                    int rand = ThreadLocalRandom.current().nextInt(100000, 999999);
-                    maDoDung = String.valueOf(rand);
-                    PreparedStatement check = conn.prepareStatement("SELECT MaDoDung From cosovatchat WHERE `MADoDung` =?");
-                    check.setInt(1, rand);
-                    rs = check.executeQuery();
-                } while (rs.next());
-                int result = CoSoVatChatServices.addFacility(conn, maDoDung, tenDoDung, soLuong, soLuongKhaDung);
-                if (result == 1) {
-                    createDialog(
-                            Alert.AlertType.CONFIRMATION,
-                            "Thành công",
-                            "", "Đồng chí vất vả rồi!"
-                    );
-                } else {
-                    createDialog(
-                            Alert.AlertType.ERROR,
-                            "Thất bại",
-                            "", "Thất bại là mẹ thành công! Mong đồng chí thử lại"
-                    );
-                }
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            viewUtils.switchToCoSoVatChat_Admin_view(event);
+            createDialog(
+                    Alert.AlertType.ERROR,
+                    "Thất bại",
+                    "", "ddcmm"
+            );
         }
+        conn.close();
     }
 
     public void hide_add_btn() {

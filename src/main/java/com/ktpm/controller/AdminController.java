@@ -74,46 +74,47 @@ public class AdminController implements Initializable {
     private final ViewUtils viewUtils = new ViewUtils();
     private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
-    public AdminController() throws SQLException {
-    }
+	public AdminController() throws SQLException {
+	}
 
-    public void switchToDashboard(ActionEvent event) throws IOException {
-        viewUtils.changeScene(event, ADMIN_VIEW_FXML);
-    }
+	public void switchToDashboard(ActionEvent event) throws IOException {
+		viewUtils.changeScene(event, ADMIN_VIEW_FXML);
+	}
 
-    public void switchToSignUp() throws IOException {
-        viewUtils.changeAnchorPane(basePane, SIGN_UP_USER_VIEW_FXML);
-    }
+	public void switchToSignUp() throws IOException {
+		viewUtils.changeAnchorPane(basePane, SIGN_UP_USER_VIEW_FXML);
+	}
 
-    public void switchToNhanKhau() throws IOException {
-        viewUtils.changeAnchorPane(basePane, NHAN_KHAU_VIEW_FXML);
+	public void switchToNhanKhau() throws IOException {
+		viewUtils.changeAnchorPane(basePane, NHAN_KHAU_VIEW_FXML);
 
-    }
+	}
 
-    public void switchToCoSoVatChat() throws IOException {
-        viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
-    }
-    public void switchToSoHoKhau() throws IOException {
-        viewUtils.changeAnchorPane(basePane, SO_HO_KHAU_VIEW_FXML);
-    }
+	public void switchToCoSoVatChat() throws IOException {
+		viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
+	}
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        signUpUserButton.setVisible(userRole.equals("totruong"));
-        nhankhauLabel.setText("" + NhanKhauServices.getTotalNhanKhau());
-        hokhauLabel.setText("" + SoHoKhauServices.getTotalSoHoKhau());
-        usernameLabel.setText(toUpperFirstLetter(userName));
+	public void switchToSoHoKhau() throws IOException {
+		viewUtils.changeAnchorPane(basePane, SO_HO_KHAU_VIEW_FXML);
+	}
 
-        ResultSet result = null;
-        try {
-            result = LichHoatDongServices.getLichHoatDongGanNhat(conn);
-            if (result.next()) {
-                lichHoatDongLabel.setText(result.getString(1));
-                thoiGianLabel.setText(result.getString(2));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		signUpUserButton.setVisible(userRole.equals("totruong"));
+		nhankhauLabel.setText("" + NhanKhauServices.getTotalNhanKhau());
+		hokhauLabel.setText("" + SoHoKhauServices.getTotalSoHoKhau());
+		usernameLabel.setText(toUpperFirstLetter(userName));
+
+		ResultSet result = null;
+		try {
+			result = LichHoatDongServices.getLichHoatDongGanNhat(conn);
+			if (result.next()) {
+				lichHoatDongLabel.setText(result.getString(1));
+				thoiGianLabel.setText(result.getString(2));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 
         // XYChart.Series dataSeries = new XYChart.Series();
         // for (Map.Entry<String, Integer> entry :

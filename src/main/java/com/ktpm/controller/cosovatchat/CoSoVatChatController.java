@@ -15,15 +15,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import static com.ktpm.constants.DBConstants.*;
-import static com.ktpm.constants.FXMLConstants.CO_SO_VAT_CHAT_VIEW_FXML;
-import static com.ktpm.constants.FXMLConstants.DETAIL_CO_SO_VAT_CHAT_VIEW_FXML;
-
+import static com.ktpm.constants.FXMLConstants.*;
 import static com.ktpm.utils.Utils.createDialog;
 
 import java.io.IOException;
@@ -31,6 +30,7 @@ import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
+import com.ktpm.HomeApplication;
 import com.ktpm.model.CoSoVatChat;
 import com.ktpm.services.CoSoVatChatServices;
 import com.ktpm.utils.ViewUtils;
@@ -38,7 +38,12 @@ import com.ktpm.utils.ViewUtils;
 public class CoSoVatChatController implements Initializable {
     @FXML
     private AnchorPane basePane;
-
+    
+    @FXML
+    private Button addBtn;
+    
+    public static boolean isSelected = false;
+    
     @FXML
     private TableView<CoSoVatChat> tableView;
 
@@ -46,10 +51,10 @@ public class CoSoVatChatController implements Initializable {
     private TableColumn indexColumn;
 
     @FXML
-    private TableColumn<CoSoVatChat, String> tenDoDungColumn;
+    private TableColumn<CoSoVatChat, String> tenDoDungColumn, tenLoaiDoDungColumn, tinhTrangColumn;
 
     @FXML
-    private TableColumn<CoSoVatChat, Integer> maDoDungColumn, soLuongColumn, soLuongKhaDungColumn;
+    private TableColumn<CoSoVatChat, Integer> maDoDungColumn;
 
     @FXML
     private Pagination pagination;
@@ -66,8 +71,8 @@ public class CoSoVatChatController implements Initializable {
             conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             ResultSet result = CoSoVatChatServices.getAllFacility(conn);
             while (result.next()) {
-                coSoVatChatList.add(new CoSoVatChat(result.getInt("maDoDung"), result.getString("tenDoDung"),
-                        result.getInt("soLuong"), result.getInt("soLuongKhaDung")));
+                coSoVatChatList.add(new CoSoVatChat(result.getInt("MaDoDung"), result.getString("TenDoDung"),
+                        result.getString("TinhTrang"), result.getString("LoaiDoDung")));
 
             }
         } catch (SQLException e) {
@@ -85,7 +90,12 @@ public class CoSoVatChatController implements Initializable {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
                     // Perform actions with rowData
                     try {
-                        detail(event);
+                        try {
+							detail(event);
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -94,19 +104,35 @@ public class CoSoVatChatController implements Initializable {
             return row;
         });
     }
-
-
-    public void add(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource(DETAIL_CO_SO_VAT_CHAT_VIEW_FXML));
-        Parent studentViewParent = loader.load();
-        Scene scene = new Scene(studentViewParent);
-        CoSoVatChatDeTailController controller = loader.getController();
-//        controller.hide_update_btn();
-        controller.hide_Pane();
-        stage.setScene(scene);
+    
+    @FXML
+    void onClick(MouseEvent event) {
+    	CoSoVatChat selected = tableView.getSelectionModel().getSelectedItem();
+    	
     }
+    
+
+    public void add(ActionEvent event) throws IOException, SQLException {
+    	Stage stage = new Stage();
+    	FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(DETAIL_CO_SO_VAT_CHAT_ADD_FXML));
+        Scene scene = new Scene(loader.load());
+        stage.setTitle("Add Co so vat chat");
+//    	CoSoVatChatDeTailController controller = new CoSoVatChatDeTailController();
+//    	loader.setController(controller);
+        CoSoVatChatDeTailController controller = loader.getController();
+        controller.getModal();
+        stage.getIcons().add(new Image(HomeApplication.class.getResourceAsStream(ICON)));
+        stage.setScene(scene);
+        stage.show();
+        
+    }
+    
+    public void reload() throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+    	viewUtils.changeAnchorPane(basePane, CO_SO_VAT_CHAT_VIEW_FXML);
+    }
+    
 
     public void delete() {
         CoSoVatChat selected = tableView.getSelectionModel().getSelectedItem();
@@ -140,7 +166,7 @@ public class CoSoVatChatController implements Initializable {
         }
     }
 
-    public void detail(MouseEvent event) throws IOException {
+    public void detail(MouseEvent event) throws IOException, SQLException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(DETAIL_CO_SO_VAT_CHAT_VIEW_FXML));
@@ -149,7 +175,7 @@ public class CoSoVatChatController implements Initializable {
         CoSoVatChatDeTailController controller = loader.getController();
         CoSoVatChat selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null)
-            createDialog(Alert.AlertType.WARNING, "Từ từ đã đồng chí", "", "Vui lòng chọn 1 mục để tiếp tục");
+            createDialog(Alert.AlertType.WARNING, "vl", "", "Vui lòng chọn 1 mục để tiếp tục");
         else {
             controller.setCoSoVatChat(selected);
 //            controller.hide_add_btn();
@@ -182,8 +208,9 @@ public class CoSoVatChatController implements Initializable {
         indexColumn.setSortable(false);
         maDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("maDoDung"));
         tenDoDungColumn.setCellValueFactory((new PropertyValueFactory<CoSoVatChat, String>("tenDoDung")));
-        soLuongColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuong"));
-        soLuongKhaDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuongKhaDung"));
+        tenLoaiDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tenLoaiDoDung"));
+        tinhTrangColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tinhTrang"));
+        
         int lastIndex = 0;
         int displace = coSoVatChatList.size() % ROWS_PER_PAGE;
         if (displace > 0) {
@@ -246,8 +273,8 @@ public class CoSoVatChatController implements Initializable {
                 indexColumn.setSortable(false);
                 maDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("maDoDung"));
                 tenDoDungColumn.setCellValueFactory((new PropertyValueFactory<CoSoVatChat, String>("tenDoDung")));
-                soLuongColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuong"));
-                soLuongKhaDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, Integer>("soLuongKhaDung"));
+                tenLoaiDoDungColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tenLoaiDoDung"));
+                tinhTrangColumn.setCellValueFactory(new PropertyValueFactory<CoSoVatChat, String>("tinhTrang"));
                 int lastIndex = 0;
                 int displace = filteredData.size() % ROWS_PER_PAGE;
                 if (displace > 0) {

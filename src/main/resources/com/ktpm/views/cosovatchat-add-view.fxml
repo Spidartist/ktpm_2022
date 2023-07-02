@@ -73,7 +73,7 @@
          </children>
       </VBox>
         <!--Cập nhật csvc -->
-        <Button fx:id="update_btn" layoutX="327.0" layoutY="337.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" styleClass="btn" text="OK" textFill="WHITE">
+        <Button fx:id="add_btn" layoutX="327.0" layoutY="337.0" mnemonicParsing="false" onAction="#addnew" prefHeight="29.0" prefWidth="72.0" styleClass="btn" text="OK" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
