@@ -113,11 +113,11 @@ public class LichHoatDongController implements Initializable {
         LichHoatDong selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null) createDialog(Alert.AlertType.WARNING,
                 "Cảnh báo",
-                "", "Đồng chí vui lòng chọn 1 mục để tiếp tục");
+                "", "Bạn vui lòng chọn 1 mục để tiếp tục");
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Xác nhận xoá ");
-            alert.setContentText("Đồng chí muốn xoá nội dung này?");
+            alert.setContentText("Bạn muốn xoá nội dung này?");
             ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(okButton, noButton);

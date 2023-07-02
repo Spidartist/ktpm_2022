@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.sohokhau.add_shk_controller">
     <children>
-        <Button fx:id="update_btn" layoutX="500.0" layoutY="558.0" mnemonicParsing="false" onAction="#update" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE">
+        <Button fx:id="update_btn" layoutX="500.0" layoutY="558.0" mnemonicParsing="false" onAction="#update" text="Cập nhật" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
@@ -82,7 +82,7 @@
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="updateThanhVienBtn" layoutX="188.0" layoutY="558.0" mnemonicParsing="false" onAction="#updatethanhvien" styleClass="btn" text="Cập nhật" textFill="WHITE">
+      <Button fx:id="updateThanhVienBtn" layoutX="188.0" layoutY="558.0" mnemonicParsing="false" onAction="#updatethanhvien" styleClass="btn" text="Thay đổi quan hệ" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>

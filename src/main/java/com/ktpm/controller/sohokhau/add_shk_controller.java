@@ -262,7 +262,7 @@ public class add_shk_controller {
         SoHoKhauServices.update(conn, idHoKhau, maHoKhauTextField.getText(), diaChiTextField.getText());
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Xác nhận đổi chủ hộ");
-        alert.setContentText("Đồng chí có muốn thay đổi chủ hộ?");
+        alert.setContentText("Bạn có muốn thay đổi chủ hộ?");
         ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
         ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
         alert.getButtonTypes().setAll(okButton, noButton);
@@ -338,7 +338,7 @@ public class add_shk_controller {
         else {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Xác nhận xóa nhân khẩu");
-            alert.setContentText("Đồng chí muốn xóa nhân khẩu này khỏi sổ hộ khẩu?");
+            alert.setContentText("Bạn muốn xóa nhân khẩu này khỏi sổ hộ khẩu?");
             ButtonType okButton = new ButtonType("Yes", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(okButton, noButton);
