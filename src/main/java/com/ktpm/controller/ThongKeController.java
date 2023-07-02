@@ -17,17 +17,23 @@ import com.ktpm.model.CoSoVatChat;
 import com.ktpm.services.CoSoVatChatServices;
 import com.ktpm.services.ThongKeServices;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Pagination;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Callback;
 
 public class ThongKeController implements Initializable {
 
@@ -62,6 +68,9 @@ public class ThongKeController implements Initializable {
 
     @FXML
     private TableColumn<BaseNhanKhau, String> noiThuongTruColumn;
+    
+    @FXML
+    private TableColumn indexColumn;
     
     @FXML
     private Pagination pagination;
@@ -127,11 +136,11 @@ public class ThongKeController implements Initializable {
 
         }
     	
-//        int soDu = thongKeList.size() % ROWS_PER_PAGE;
-//        if (soDu != 0) pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE + 1);
-//        else pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE);
-//        pagination.setMaxPageIndicatorCount(5);
-//        pagination.setPageFactory(this::createTableView);
+        int soDu = thongKeList.size() % ROWS_PER_PAGE;
+        if (soDu != 0) pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE + 1);
+        else pagination.setPageCount(thongKeList.size() / ROWS_PER_PAGE);
+        pagination.setMaxPageIndicatorCount(5);
+        pagination.setPageFactory(this::createTableView);
 
         tableView.setRowFactory(tv -> {
             TableRow<BaseNhanKhau> row = new TableRow<>();
@@ -154,7 +163,49 @@ public class ThongKeController implements Initializable {
         });
     }
     	
+    public Node createTableView(int pageIndex) {
+        indexColumn.setCellValueFactory((Callback<TableColumn.CellDataFeatures<BaseNhanKhau, BaseNhanKhau>, ObservableValue<BaseNhanKhau>>) p -> new ReadOnlyObjectWrapper(p.getValue()));
+        indexColumn.setCellFactory(new Callback<TableColumn<BaseNhanKhau, BaseNhanKhau>, TableCell<BaseNhanKhau, BaseNhanKhau>>() {
+            @Override
+            public TableCell<BaseNhanKhau, BaseNhanKhau> call(TableColumn<BaseNhanKhau, BaseNhanKhau> param) {
+                return new TableCell<BaseNhanKhau, BaseNhanKhau>() {
+                    @Override
+                    protected void updateItem(BaseNhanKhau item, boolean empty) {
+                        super.updateItem(item, empty);
 
+                        if (this.getTableRow() != null && item != null) {
+                            setText(this.getTableRow().getIndex() + 1 + pageIndex * ROWS_PER_PAGE + "");
+                        } else {
+                            setText("");
+                        }
+                    }
+                };
+            }
+        });
+
+        indexColumn.setSortable(false);
+        hoTenColumn.setCellValueFactory(new PropertyValueFactory<BaseNhanKhau, String>("hoTen"));
+        gioiTinhColumn.setCellValueFactory((new PropertyValueFactory<BaseNhanKhau, String>("gioiTinh")));
+        ngaySinhColumn.setCellValueFactory(new PropertyValueFactory<BaseNhanKhau, String>("ngaySinh"));
+        noiThuongTruColumn.setCellValueFactory(new PropertyValueFactory<BaseNhanKhau, String>("noiThuongTru"));
+        
+        int lastIndex = 0;
+        int displace = thongKeList.size() % ROWS_PER_PAGE;
+        if (displace > 0) {
+            lastIndex = thongKeList.size() / ROWS_PER_PAGE;
+        } else {
+            lastIndex = thongKeList.size() / ROWS_PER_PAGE - 1;
+        }
+        if (thongKeList.isEmpty()) tableView.setItems(FXCollections.observableArrayList(thongKeList));
+        else {
+            if (lastIndex == pageIndex && displace > 0) {
+                tableView.setItems(FXCollections.observableArrayList(thongKeList.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + displace)));
+            } else {
+                tableView.setItems(FXCollections.observableArrayList(thongKeList.subList(pageIndex * ROWS_PER_PAGE, pageIndex * ROWS_PER_PAGE + ROWS_PER_PAGE)));
+            }
+        }
+        return tableView;
+    }
     	
 
 
