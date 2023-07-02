@@ -37,6 +37,7 @@ import com.ktpm.services.CoSoVatChatServices;
 import com.ktpm.services.LichHoatDongServices;
 import com.ktpm.services.NhanKhauServices;
 import com.ktpm.services.SoHoKhauServices;
+import com.ktpm.services.ThongKeServices;
 import com.ktpm.utils.ViewUtils;
 
 public class AdminController implements Initializable {
@@ -65,7 +66,7 @@ public class AdminController implements Initializable {
 	private Button selectedButton;
 
 	@FXML
-	private Label nhankhauLabel, hokhauLabel, usernameLabel;
+	private Label nhankhauLabel, hokhauLabel, usernameLabel,tamTruLabel,tamVangLabel;
 	@FXML
 	private Text lichHoatDongLabel, thoiGianLabel;
 	@FXML
@@ -108,7 +109,8 @@ public class AdminController implements Initializable {
 		nhankhauLabel.setText("" + NhanKhauServices.getTotalNhanKhau());
 		hokhauLabel.setText("" + SoHoKhauServices.getTotalSoHoKhau());
 		usernameLabel.setText(toUpperFirstLetter(userName));
-
+		tamTruLabel.setText(""+ThongKeServices.SoLuongNhanKhauTamTru());
+		tamVangLabel.setText(""+ThongKeServices.SoLuongNhanKhauTamVang());
 		ResultSet result = null;
 		try {
 			result = LichHoatDongServices.getLichHoatDongGanNhat(conn);
@@ -138,15 +140,7 @@ public class AdminController implements Initializable {
 		// Đặt dữ liệu cho StackedBarChart
 		facilityChart.getData().addAll(seriesConDungDuoc, seriesHong);
 
-		// Đặt dữ liệu cho BarChart
-//        facilityChart.setData(data);
-		// XYChart.Series dataSeries = new XYChart.Series();
-		// for (Map.Entry<String, Integer> entry :
-		// CoSoVatChatServices.getLeastFiveFacility().entrySet()) {
-		// dataSeries.getData().add(new XYChart.Data<>(entry.getKey(),
-		// entry.getValue()));
-		// }
-		// facilityChart.getData().add(dataSeries);
+		
 	}
 
 	public void switchToLichHoatDong() throws IOException {

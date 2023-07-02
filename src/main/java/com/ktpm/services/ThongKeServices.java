@@ -21,5 +21,40 @@ public class ThongKeServices {
 	public ThongKeServices() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public static int SoLuongNhanKhauTamVang()  {
+		 Connection conn;
+		try {
+			conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+			String query="SELECT COUNT(DISTINCT nhankhau.ID) AS SoLuongTamVang FROM nhankhau INNER JOIN tamvang ON nhankhau.ID = tamvang.idNhankhau WHERE CURDATE() BETWEEN tamvang.tuNgay AND tamvang.denNgay;";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			ResultSet result=preparedStatement.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	    }
+	
+	public static int SoLuongNhanKhauTamTru()  {
+		 Connection conn;
+		try {
+			conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+			String query="SELECT COUNT(DISTINCT nhankhau.ID) AS SoLuongTamTru FROM nhankhau INNER JOIN tamtru ON nhankhau.ID = tamtru.idNhankhau WHERE CURDATE() BETWEEN tamtru.tuNgay AND tamtru.denNgay;";
+			PreparedStatement preparedStatement = conn.prepareStatement(query);
+			ResultSet result=preparedStatement.executeQuery();
+			while (result.next()) {
+				return result.getInt(1);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }
