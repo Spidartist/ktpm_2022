@@ -208,7 +208,7 @@ public class SoHoKhauController implements Initializable {
     }
     
     @FXML
-    void tackKhau(MouseEvent event) {
+    void tackKhau(MouseEvent event) throws SQLException {
 		SoHoKhau selected = tableView.getSelectionModel().getSelectedItem();
 		if (selected == null) {
 			createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn hộ để tách khẩu!", "");
@@ -219,7 +219,7 @@ public class SoHoKhauController implements Initializable {
 				Scene scene;
 				scene = new Scene(fxmlLoader.load());
 				// TODO Auto-generated catch block
-				stage.setTitle("Đăng kí tạm vắng");
+				stage.setTitle("Tách sổ hộ khẩu");
 				TachKhauController controller = fxmlLoader.getController();
 				controller.setSoHoKhauHienTai(selected);
 				controller.setInfo();

@@ -17,11 +17,10 @@
       <Text layoutX="92.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa chỉ mới" />
       <TextField fx:id="diaChiMoiText" layoutX="198.0" layoutY="212.0" prefHeight="25.0" prefWidth="499.0" promptText="Nhập địa chỉ mới" />
       <Text layoutX="130.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn người ở hộ khẩu cũ" />
-      <TableView layoutX="58.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
+      <TableView fx:id="hoKhauCuTable" layoutX="58.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Họ tên" />
-          <TableColumn prefWidth="75.0" text="Ngày sinh" />
-            <TableColumn prefWidth="117.0" text="Quan hệ với chủ hộ" />
+          <TableColumn fx:id="hoTenCuColumn" prefWidth="132.5" text="Họ tên" />
+            <TableColumn fx:id="quanHeCuColumn" prefWidth="133.5" text="Quan hệ với chủ hộ" />
         </columns>
       </TableView>
       <Text layoutX="91.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chủ hộ mới" />
@@ -31,11 +30,10 @@
       <Button layoutX="376.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#veHoKhauCu" text="&lt;&lt;" />
       <Text fx:id="maHoKhauHienTaiText" layoutX="523.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HK00001" textAlignment="CENTER" wrappingWidth="195.625" />
       <TextField fx:id="maHoKhauMoiText" layoutX="523.0" layoutY="176.0" prefHeight="25.0" prefWidth="171.0" />
-      <TableView layoutX="452.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
+      <TableView fx:id="hoKhauMoiTable" layoutX="452.0" layoutY="322.0" prefHeight="201.0" prefWidth="268.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Họ tên" />
-            <TableColumn prefWidth="75.0" text="Ngày sinh" />
-            <TableColumn prefWidth="117.0" text="Quan hệ với chủ hộ" />
+            <TableColumn fx:id="hoTenMoiColumn" prefWidth="133.0" text="Họ tên" />
+            <TableColumn fx:id="quanHeMoiColumn" prefWidth="134.0" text="Quan hệ với chủ hộ" />
          </columns>
       </TableView>
       <Text layoutX="501.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Những người sang hộ khẩu mới" />

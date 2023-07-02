@@ -8,7 +8,12 @@ public class ThanhVien {
         this.CCCD = CCCD;
         this.quanHeVoiChuHo = quanHeVoiChuHo;
     }
-
+    
+    public ThanhVien(String hoTen, String quanHeVoiChuHo) {
+        HoTen = hoTen;
+        this.quanHeVoiChuHo = quanHeVoiChuHo;
+    }
+    
     public String getHoTen() {
         return HoTen;
     }

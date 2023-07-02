@@ -203,8 +203,8 @@ public class add_shk_controller {
                 ;
             } else {
                 try {
-                    Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-                    PreparedStatement preparedStatement = SoHoKhauServices.addSoHoKhau(conn, maHoKhau, diaChi, selected);
+                    
+                    PreparedStatement preparedStatement = SoHoKhauServices.addSoHoKhau(maHoKhau, diaChi, selected);
                     int result = preparedStatement.executeUpdate();
                     ResultSet keys = preparedStatement.getGeneratedKeys();
                     if (keys.next()) {

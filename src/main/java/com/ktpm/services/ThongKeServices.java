@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ThongKeServices {
@@ -18,10 +19,6 @@ public class ThongKeServices {
         Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
         PreparedStatement preparedStatement = conn.prepareStatement(query);
         return preparedStatement.executeQuery();
-    }
-	
-    public static ObservableList<String> getThanhVienGiaDinh(String maHoKhau) {
-    	return null;
     }
     
 	public ThongKeServices() {

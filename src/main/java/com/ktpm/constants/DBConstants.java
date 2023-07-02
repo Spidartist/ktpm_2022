@@ -1,5 +1,8 @@
 package com.ktpm.constants;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class DBConstants {
     public DBConstants() {}
 
@@ -8,4 +11,8 @@ public class DBConstants {
     public static final String PASSWORD = "";
 
     public static final int ROWS_PER_PAGE = 10;
+    
+    public static ObservableList<String> lstLoaiDoDung = FXCollections.observableArrayList();
+    
+    
 }

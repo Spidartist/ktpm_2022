@@ -18,6 +18,17 @@ public class NhanKhauServices {
         PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
         return preparedStatement.executeQuery();
     }
+    
+    public static int findIDNhanKhauViaTen(String hoTen) throws SQLException {
+        // Connecting Database
+        String SELECT_QUERY = "SELECT nhankhau.ID FROM nhankhau WHERE hoTen = ?";
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+        preparedStatement.setString(1, hoTen);
+        ResultSet rs = preparedStatement.executeQuery();
+        rs.next();
+        return rs.getInt("ID");
+    }
 
     public static int deleteNhanKhauViaCCCD(int ID) throws SQLException {
         String DELETE_QUERY = "DELETE FROM cccd " +
