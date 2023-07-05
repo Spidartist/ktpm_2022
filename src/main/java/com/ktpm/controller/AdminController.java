@@ -66,7 +66,7 @@ public class AdminController implements Initializable {
 	private Button selectedButton;
 
 	@FXML
-	private Label nhankhauLabel, hokhauLabel, usernameLabel,tamTruLabel,tamVangLabel;
+	private Label nhankhauLabel, hokhauLabel, usernameLabel,tamTruLabel,tamVangLabel,tuVongLabel;
 	@FXML
 	private Text lichHoatDongLabel, thoiGianLabel;
 	@FXML

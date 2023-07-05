@@ -12,12 +12,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="710.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.lichhoatdong.LichHoatDongDetailController">
+<AnchorPane prefHeight="655.0" prefWidth="715.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.lichhoatdong.LichHoatDongDetailController">
     <children>
         <!-- Title -->
-        <Text fx:id="title" layoutX="231.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm lịch hoạt động mới" textAlignment="CENTER" wrappingWidth="235.31402587890625">
+        <Text fx:id="title" layoutX="230.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm lịch hoạt động mới" textAlignment="CENTER" wrappingWidth="265.31402587890625">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Segoe UI Bold" size="20.0" />
             </font>
         </Text>
         <!--Tên đồ dùng -->
@@ -38,19 +38,19 @@
             </font>
         </Text>
         <!--Thêm mới-->
-        <Button fx:id="add_btn" layoutX="401.0" layoutY="559.0" mnemonicParsing="false" onAction="#addnew" prefHeight="28.0" prefWidth="74.0" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Thêm" textFill="WHITE">
+        <Button fx:id="add_btn" layoutX="399.0" layoutY="611.0" mnemonicParsing="false" onAction="#addnew" prefHeight="28.0" prefWidth="74.0" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Thêm" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
         <!--Cập nhật csvc -->
-        <Button fx:id="update_btn" layoutX="509.0" layoutY="559.0" mnemonicParsing="false" onAction="#update" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Cập nhật" textFill="WHITE">
+        <Button fx:id="update_btn" layoutX="507.0" layoutY="611.0" mnemonicParsing="false" onAction="#update" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Cập nhật" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
         <!--Quay lại-->
-        <Button layoutX="613.0" layoutY="559.0" mnemonicParsing="false" onAction="#goBack" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Quay lại" textFill="WHITE">
+        <Button layoutX="611.0" layoutY="611.0" mnemonicParsing="false" onAction="#goBack" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Quay lại" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
@@ -96,7 +96,12 @@
          </font>
       </TextField>
       <DatePicker fx:id="endDatePicker" layoutX="233.0" layoutY="272.0" prefHeight="25.0" prefWidth="205.0" />
-      <TableView fx:id="tableView" layoutX="235.0" layoutY="334.0" prefHeight="159.0" prefWidth="427.0" stylesheets="@../styles/table.css">
+      <Text fx:id="nguoiTaoLabel1" layoutX="34.0" layoutY="348.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Địa điểm" wrappingWidth="167.5140380859375">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tableView" layoutX="234.0" layoutY="428.0" prefHeight="159.0" prefWidth="427.0" stylesheets="@../styles/table.css">
          <columns>
             <TableColumn fx:id="indexColumn" prefWidth="31.200008392333984" text="#" />
             <TableColumn fx:id="hoVaTenColumn" prefWidth="119.19998168945312" text="Họ và tên" />
@@ -114,26 +119,33 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <Text fx:id="nguoiTaoLabel" layoutX="34.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Người tạo" wrappingWidth="167.5140380859375">
+      <Text fx:id="nguoiTaoLabel" layoutX="33.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Người tạo" wrappingWidth="167.5140380859375">
          <font>
             <Font name="Segoe UI" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="doiNguoiTaoBtn" layoutX="409.0" layoutY="333.0" mnemonicParsing="false" onAction="#doiNguoiTao" prefHeight="28.0" prefWidth="108.0" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Đổi người tạo" textFill="WHITE">
+      <Button fx:id="doiNguoiTaoBtn" layoutX="408.0" layoutY="427.0" mnemonicParsing="false" onAction="#doiNguoiTao" prefHeight="28.0" prefWidth="108.0" styleClass="btn" stylesheets="@../styles/lichhoatdong-detail.css" text="Đổi người tạo" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="nguoiTaoTextField" layoutX="235.0" layoutY="332.0" prefHeight="30.0" prefWidth="150.0" promptText="Tên người tạo" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="nguoiTaoTextField" layoutX="234.0" layoutY="426.0" prefHeight="30.0" prefWidth="150.0" promptText="Tên người tạo" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="addCSVCBtn" layoutX="42.0" layoutY="559.0" mnemonicParsing="false" onAction="#addCSVC" prefHeight="28.0" prefWidth="127.0" styleClass="btn" text="Cơ sở vật chất" textFill="WHITE">
+      <Button fx:id="addCSVCBtn" layoutX="40.0" layoutY="611.0" mnemonicParsing="false" onAction="#addCSVC" prefHeight="28.0" prefWidth="127.0" styleClass="btn" text="Cơ sở vật chất" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
       </Button>
+      <ChoiceBox fx:id="roomChoiceBox" layoutX="236.0" layoutY="328.0" prefHeight="25.0" prefWidth="315.0" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;" />
+      <TextField layoutX="234.0" layoutY="381.0" />
+      <Text fx:id="nguoiTaoLabel11" layoutX="34.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thu phí" wrappingWidth="82.5140380859375">
+         <font>
+            <Font name="Segoe UI" size="18.0" />
+         </font>
+      </Text>
 
     </children>
    <stylesheets>

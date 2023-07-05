@@ -9,7 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.util.ArrayList;
+import com.ktpm.model.Phong;
 public class LichHoatDongServices {
     public static String getNamebyID(Connection conn, int id) throws SQLException {
         String query = "SELECT HoTen FROM nhankhau WHERE id = ?";
@@ -24,6 +25,17 @@ public class LichHoatDongServices {
         String query = "SELECT HoTen FROM nhankhau";
         PreparedStatement ps = conn.prepareStatement(query);
         return ps.executeQuery();
+    }
+    
+    public static  ArrayList<Phong> getAllRoom(Connection conn) throws SQLException {
+        String query = "SELECT * FROM phong";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ArrayList<Phong> listPhong= new ArrayList<Phong>();
+        ResultSet res= ps.executeQuery();
+        while(res.next()) {
+        	listPhong.add(new Phong(res.getInt(1), res.getString(2)));
+        }
+        return listPhong;
     }
 
     // public static ResultSet getCoSoVatChatFromLichHoatDong(Connection conn, LichHoatDong lichHoatDong) throws SQLException {
@@ -47,8 +59,8 @@ public class LichHoatDongServices {
     // }
 
 
-    public static int updateLichHoatDong(Connection conn, String maHoatDong, String tenHoatDong, String starttime, String endtime, String status, String maNguoiTao) throws SQLException {
-        String UPDATE_QUERY = "UPDATE lichhoatdong SET `MaHoatDong`=?, `TenHoatDong`=?, `ThoiGianBatDau`=?, `ThoiGianKetThuc`=?, `DuocDuyet`=?, `MaNguoiTao`=? WHERE `MaHoatDong`=?";
+    public static int updateLichHoatDong(Connection conn, String maHoatDong, String tenHoatDong, String starttime, String endtime, String status, String maNguoiTao,String tenPhong,String thuPhi) throws SQLException {
+        String UPDATE_QUERY = "UPDATE lichhoatdong SET `MaHoatDong`=?, `TenHoatDong`=?, `ThoiGianBatDau`=?, `ThoiGianKetThuc`=?, `DuocDuyet`=?, `MaNguoiTao`=?,`tenPhong`=?,`thuPhi`=? WHERE `MaHoatDong`=?";
         PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY);
         preparedStatement.setString(1, maHoatDong);
         preparedStatement.setString(2, tenHoatDong);
@@ -56,7 +68,9 @@ public class LichHoatDongServices {
         preparedStatement.setString(4, endtime);
         preparedStatement.setString(5, status);
         preparedStatement.setString(6, maNguoiTao);
-        preparedStatement.setString(7, maHoatDong);
+        preparedStatement.setString(7, tenPhong);
+        preparedStatement.setString(8, thuPhi);
+        preparedStatement.setString(9, maHoatDong);
         return preparedStatement.executeUpdate();
     }
 
@@ -78,8 +92,8 @@ public class LichHoatDongServices {
 
 
 
-    public static int insertLichHoatDong(Connection conn, String maHoatDong, String tenHoatDong, String starttime, String endtime, String status, String thoiGianTao, NhanKhau selected) throws SQLException {
-        String INSERT_QUERY = "INSERT INTO lichhoatdong VALUES(?,?,?,?,?,?,?)";
+    public static int insertLichHoatDong(Connection conn, String maHoatDong, String tenHoatDong, String starttime, String endtime, String status, String thoiGianTao, NhanKhau selected ,String tenPhong,String thuPhi) throws SQLException {
+        String INSERT_QUERY = "INSERT INTO lichhoatdong VALUES(?,?,?,?,?,?,?,?,?)";
         PreparedStatement preparedStatement = conn.prepareStatement((INSERT_QUERY));
         preparedStatement.setString(1, maHoatDong);
         preparedStatement.setString(2, tenHoatDong);
@@ -87,7 +101,11 @@ public class LichHoatDongServices {
         preparedStatement.setString(4, endtime);
         preparedStatement.setString(5, status);
         preparedStatement.setString(6, thoiGianTao);
+        
         preparedStatement.setString(7, String.valueOf(selected.getID()));
+        preparedStatement.setString(7, tenPhong);
+        preparedStatement.setString(8, thuPhi);
+
         return preparedStatement.executeUpdate();
     }
 

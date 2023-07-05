@@ -7,6 +7,9 @@
 -- Phiên bản máy phục vụ: 10.4.25-MariaDB
 -- Phiên bản PHP: 8.1.10
 
+drop database quan_ly_to;
+create database quan_ly_to;
+use quan_ly_to;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -103,9 +106,17 @@ CREATE TABLE `lichhoatdong` (
   `ThoiGianKetThuc` datetime NOT NULL,
   `DuocDuyet` varchar(15) NOT NULL,
   `ThoiGianTao` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `MaNguoiTao` int(12) NOT NULL
+  `MaNguoiTao` int(12) NOT NULL,
+  `tenPhong` varchar(255) NOT NULL,
+  `thuPhi` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE `phong`(
+  `ID` int(11) ,
+  `tenPhong` varchar(255) NOT NULL
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+ALTER TABLE `phong`
+  ADD PRIMARY KEY (`ID`);
 CREATE TABLE `hoatdong_cosovatchat` (
   `MaHoatDong` int(11) NOT NULL,
   `MaDoDung` int(11) NOT NULL
@@ -158,6 +169,10 @@ ALTER TABLE `hoatdong_cosovatchat`
 
 ALTER TABLE `cccd`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+
+ALTER TABLE `phong`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `cosovatchat`
   MODIFY `MaDoDung` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;

@@ -29,15 +29,16 @@ import java.sql.*;
 import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 
-import com.ktpm.controller.AddCSVCController;
 import com.ktpm.controller.AddThanhVienController;
 import com.ktpm.controller.nhankhau.NhanKhauController;
 import com.ktpm.model.LichHoatDong;
 import com.ktpm.model.NhanKhau;
+import com.ktpm.model.Phong;
 import com.ktpm.model.SoHoKhau;
 import com.ktpm.services.LichHoatDongServices;
 import com.ktpm.services.NhanKhauServices;
@@ -49,11 +50,11 @@ public class LichHoatDongDetailController implements Initializable {
     @FXML
     private Button doiNguoiTaoBtn, addCSVCBtn;
     @FXML
-    private TextField endTimeTextField, startTimeTextField, maHoatDongTextField, tenHoatDongTextField, nguoiTaoTextField;
+    private TextField endTimeTextField, startTimeTextField, maHoatDongTextField, tenHoatDongTextField, nguoiTaoTextField,thuPhiTextField;
     @FXML
     private DatePicker startDatePicker, endDatePicker;
     @FXML
-    private ChoiceBox<String> statusChoiceBox;
+    private ChoiceBox<String> statusChoiceBox,roomChoiceBox;
     @FXML
     private Pane maHoatDongPane;
     @FXML
@@ -95,6 +96,8 @@ public class LichHoatDongDetailController implements Initializable {
         endDatePicker.setValue(LOCAL_DATE(endtime[1]));
         endTimeTextField.setText(endtime[0].substring(0,8));
         statusChoiceBox.setValue(String.valueOf(lichHoatDong.getStatus()));
+        roomChoiceBox.setValue(String.valueOf(lichHoatDong.getTenPhong()));
+        thuPhiTextField.setText(lichHoatDong.getThuPhi());
         nguoiTaoTextField.setText(String.valueOf(LichHoatDongServices.getNamebyID(conn, lichHoatDong.getMaNguoiTao())));
     }
 
@@ -111,11 +114,13 @@ public class LichHoatDongDetailController implements Initializable {
         String endTime = endTimeTextField.getText();
         String status = statusChoiceBox.getValue();
         String maNguoiTao = String.valueOf(lichHoatDong.getMaNguoiTao());
+        String tenPhong =roomChoiceBox.getValue();
+        String thuPhi=thuPhiTextField.getText();
         NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
         if (selected != null) {
             maNguoiTao = String.valueOf(selected.getID());
         }
-        if (maHoatDong.trim().equals("") || tenHoatDong.trim().equals("") || startTime.trim().equals("") || endTime.trim().equals("")
+        if (maHoatDong.trim().equals("") || tenHoatDong.trim().equals("") || startTime.trim().equals("") || endTime.trim().equals("") ||tenPhong.equals("")
                 || startDatePicker.getValue() == null || endDatePicker.getValue() == null) {
             createDialog(
                     Alert.AlertType.WARNING,
@@ -143,7 +148,7 @@ public class LichHoatDongDetailController implements Initializable {
 
                     System.out.println(pre_status + "|||" + status);
 
-                     result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao);
+                     result = LichHoatDongServices.updateLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, maNguoiTao,tenPhong,thuPhi);
                         if (result == 1) {
                             createDialog(
                                     Alert.AlertType.CONFIRMATION,
@@ -177,7 +182,8 @@ public class LichHoatDongDetailController implements Initializable {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String thoiGianTao = dtf.format(currentTime);
-
+        String tenPhong =roomChoiceBox.getValue();
+        String thuPhi=thuPhiTextField.getText();
         NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
         if (selected == null) createDialog(Alert.AlertType.WARNING, "Thông báo", "", "Vui lòng chọn nhân khẩu");
         if (tenHoatDong.trim().equals("") || startTime.trim().equals("") || endTime.trim().equals("")
@@ -212,7 +218,7 @@ public class LichHoatDongDetailController implements Initializable {
                         rs = check.executeQuery();
                     } while (rs.next());
 
-                    int result = LichHoatDongServices.insertLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, thoiGianTao, selected);
+                    int result = LichHoatDongServices.insertLichHoatDong(conn, maHoatDong, tenHoatDong, starttime, endtime, status, thoiGianTao, selected,tenPhong,thuPhi);
                     if (result == 1) {
                         createDialog(
                                 Alert.AlertType.CONFIRMATION,
@@ -263,10 +269,14 @@ public class LichHoatDongDetailController implements Initializable {
     	addCSVCBtn.setVisible(false);
         statusChoiceBox.getItems().add("Chưa duyệt");
         statusChoiceBox.getItems().add("Chấp nhận");
-        statusChoiceBox.setValue("Chưa duyệt");
-        statusPane.setVisible(userRole.equals("totruong"));
 
         try {
+        	ArrayList< Phong> listPhong= LichHoatDongServices.getAllRoom(conn);
+        	for(Phong phong:listPhong) {
+        		roomChoiceBox.getItems().add(phong.getTenPhong());
+        	}
+        	statusChoiceBox.setValue("Chưa duyệt");
+        	statusPane.setVisible(userRole.equals("totruong"));
             ResultSet result = NhanKhauServices.getAllNhanKhau();
             while (result.next()) {
                 nhanKhauList.add(new NhanKhau(result.getInt("ID"), result.getString("HoTen"), result.getString("BiDanh"),
@@ -323,13 +333,6 @@ public class LichHoatDongDetailController implements Initializable {
         nguoiTaoTextField.setTranslateY(45);
     }
     public void addCSVC(ActionEvent event) throws IOException, SQLException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/com/quartermanagement/views/add-CSVC.fxml"));
-        Parent studentViewParent = loader.load();
-        Scene scene = new Scene(studentViewParent);
-        AddCSVCController controller = loader.getController();
-        controller.init(lichHoatDong);
-        stage.setScene(scene);
+     
     }
 }

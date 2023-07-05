@@ -19,11 +19,26 @@ public class LichHoatDong {
 
     private int maNguoiTao;
     private String tenNguoiTao;
-    private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+    private String thuPhi;
+    private String tenPhong;
+    public String getThuPhi() {
+		return thuPhi;
+	}
+	public void setThuPhi(String thuPhi) {
+		this.thuPhi = thuPhi;
+	}
+	public String getTenPhong() {
+		return tenPhong;
+	}
+	public void setTenPhong(String tenPhong) {
+		this.tenPhong = tenPhong;
+	}
+
+	private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
     public LichHoatDong() throws SQLException {}
     public LichHoatDong(int maHoatDong, String tenHoatDong, String startTime, String endTime, String status,
-    String madeTime, int maNguoiTao) throws SQLException {
+    String madeTime, int maNguoiTao,String tenPhong, String thuPhi) throws SQLException {
         this.maHoatDong = maHoatDong;
         this.tenHoatDong = tenHoatDong;
         this.startTime = startTime;
@@ -32,6 +47,8 @@ public class LichHoatDong {
         this.madeTime = madeTime;
         this.maNguoiTao = maNguoiTao;
         this.tenNguoiTao = LichHoatDongServices.getNamebyID(conn, maNguoiTao);
+        this.tenPhong=tenPhong;
+        this.thuPhi = thuPhi;
     }
 
     public int getMaHoatDong() {

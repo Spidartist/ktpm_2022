@@ -12,7 +12,7 @@
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.lichhoatdong.LichHoatDongController">
     <children>
         <Pagination fx:id="pagination" layoutX="24.0" layoutY="138.0" maxPageIndicatorCount="5" prefHeight="448.0" prefWidth="741.0" />
-        <TableView fx:id="tableView" layoutX="25.0" layoutY="138.0" prefHeight="387.0" prefWidth="741.0" stylesheets="@../styles/table.css" tableMenuButtonVisible="true">
+        <TableView fx:id="tableView" layoutX="25.0" layoutY="138.0" prefHeight="387.0" prefWidth="980.0" stylesheets="@../styles/table.css" tableMenuButtonVisible="true">
             <columns>
                 <TableColumn fx:id="indexColumn" prefWidth="30.39996337890625" text="#" />
                 <TableColumn fx:id="maHoatDongColumn" prefWidth="87.20000839233398" text="Mã hoạt động" />
@@ -22,6 +22,8 @@
             <TableColumn fx:id="statusColumn" prefWidth="96.0" text="Được duyêt" />
             <TableColumn fx:id="madeTimeColumn" prefWidth="94.0" text="Thời gian tạo" />
             <TableColumn fx:id="maNguoiTaoColumn" prefWidth="107.0" text="Tên người tạo" />
+            <TableColumn fx:id="tenPhongColumn" prefWidth="107.0" text="Phòng" />
+            <TableColumn fx:id="thuPhiColumn" prefWidth="107.0" text="Thu phí" />
             </columns>
         </TableView>
         <Text layoutX="25.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lịch hoạt động" wrappingWidth="192.9140625">
