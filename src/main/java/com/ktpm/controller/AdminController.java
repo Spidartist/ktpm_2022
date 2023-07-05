@@ -66,7 +66,11 @@ public class AdminController implements Initializable {
 	private Button selectedButton;
 
 	@FXML
-	private Label nhankhauLabel, hokhauLabel, usernameLabel,tamTruLabel,tamVangLabel,tuVongLabel;
+	private Label nhankhauLabel, hokhauLabel, usernameLabel, tamTruLabel, tamVangLabel;
+	
+    @FXML
+    private Label tuVongLabel;
+	
 	@FXML
 	private Text lichHoatDongLabel, thoiGianLabel;
 	@FXML
@@ -111,6 +115,7 @@ public class AdminController implements Initializable {
 		usernameLabel.setText(toUpperFirstLetter(userName));
 		tamTruLabel.setText(""+ThongKeServices.SoLuongNhanKhauTamTru());
 		tamVangLabel.setText(""+ThongKeServices.SoLuongNhanKhauTamVang());
+		tuVongLabel.setText(""+ThongKeServices.SoLuongNhanKhauTuVong());
 		ResultSet result = null;
 		try {
 			result = LichHoatDongServices.getLichHoatDongGanNhat(conn);

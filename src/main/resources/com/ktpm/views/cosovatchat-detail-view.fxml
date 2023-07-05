@@ -73,13 +73,13 @@
          </children>
       </VBox>
         <!--Cập nhật csvc -->
-        <Button fx:id="update_btn" layoutX="327.0" layoutY="337.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="72.0" styleClass="btn" text="OK" textFill="WHITE">
+        <Button fx:id="update_btn" layoutX="327.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#update" prefHeight="29.0" prefWidth="72.0" styleClass="btn" text="OK" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
         <!--Quay lại-->
-        <Button layoutX="447.0" layoutY="337.0" mnemonicParsing="false" onAction="#goBack" styleClass="btn" text="Quay lại" textFill="WHITE">
+        <Button layoutX="447.0" layoutY="337.0" mnemonicParsing="false" onMouseClicked="#goBack" styleClass="btn" text="Quay lại" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>

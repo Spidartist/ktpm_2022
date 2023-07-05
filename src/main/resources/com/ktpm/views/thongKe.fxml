@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.ThongKeController">
    <children>
-      <TableView fx:id="tableView" layoutX="25.0" layoutY="122.0" prefHeight="394.0" prefWidth="751.0">
+      <TableView fx:id="tableView" layoutX="25.0" layoutY="158.0" prefHeight="394.0" prefWidth="751.0">
         <columns>
             <TableColumn fx:id="indexColumn" prefWidth="40.5" text="#" />
           <TableColumn fx:id="hoTenColumn" prefWidth="185.5" text="Họ tên" />
@@ -29,7 +29,7 @@
             <URL value="@../styles/table.css" />
          </stylesheets>
       </TableView>
-      <HBox layoutX="14.0" layoutY="16.0" prefHeight="60.0" prefWidth="613.0">
+      <HBox layoutX="25.0" layoutY="79.0" prefHeight="60.0" prefWidth="613.0">
          <children>
             <VBox prefHeight="60.0" prefWidth="328.0">
                <children>
@@ -40,7 +40,7 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="gioiTinhList" prefHeight="25.0" prefWidth="71.0" />
+                        <ComboBox fx:id="gioiTinhList" prefHeight="25.0" prefWidth="112.0" />
                      </children>
                   </HBox>
                   <HBox alignment="BASELINE_LEFT">
@@ -51,13 +51,13 @@
                            </font>
                         </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Từ" wrappingWidth="25.341796875" />
-                        <TextField fx:id="tuTuoiField" prefHeight="25.0" prefWidth="36.0" />
+                        <TextField fx:id="tuTuoiField" prefHeight="30.0" prefWidth="45.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="đến" wrappingWidth="30.48046875">
                            <HBox.margin>
                               <Insets left="4.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField fx:id="denTuoiField" prefHeight="25.0" prefWidth="37.0" />
+                        <TextField fx:id="denTuoiField" prefHeight="30.0" prefWidth="45.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="tuổi">
                            <HBox.margin>
                               <Insets left="4.0" />
@@ -76,7 +76,7 @@
                   <Insets right="18.0" />
                </opaqueInsets>
             </VBox>
-            <VBox prefHeight="60.0" prefWidth="225.0">
+            <VBox prefHeight="65.0" prefWidth="252.0">
                <children>
                   <HBox alignment="BASELINE_LEFT">
                      <children>
@@ -85,10 +85,10 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Text>
-                        <ComboBox fx:id="tinhTrangList" prefHeight="25.0" prefWidth="99.0" />
+                        <ComboBox fx:id="tinhTrangList" prefHeight="25.0" prefWidth="115.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="BASELINE_LEFT">
+                  <HBox alignment="BASELINE_LEFT" prefHeight="40.0" prefWidth="245.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Năm" wrappingWidth="66.52734375">
                            <font>
@@ -99,13 +99,13 @@
                            </HBox.margin>
                         </Text>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Từ" wrappingWidth="25.341796875" />
-                        <TextField fx:id="tuNamField" prefHeight="25.0" prefWidth="43.0" />
+                        <TextField fx:id="tuNamField" prefHeight="30.0" prefWidth="50.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="đến" wrappingWidth="30.48046875">
                            <HBox.margin>
                               <Insets left="4.0" />
                            </HBox.margin>
                         </Text>
-                        <TextField fx:id="denNamField" prefHeight="25.0" prefWidth="45.0" />
+                        <TextField fx:id="denNamField" prefHeight="30.0" prefWidth="50.0" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="1.0">
                            <HBox.margin>
                               <Insets left="4.0" />
@@ -126,7 +126,12 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="690.0" layoutY="34.0" mnemonicParsing="false" onMouseClicked="#onStatistic" styleClass="btn_primary" text="Thống kê" />
-      <Pagination fx:id="pagination" layoutX="25.0" layoutY="121.0" prefHeight="465.0" prefWidth="751.0" />
+      <Button layoutX="656.0" layoutY="99.0" mnemonicParsing="false" onMouseClicked="#onStatistic" styleClass="btn_primary" text="Thống kê" />
+      <Pagination fx:id="pagination" layoutX="24.0" layoutY="158.0" prefHeight="438.0" prefWidth="751.0" />
+      <Text layoutX="24.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thống kê">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

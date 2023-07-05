@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.scene.input.*;
 
 import static com.ktpm.constants.DBConstants.*;
@@ -54,12 +55,11 @@ public class CoSoVatChatDeTailController implements Initializable {
     	ObservableList<String> lstTenLoaiDoDung = FXCollections.observableArrayList();
     	ObservableList<String> lstTinhTrang = FXCollections.observableArrayList();
     	Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-    	PreparedStatement check = conn.prepareStatement("SELECT TenDoDung, MaDoDung, TenLoaiDoDung, TinhTrang FROM `cosovatchat` JOIN `loaicosovatchat` "
-    													+ "WHERE `cosovatchat`.`MaLoaiDoDung` = `loaicosovatchat`.`MaLoaiDoDung`");
+    	PreparedStatement check = conn.prepareStatement("SELECT TenDoDung, MaDoDung, LoaiDoDung, TinhTrang FROM `cosovatchat`");
     	ResultSet rs = check.executeQuery();
     	String s;
     	while (rs.next()) {
-    		s = rs.getString("TenLoaiDoDung");
+    		s = rs.getString("LoaiDoDung");
     		if (s!=null && !lstTenLoaiDoDung.contains(s)) {
     			lstTenLoaiDoDung.add(s);
     		}
@@ -85,16 +85,18 @@ public class CoSoVatChatDeTailController implements Initializable {
 
     }
 
-    public void goBack(ActionEvent event) throws IOException {
+    public void goBack(MouseEvent event) throws IOException {
 //        ViewUtils viewUtils = new ViewUtils();
 //        viewUtils.switchToCoSoVatChat_Admin_view(event);
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
     public void onClick(ActionEvent event) throws IOException{
     	
     }
-
-    public void update(ActionEvent event) throws IOException {
+    
+    @FXML
+    public void update(MouseEvent event) throws IOException {
         ViewUtils viewUtils = new ViewUtils();
         String tenDoDung = tenDoDungLabel.getText();
         String tenLoaiDoDung = loaiDoDungLabel.getSelectionModel().getSelectedItem();
@@ -110,14 +112,14 @@ public class CoSoVatChatDeTailController implements Initializable {
         } else {
             try {
                 Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-                int result = CoSoVatChatServices.updateFacility(conn, maDoDungHienTai, tenDoDung, tinhTrangLabel.getSelectionModel().getSelectedItem());
+                int result = CoSoVatChatServices.updateFacility(conn, maDoDungHienTai, tenDoDung, tinhTrangLabel.getSelectionModel().getSelectedItem(), tenLoaiDoDung);
                 if (result == 1) {
                     createDialog(
                             Alert.AlertType.CONFIRMATION,
                             "Thành công",
                             "", "Cập nhật cơ sở vật chất thành công!"
                     );
-                    viewUtils.switchToCoSoVatChat_Admin_view(event);
+//                    viewUtils.switchToCoSoVatChat_Admin_view(event);
                 } else {
                     createDialog(
                             Alert.AlertType.ERROR,
@@ -130,6 +132,7 @@ public class CoSoVatChatDeTailController implements Initializable {
                 e.printStackTrace();
             }
         }
+        ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     }
     
     public void getModal() throws SQLException {

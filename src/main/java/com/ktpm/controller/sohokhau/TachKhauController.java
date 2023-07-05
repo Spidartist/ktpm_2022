@@ -1,5 +1,6 @@
 package com.ktpm.controller.sohokhau;
 
+import static com.ktpm.constants.FXMLConstants.CO_SO_VAT_CHAT_VIEW_FXML;
 import static com.ktpm.utils.Utils.createDialog;
 
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import com.ktpm.model.ThanhVien;
 import com.ktpm.services.NhanKhauServices;
 import com.ktpm.services.SoHoKhauServices;
 import com.ktpm.services.ThanhVienServices;
+import com.ktpm.utils.ViewUtils;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -18,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -27,6 +30,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class TachKhauController {
 	private ObservableList<ThanhVien> thanhVienCu = FXCollections.observableArrayList();
@@ -165,7 +169,7 @@ public class TachKhauController {
     	// them thanh vien moi vao ho khau moi
     	ThanhVienServices.themCacThanhVienVaoHoKhauMoi(thanhVienMoi, maChuHoMoi);
     	
-    	
+    	((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
     	
     }
 

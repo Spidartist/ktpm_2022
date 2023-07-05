@@ -60,7 +60,9 @@ CREATE TABLE `khaitu` (
   `ID` int(11) NOT NULL,
   `idNguoiKhai` int(11) NOT NULL,
   `idNguoiChet` int(11) NOT NULL,
+  `quanHeVoiNguoiChet` varchar(30) NOT NULL,
   `ngayKhai` date NOT NULL,
+  `ngayChet` date NOT NULL,
   `lyDoChet` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -117,10 +119,6 @@ CREATE TABLE `phong`(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ALTER TABLE `phong`
   ADD PRIMARY KEY (`ID`);
-CREATE TABLE `hoatdong_cosovatchat` (
-  `MaHoatDong` int(11) NOT NULL,
-  `MaDoDung` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE `nhankhau`
   ADD PRIMARY KEY (`ID`);
@@ -162,10 +160,6 @@ ALTER TABLE `lichhoatdong`
   ADD PRIMARY KEY (`MaHoatDong`),
   ADD KEY `MaNguoiTao` (`MaNguoiTao`);
 
-ALTER TABLE `hoatdong_cosovatchat`
-  ADD PRIMARY KEY (`MaHoatDong`,`MaDoDung`),
-  ADD KEY `MaHoatDong` (`MaHoatDong`),
-  ADD KEY `MaDoDung` (`MaDoDung`);
 
 ALTER TABLE `cccd`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
@@ -205,11 +199,7 @@ ALTER TABLE `cccd`
 --
 -- Các ràng buộc cho bảng `hoatdong_cosovatchat`
 --
-ALTER TABLE `hoatdong_cosovatchat`
-  ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_1` FOREIGN KEY (`MaHoatDong`) REFERENCES `lichhoatdong` (`MaHoatDong`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `hoatdong_cosovatchat_ibfk_2` FOREIGN KEY (`MaDoDung`) REFERENCES `cosovatchat` (`MaDoDung`) ON DELETE CASCADE ON UPDATE CASCADE;
 
---
 -- Các ràng buộc cho bảng `khaitu`
 --
 ALTER TABLE `khaitu`
@@ -295,6 +285,11 @@ INSERT INTO `cosovatchat` (`MaDoDung`, `LoaiDoDung`, `TenDoDung`, `TinhTrang`) V
 (12, 'Ghế nhựa','Ghế nhựa Thống Nhất', "Còn dùng được"),
 (13, 'Ghế nhựa','Ghế nhựa Thống Nhất', "Còn dùng được");
 
+INSERT INTO `phong` (`ID`, `tenPhong`) VALUES
+(1, 'Hội trường'),
+(2, 'Phòng chức năng 1'),
+(3, 'Phòng bóng bàn'),
+(4, 'Nhà thi đấu');
 
 
 INSERT INTO `cccd` (`ID`, `idNhankhau`, `CCCD`, `NgayCap`, `NoiCap`) VALUES

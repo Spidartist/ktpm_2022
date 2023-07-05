@@ -208,6 +208,12 @@ public class SoHoKhauController implements Initializable {
     }
     
     @FXML
+    void reload(MouseEvent event) throws IOException {
+    	ViewUtils viewUtils = new ViewUtils();
+    	viewUtils.changeAnchorPane(basePane, SO_HO_KHAU_VIEW_FXML);
+    }
+    
+    @FXML
     void tackKhau(MouseEvent event) throws SQLException {
 		SoHoKhau selected = tableView.getSelectionModel().getSelectedItem();
 		if (selected == null) {

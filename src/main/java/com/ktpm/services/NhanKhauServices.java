@@ -29,6 +29,22 @@ public class NhanKhauServices {
         rs.next();
         return rs.getInt("ID");
     }
+    
+    public static int addKhaiTu(int IDNguoiChet, int IDNguoiKhaiTu, String lydoChet, String ngayChet, String ngayKhaiTu, String quanHeVoiNguoiChet) throws SQLException {
+        // Connecting Database
+        String SELECT_QUERY = "INSERT INTO khaitu (idNguoiKhai, idNguoiChet, quanHeVoiNguoiChet, ngayKhai, ngayChet, lydoChet) VALUES (?, ?, ?, ?, ?, ?)";
+        Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+        PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+        preparedStatement.setInt(1, IDNguoiKhaiTu);
+        preparedStatement.setInt(2, IDNguoiChet);
+        preparedStatement.setString(3, quanHeVoiNguoiChet);
+        preparedStatement.setString(4, ngayKhaiTu);
+        preparedStatement.setString(5, ngayChet);
+        preparedStatement.setString(6, lydoChet);
+        int rs = preparedStatement.executeUpdate();
+        return rs;
+    }
+    
 
     public static int deleteNhanKhauViaCCCD(int ID) throws SQLException {
         String DELETE_QUERY = "DELETE FROM cccd " +

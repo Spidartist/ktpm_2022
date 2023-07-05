@@ -20,9 +20,9 @@
             <TableColumn fx:id="soLuongColumn" prefWidth="146.0" text="Số lượng thành viên" />
             </columns>
         </TableView>
-        <Text layoutX="45.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý sổ hộ khẩu" textAlignment="CENTER" wrappingWidth="169.9140625">
+        <Text layoutX="38.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quản lý sổ hộ khẩu" textAlignment="CENTER" wrappingWidth="209.9140625">
             <font>
-                <Font name="Segoe UI Bold" size="18.0" />
+                <Font name="Segoe UI" size="24.0" />
             </font>
         </Text>
         <Button layoutX="566.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" styleClass="btn" text="Thêm mới" textFill="WHITE">
@@ -30,7 +30,7 @@
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="searchTextField" layoutX="45.0" layoutY="77.0" onMouseClicked="#search" prefHeight="30.0" prefWidth="297.0" promptText="Lọc theo địa chỉ">
+        <TextField fx:id="searchTextField" layoutX="38.0" layoutY="78.0" onMouseClicked="#search" prefHeight="30.0" prefWidth="297.0" promptText="Lọc theo địa chỉ">
             <font>
                 <Font name="Segoe UI Italic" size="14.0" />
             </font>
@@ -42,6 +42,11 @@
         </Button>
         <Pagination fx:id="pagination" layoutX="38.0" layoutY="125.0" prefHeight="478.0" prefWidth="702.0" />
       <Button layoutX="469.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#tackKhau" styleClass="btn" text="Tách khẩu" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="reload" layoutX="371.0" layoutY="78.0" mnemonicParsing="false" onMouseClicked="#reload" prefHeight="29.0" prefWidth="67.0" styleClass="btn" text="Tải lại" textFill="WHITE">
          <font>
             <Font name="Segoe UI" size="14.0" />
          </font>
