@@ -27,9 +27,9 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <Text layoutX="39.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm thành viên vào hộ khẩu" textAlignment="CENTER" wrappingWidth="250.91404724121094">
+      <Text layoutX="39.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thêm thành viên vào hộ khẩu" textAlignment="CENTER" wrappingWidth="282.91404724121094">
          <font>
-            <Font name="Segoe UI" size="18.0" />
+            <Font name="Segoe UI Bold" size="20.0" />
          </font>
       </Text>
       <Button layoutX="39.0" layoutY="549.0" mnemonicParsing="false" onAction="#add" prefHeight="28.0" prefWidth="318.0" styleClass="btn" text="Thêm thành viên này" textFill="WHITE">

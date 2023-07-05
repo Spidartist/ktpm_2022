@@ -130,7 +130,7 @@ public class NhanKhauController implements Initializable {
 		}
 	}
 	  @FXML
-	    void onKhaiTu(MouseEvent event) throws SQLException {
+	    void onKhaiTu(MouseEvent event)  {
 		  NhanKhau selected = tableView.getSelectionModel().getSelectedItem();
 			if (selected == null) {
 				createDialog(Alert.AlertType.ERROR, "Thông báo", "Phải chọn người để khai tử!", "");

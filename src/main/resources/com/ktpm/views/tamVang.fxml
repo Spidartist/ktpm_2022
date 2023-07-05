@@ -10,14 +10,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="421.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.TamVangController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="308.0" prefWidth="421.0" stylesheets="@../styles/global.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ktpm.controller.TamVangController">
    <children>
       <Text layoutX="125.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="title" text="Đăng ký tạm vắng">
          <font>
             <Font name="Arial Bold" size="20.0" />
          </font>
       </Text>
-      <VBox layoutX="51.0" layoutY="75.0">
+      <VBox layoutX="51.0" layoutY="60.0">
          <children>
             <HBox>
                <children>

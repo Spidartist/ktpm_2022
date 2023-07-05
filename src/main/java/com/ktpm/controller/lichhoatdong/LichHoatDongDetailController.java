@@ -50,7 +50,9 @@ public class LichHoatDongDetailController implements Initializable {
     @FXML
     private Button doiNguoiTaoBtn, addCSVCBtn;
     @FXML
-    private TextField endTimeTextField, startTimeTextField, maHoatDongTextField, tenHoatDongTextField, nguoiTaoTextField,thuPhiTextField;
+    private TextField endTimeTextField, startTimeTextField, maHoatDongTextField, tenHoatDongTextField, nguoiTaoTextField;
+    @FXML
+    private TextField thuPhiTextField;
     @FXML
     private DatePicker startDatePicker, endDatePicker;
     @FXML

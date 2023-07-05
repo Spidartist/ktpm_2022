@@ -37,7 +37,7 @@
             <TableColumn fx:id="ngheNghiepColumn" prefWidth="88.80001220703127" text="Nghề nghiệp" />
          </columns>
       </TableView>
-      <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên" style="-fx-border-color: #3f4d67; -fx-border-radius: 10px; -fx-background-color: transparent;">
+      <TextField fx:id="searchTextField" layoutX="37.0" layoutY="77.0" onMouseClicked="#search" prefHeight="26.0" prefWidth="205.0" promptText="Lọc theo tên">
          <font>
             <Font name="Segoe UI Italic" size="14.0" />
          </font>

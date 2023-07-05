@@ -103,8 +103,8 @@ public class LichHoatDongServices {
         preparedStatement.setString(6, thoiGianTao);
         
         preparedStatement.setString(7, String.valueOf(selected.getID()));
-        preparedStatement.setString(7, tenPhong);
-        preparedStatement.setString(8, thuPhi);
+        preparedStatement.setString(8, tenPhong);
+        preparedStatement.setString(9, thuPhi);
 
         return preparedStatement.executeUpdate();
     }
