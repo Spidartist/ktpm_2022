@@ -48,7 +48,7 @@ public class SignUpController implements Initializable {
                     Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
                     PreparedStatement preparedStatement = conn.prepareStatement(CREATE_QUERY);
                     preparedStatement.setString(1, inputUsername);
-                    preparedStatement.setString(2, hashPassword(inputPassword));
+                    preparedStatement.setString(2, inputPassword);
                     preparedStatement.setString(3, role);
                     int result = preparedStatement.executeUpdate();
                     if (result == 1) {

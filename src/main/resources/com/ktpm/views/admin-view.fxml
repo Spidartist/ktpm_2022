@@ -119,6 +119,9 @@
                                  </image>
                               </ImageView>
                            </graphic>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </Button>
                         <Button id="menuButton" fx:id="signUpUserButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#switchToSignUp" prefHeight="42.0" prefWidth="223.0" text="Đăng ký người dùng" textFill="WHITE">
                            <font>
